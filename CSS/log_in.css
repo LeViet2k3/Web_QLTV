@@ -14,16 +14,15 @@
     flex-direction: column;
     border: 1px solid black;
     border-radius: 30px;
-    position: absolute;
-    top: 160px;
-    left: 100px;
     background-color: rgba(0, 0, 0, 0.1);
+    margin: 40px 0 90px 70px;
 }
 
 .box1 {
     text-align: center;
     font-size: 20px;
 }
+
 
 .box2 .mail {
     display: flex;
@@ -38,65 +37,17 @@
     outline: none;
 }
 
-.box2 i {
-    position: absolute;
-    right: 50px;
-    top: 21%;
-    font-size: 15px;
-    color: #555;
-}
-
-.box3 .mail {
-    display: flex;
-    width: 100%;
-    height: 40px;
-    padding: 0px 25px;
-    margin-bottom: 15px;
-    border-radius: 40px;
-    font-size: 15px;
-    border: none;
-    outline: none;
-}
-
-.box3 i {
-    position: absolute;
-    right: 50px;
-    top: 40%;
-    font-size: 15px;
-    color: #555;
-}
-
-.box4 i {
-    position: absolute;
-    right: 50px;
-    top: 58%;
-    font-size: 15px;
-    color: #555;
-}
-
-.box4 .mail {
-    display: flex;
-    width: 100%;
-    height: 40px;
-    padding: 0px 25px;
-    margin-bottom: 15px;
-    border-radius: 30px;
-    font-size: 15px;
-    border: none;
-    outline: none;
-}
-
-.mail:focus {
-    width: 105%;
+.mail:hover {
+    background-color: rgb(219, 228, 235);
 }
 
 
-.box5 {
+.box3 {
     display: flex;
     justify-content: center;
 }
 
-.box5 button {
+.box3 button {
     width: 50%;
     height: 40px;
     border-radius: 30px;
@@ -107,19 +58,37 @@
     cursor: pointer;
 }
 
-.box6 {
+.box4 {
     display: flex;
     justify-content: center;
     margin-top: 15px;
 }
 
-.box6 a {
+.box4 a {
     text-decoration: none;
     margin-left: 5px;
     color: black;
     font-weight: 600;
 }
 
-.box6 a:hover {
+.box4 a:hover {
     text-decoration: underline;
+}
+
+.sidebar {
+    border: 1px solid black;
+    border-radius: 10px;
+    max-width: 50%;
+    height: auto;
+    padding: 5px 10px 10px 30px;
+    float: right;
+    margin: 80px 70px 0 0;
+
+}
+
+.sidebar .title {
+    text-align: center;
+    color: rgb(196, 62, 62);
+    margin-bottom: 20px;
+    font-size: 20px;
 }

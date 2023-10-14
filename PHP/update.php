@@ -38,12 +38,12 @@ if (mysqli_num_rows($result) > 0) {
     echo "Không có dữ liệu trong bảng website.";
 }
 // Cập nhật dữ liệu
-$new_email = 'th10lop10.3levanviet@gmail.com'; //= $_POST['email'];
-$new_username = 'lê vịt';
-$new_gender = 'Nam'; // = $_POST['gender'];
-$new_password = 'leviet'; //= $_POST['password'];
-$new_place_of_origin = 'Binh Trung Thang Binh Quang Nam'; //= $_POST['place_of_origin'];
-$new_a_phone_number = '067548549'; // = $_POST['a_phone_number'];
+$new_email = $_POST['email'];
+$new_username = $_POST['username'];
+$new_gender = $_POST['gender'];
+$new_password = $_POST['password'];
+$new_place_of_origin = $_POST['place_of_origin'];
+$new_a_phone_number = $_POST['a_phone_number'];
 if ($new_email != $email || $new_username != $username || $new_gender != $gender || $new_password != $password || $new_place_of_origin != $place_of_origin || $new_a_phone_number != $a_phone_number) {
     $updateSql = "UPDATE users 
                 SET Email = '$new_email', UserName = '$new_username', Gender = '$new_gender', Passwords = '$new_password', Place_of_origin = '$new_place_of_origin', A_phone_number = '$new_a_phone_number'

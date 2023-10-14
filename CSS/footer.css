@@ -1,13 +1,9 @@
 .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
     width: 100%;
     height: auto;
     background-color: rgb(192, 192, 232);
     color: black;
     padding: 7px 0;
-    margin-top: 50px;
 
 }
 

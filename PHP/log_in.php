@@ -32,16 +32,16 @@ $result = mysqli_query($conn, $sql);
 
 // Kiểm tra kết quả
 if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "Email: " . $row["Email"] . "<br>";
-        echo "UserName: " . $row["UserName"] . "<br>";
-        echo "Gender: " . $row["Gender"] . "<br>";
-        echo "Password: " . $row["Passwords"] . "<br>";
-        echo "Place of origin: " . $row["Place_of_origin"] . "<br>";
-        echo "A phone number: " . $row["A_phone_number"] . "<br>";
-    }
-    // header("Location: http://localhost:8282/website/HTML/web/web.html");
-    // exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+    // while ($row = mysqli_fetch_assoc($result)) {
+    //     echo "Email: " . $row["Email"] . "<br>";
+    //     echo "UserName: " . $row["UserName"] . "<br>";
+    //     echo "Gender: " . $row["Gender"] . "<br>";
+    //     echo "Password: " . $row["Passwords"] . "<br>";
+    //     echo "Place of origin: " . $row["Place_of_origin"] . "<br>";
+    //     echo "A phone number: " . $row["A_phone_number"] . "<br>";
+    // }
+    header("Location: http://localhost:8282/Web_QLHT/HTML/index.html");
+    exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
 } else {
     echo "Không có dữ liệu trong bảng website.";
 }

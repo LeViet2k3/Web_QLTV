@@ -4,3 +4,32 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+.content {
+    width: 20%;
+    background-color: black;
+    margin-left: 20px;
+}
+
+.menu a {
+    width: 100%;
+    padding: 7px;
+    text-decoration: none;
+    color: aliceblue;
+    background-color: rgb(52, 54, 54);
+    display: flex;
+    justify-content: center;
+}
+
+a:hover {
+    background-color: rgb(34, 35, 35);
+}
+
+.menu li {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.log_out a {
+    margin-top: 100%;
+}
