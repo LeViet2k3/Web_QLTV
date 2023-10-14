@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/sign_up.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <title>Sign_up</title>
+
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <img src="../Image/logo.png" alt="logo_team">
+        <div>
+            <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
+            <h3>Đội Ngũ Phát Triễn - Team 2</h3>
+        </div>
+    </div>
+    <!-- Sign_up -->
+    <form action="../PHP/sign_up.php" method="post">
+        <div class="sign_up">
+            <div class="info">
+                Email: <input type="email" name="email">
+                UserName: <input type="text" name="username">
+                <div>
+                    Giới tính:
+                    <input type="radio" name="gender" value="Nam"> Nam &emsp;
+                    <input type="radio" name="gender" value="Nữ"> Nữ &emsp;
+                    <input type="radio" name="gender" value="Khác"> Khác
+                </div>
+                Password: <input type="password" name="password">
+                Place of origin: <input type="text" name="place_of_origin">
+                A phone number: <input type="number" name="a_phone_number">
+            </div>
+            <div class="submit">
+                <button type="submit">Sign up</button>
+            </div>
+        </div>
+
+
+    </form>
+    <!--Footer-->
+    <div class="footer">
+        <ul>
+            <li>
+                <p><i class="fa-solid fa-location-dot"></i> Địa chỉ: 136 Phạm Như Xương, Hòa Khánh Nam, quận
+                    Liên Chiểu, TP.Đà Nẵng</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-phone"></i> Điện thoại: 0867548549 - 0702032064</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
+            </li>
+            <div class="license">
+                <li>
+                    <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
+                </li>
+            </div>
+
+    </div>
+</body>
+
+</html>

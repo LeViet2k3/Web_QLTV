@@ -1,0 +1,17 @@
+.sidebar {
+    border: 1px solid black;
+    border-radius: 10px;
+    max-width: 50%;
+    height: 200px;
+    padding: 5px 10px 10px 30px;
+    float: right;
+    margin: 100px 70px 0 0;
+
+}
+
+.sidebar .title {
+    text-align: center;
+    color: rgb(196, 62, 62);
+    margin-bottom: 20px;
+    font-size: 20px;
+}
