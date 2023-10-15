@@ -5,20 +5,21 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.content {
-    width: 20%;
+.sidebar {
+    flex-basis: 100%;
     background-color: black;
-    margin-left: 20px;
+
 }
 
 .menu a {
-    width: 100%;
+    width: 80%;
     padding: 7px;
     text-decoration: none;
     color: aliceblue;
     background-color: rgb(52, 54, 54);
     display: flex;
     justify-content: center;
+    margin: auto;
 }
 
 a:hover {
@@ -30,6 +31,28 @@ a:hover {
     padding: 10px;
 }
 
-.log_out a {
-    margin-top: 100%;
+
+
+.content {
+    flex-basis: 100%;
+}
+
+@media(min-width: 576px) {
+    .sidebar {
+        flex-basis: 19%;
+        margin-left: 20px;
+    }
+
+    .content {
+        flex-basis: 79%;
+    }
+
+    .log_out a {
+        margin-top: 90%;
+    }
+}
+
+.body {
+    display: flex;
+    flex-wrap: wrap;
 }
