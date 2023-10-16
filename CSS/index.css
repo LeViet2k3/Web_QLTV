@@ -34,7 +34,7 @@ a:hover {
 
 
 .content {
-    flex-basis: 100%;
+    flex-basis: 90%;
 }
 
 @media(min-width: 576px) {

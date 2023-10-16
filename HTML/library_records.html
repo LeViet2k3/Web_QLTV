@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/library_records.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="../PHP/library_records.php" method="post">
+        <div class="library">
+            <div class="ok1">
+                Nhập mã sách:&emsp; <input type="text" class="ok1_1" name="Book_id" placeholder="Nhập mã sách" required>
+            </div><br>
+            <div class="ok1">
+                Thời hạn:&emsp;
+                <input type="radio" name="time" value="3 ngày" required>&nbsp; 3 ngày &emsp;
+                <input type="radio" name="time" value="5 ngày" required>&nbsp; 5 ngày &emsp;
+                <input type="radio" name="time" value="7 ngày" required>&nbsp; 7 ngày &emsp;
+            </div><br>
+            <div class="ok2">
+                <input type="submit">
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
