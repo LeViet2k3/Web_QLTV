@@ -3,36 +3,57 @@
 session_start();
 ?>
 <?php
-$server = "localhost"; // Tên máy chủ MySQL (mặc định là localhost)
-$username = "root";    // Tên đăng nhập MySQL
-$password = "";        // Mật khẩu MySQL (nếu bạn có mật khẩu)
-$database = "quan_ly_thu_vien";    // Tên cơ sở dữ liệu MySQL
+include('libs/helper.php');
+db_connect();
 
-// Kết nối tới cơ sở dữ liệu
-$conn = mysqli_connect($server, $username, $password, $database);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Dữ liệu bạn muốn chèn
+    $email = $_SESSION['email'];
+    $book_id = $_POST['Book_id'];
+    $return_day = $_POST['time'];
 
-// Kiểm tra kết nối
-if (!$conn) {
-    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
-}
-
-// Dữ liệu bạn muốn chèn
-$email = $_SESSION['email'];
-$book_id = $_POST['Book_id'];
-$day = date("Y-m-d ");
-$return_day = $_POST['time'];
-
-// Câu lệnh SQL để chèn dữ liệu
-// $sql = "delete from sinh_vien where id = 3";
-$sql = "INSERT INTO library_records (Email, Book_id, Book_borrowed_day, Book_return_day, Expense_id) 
-        VALUES ('$email', '$book_id', '$day', '$return_day', 'MP01' )";
-// Thực thi câu lệnh SQL
-if (mysqli_query($conn, $sql)) {
-    echo "Thêm dữ liệu vào bảng thành công ok!";
-    echo $day;
-} else {
-    echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+    // Câu lệnh SQL để chèn dữ liệu
+    $sql = "INSERT INTO library_records (Email, Book_id, Book_return_day, Expense_id) 
+        VALUES ('$email', '$book_id', '$return_day', 'MP01' )";
+    // Thực thi câu lệnh SQL
+    if (mysqli_query($conn, $sql)) {
+        echo "Thêm dữ liệu vào bảng thành công ok!";
+    } else {
+        echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+    }
 }
 
 // Đóng kết nối
-mysqli_close($conn);
+db_disconnect();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/library_records.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <div class="library">
+            <div class="ok1">
+                Nhập mã sách:&emsp; <input type="text" class="ok1_1" name="Book_id" placeholder="Nhập mã sách" required>
+            </div><br>
+            <div class="ok1">
+                Thời hạn:&emsp;
+                <input type="radio" name="time" value="3 ngày" required>&nbsp; 3 ngày &emsp;
+                <input type="radio" name="time" value="5 ngày" required>&nbsp; 5 ngày &emsp;
+                <input type="radio" name="time" value="7 ngày" required>&nbsp; 7 ngày &emsp;
+            </div><br>
+            <div class="ok2">
+                <input type="submit">
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

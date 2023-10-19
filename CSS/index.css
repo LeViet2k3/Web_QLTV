@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    /* font-size: 15px; */
 }
 
 .sidebar {
@@ -20,6 +21,7 @@
     display: flex;
     justify-content: center;
     margin: auto;
+    margin-top: 2%;
 }
 
 a:hover {
@@ -48,8 +50,13 @@ a:hover {
     }
 
     .log_out a {
-        margin-top: 90%;
+        margin-top: 95%;
     }
+
+    * {
+        /* font-size: 30px; */
+    }
+
 }
 
 .body {

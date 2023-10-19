@@ -1,35 +1,90 @@
 <?php
-$server = "localhost"; // Tên máy chủ MySQL (mặc định là localhost)
-$username = "root";    // Tên đăng nhập MySQL
-$password = "";        // Mật khẩu MySQL (nếu bạn có mật khẩu)
-$database = "quan_ly_thu_vien";    // Tên cơ sở dữ liệu MySQL
-
-// Kết nối tới cơ sở dữ liệu
-$conn = mysqli_connect($server, $username, $password, $database);
-
-// Kiểm tra kết nối
-if (!$conn) {
-    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
-}
-
+include('libs/helper.php');
+db_connect();
 // Dữ liệu bạn muốn chèn
-$email = $_POST['email'];
-$username = $_POST['username'];
-$gender = $_POST['gender'];
-$password = $_POST['password'];
-$place_of_origin = $_POST['place_of_origin'];
-$a_phone_number = $_POST['a_phone_number'];
-
-// Câu lệnh SQL để chèn dữ liệu
-// $sql = "delete from sinh_vien where id = 3";
-$sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number) 
-        VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number' )";
-// Thực thi câu lệnh SQL
-if (mysqli_query($conn, $sql)) {
-    echo "Thêm dữ liệu vào bảng thành công!";
-} else {
-    echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $gender = $_POST['gender'];
+    $password = $_POST['password'];
+    $place_of_origin = $_POST['place_of_origin'];
+    $a_phone_number = $_POST['a_phone_number'];
+    $sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number)
+            VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number' )";
+    if (mysqli_query($conn, $sql)) {
+        echo "Thêm dữ liệu vào bảng thành công!";
+    } else {
+        echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+    }
 }
 
 // Đóng kết nối
-mysqli_close($conn);
+db_disconnect();
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/sign_up.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <title>Sign_up</title>
+
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <img src="../Image/logo.png" alt="logo_team">
+        <div>
+            <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
+            <h3>Đội Ngũ Phát Triễn - Team 2</h3>
+        </div>
+    </div>
+    <!-- Sign_up -->
+    <form action="" method="post">
+        <div class="sign_up">
+            <div class="title">
+                <h3>Vui Lòng Điền Các Thông Tin</h3>
+            </div>
+            <div class="info">
+                Email: <input type="email" name="email" required><br>
+                UserName: <input type="text" name="username" required><br>
+                Gender: <input type="text" name="gender" required><br>
+                Password: <input type="password" name="password" required> <br>
+                Place of origin: <input type="text" name="place_of_origin" required><br>
+                A phone number: <input type="number" name="a_phone_number" required>
+            </div>
+            <div class="submit">
+                <button type="submit">Sign up</button>
+            </div>
+        </div>
+
+
+    </form>
+    <!--Footer-->
+    <div class="footer">
+        <ul>
+            <li>
+                <p><i class="fa-solid fa-location-dot"></i> Địa chỉ: 136 Phạm Như Xương, Hòa Khánh Nam, quận
+                    Liên Chiểu, TP.Đà Nẵng</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-phone"></i> Điện thoại: 0867548549 - 0702032064</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
+            </li>
+            <div class="license">
+                <li>
+                    <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
+                </li>
+            </div>
+
+    </div>
+</body>
+
+</html>

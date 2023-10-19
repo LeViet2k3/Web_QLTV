@@ -3,48 +3,129 @@
 session_start();
 ?>
 <?php
-$server = "localhost"; // Tên máy chủ MySQL (mặc định là localhost)
-$username = "root";    // Tên đăng nhập MySQL
-$password = "";        // Mật khẩu MySQL (nếu bạn có mật khẩu)
-$database = "quan_ly_thu_vien";    // Tên cơ sở dữ liệu MySQL
+include('libs/helper.php');
+db_connect();
 
-// Kết nối tới cơ sở dữ liệu
-$conn = mysqli_connect($server, $username, $password, $database);
 
-// Kiểm tra kết nối
-if (!$conn) {
-    die("Kết nối đến cơ sở dữ liệu thất bại: " . mysqli_connect_error());
-}
-
-// Set session variables
-$_SESSION['email'] = $_POST['email'];
 
 // Dữ liệu đăng nhập
-$email = $_POST['email'];
-$username = $_POST['username'];
-$password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Set session variables
+    $_SESSION['email'] = $_POST['email'];
+    $email = $_POST['email'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-$sql = "SELECT * FROM users 
+
+    $sql = "SELECT * FROM users 
         where Email = '$email' and UserName = '$username' and Passwords = '$password'";
 
-// Thực thi câu lệnh SQL
-$result = mysqli_query($conn, $sql);
+    // Thực thi câu lệnh SQL
+    $result = mysqli_query($conn, $sql);
 
-// Kiểm tra kết quả
-if (mysqli_num_rows($result) > 0) {
-    // while ($row = mysqli_fetch_assoc($result)) {
-    //     echo "Email: " . $row["Email"] . "<br>";
-    //     echo "UserName: " . $row["UserName"] . "<br>";
-    //     echo "Gender: " . $row["Gender"] . "<br>";
-    //     echo "Password: " . $row["Passwords"] . "<br>";
-    //     echo "Place of origin: " . $row["Place_of_origin"] . "<br>";
-    //     echo "A phone number: " . $row["A_phone_number"] . "<br>";
-    // }
-    header("Location: http://localhost:8282/Web_QLHT/HTML/index.html");
-    exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
-} else {
-    echo "Không có dữ liệu trong bảng website.";
+    // Kiểm tra kết quả
+    if (mysqli_num_rows($result) > 0) {
+        // while ($row = mysqli_fetch_assoc($result)) {
+        //     echo "Email: " . $row["Email"] . "<br>";
+        //     echo "UserName: " . $row["UserName"] . "<br>";
+        //     echo "Gender: " . $row["Gender"] . "<br>";
+        //     echo "Password: " . $row["Passwords"] . "<br>";
+        //     echo "Place of origin: " . $row["Place_of_origin"] . "<br>";
+        //     echo "A phone number: " . $row["A_phone_number"] . "<br>";
+        // }
+        header("Location: http://localhost:8282/Web_QLTV/HTML/index.html");
+        exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+    } else {
+        echo "Không có dữ liệu trong bảng website.";
+    }
 }
-
 // Đóng kết nối
-mysqli_close($conn);
+db_disconnect();
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../CSS/header.css">
+    <link rel="stylesheet" href="../CSS/log_in.css">
+    <link rel="stylesheet" href="../CSS/footer.css">
+    <title>Log_in</title>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <img src="../Image/logo.png" alt="logo_team">
+        <div>
+            <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
+            <h3>Đội Ngũ Phát Triễn - Team 2</h3>
+        </div>
+    </div>
+    <!-- sidebar -->
+    <div class="sidebar">
+        <div class="title">
+            <h4>Thông Báo Mới Nhất</h4>
+        </div>
+        <div>
+            <ol>
+                <li>Thông tin về giờ mở cửa và đóng cửa</li>
+                <li>Thông tin về các sự kiện sắp tới</li>
+                <li>Thông tin về tình trạng sách và tài liệu mới</li>
+                <li>Thông tin về tình trạng các dự án xây dựng và nâng cấp thư viện</li>
+                <li>Thông tin về tình trạng tài khoản và mượn trả sách</li>
+                <li>Thông báo về tình trạng vị trí và tiện ích trong thư viện</li>
+                <li>Thông báo về tài liệu đặc biệt và bộ sưu tập đặc trưng</li>
+            </ol>
+        </div>
+    </div>
+    <!-- login -->
+    <div class="login">
+        <form action="../PHP/log_in.php" method="post">
+            <div class="box1">
+                <h3>Log in</h3>
+            </div>
+            <div class="box2">
+                <input type="email" name="email" class="mail" placeholder="Email" required>
+            </div>
+            <div class="box2">
+                <input type="text" name="username" class="mail" placeholder="UserName" required>
+            </div>
+            <div class="box2">
+                <input type="password" name="password" class="mail" placeholder="Password" required>
+            </div>
+            <div class="box3">
+                <button type="submit">Log in</button>
+            </div>
+        </form>
+
+        <div class="box4">
+            <p> Don't have a account</p>
+            <a href="./sign_up.php">Sign up</a>
+        </div>
+    </div>
+    <!--Footer-->
+    <div class="footer">
+        <ul>
+            <li>
+                <p><i class="fa-solid fa-location-dot"></i> Địa chỉ: 136 Phạm Như Xương, Hòa Khánh Nam, quận
+                    Liên Chiểu, TP.Đà Nẵng</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-phone"></i> Điện thoại: 0867548549 - 0702032064</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
+            </li>
+            <div class="license">
+                <li>
+                    <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
+                </li>
+            </div>
+
+    </div>
+</body>
+
+</html>

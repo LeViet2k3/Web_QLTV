@@ -1,7 +1,8 @@
 .search {
     display: flex;
     justify-content: space-around;
-    padding-top: 20%;
+    /* padding-top: 20%; */
+    padding-top: 3%;
 }
 
 .search a {
@@ -10,7 +11,7 @@
     border-radius: 30px;
     flex-basis: 15%;
     text-align: center;
-    padding: 10px 0;
+    padding: 7px 0;
     color: black;
     background-color: rgb(185, 178, 201);
 }
