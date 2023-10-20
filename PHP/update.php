@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $updateResult = mysqli_query($conn, $updateSql);
 
         if ($updateResult) {
-            echo "Cập nhật thành công.<br>";
+            echo "<h3>Cập nhật thành công.<br></h3>";
         } else {
             echo "Lỗi trong quá trình cập nhật dữ liệu: " . mysqli_error($conn);
         }
@@ -68,11 +68,15 @@ db_disconnect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/sign_up.css">
     <title>Update</title>
-
+    <style>
+        h3 {
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 
 <body>
-
     <?php
 
     $email = $_SESSION['email'];
@@ -98,7 +102,7 @@ db_disconnect();
     <form action="../PHP/update.php" method="post">
         <div class="sign_up">
             <div class="title">
-                <h3>Chỉnh sửa thông tin cá nhân</h3>
+                <h3>Thông tin cá nhân</h3>
             </div>
             <div class="info">
                 Email: <input type="email" name="email" value="<?php echo $email ?>"><br>

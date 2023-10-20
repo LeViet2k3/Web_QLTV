@@ -8,8 +8,8 @@
 .library {
     width: 40%;
     border: 1px solid rgb(52, 49, 49);
-    margin: auto;
-    margin-top: 15%;
+    /* margin: auto; */
+    /* margin-top: 15%; */
     padding: 20px;
     background-color: rgba(240, 248, 255, 0.7);
 }
