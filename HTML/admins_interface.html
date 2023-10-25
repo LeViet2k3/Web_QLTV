@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/index.css">
+    <title>Quản Lý Thư Viện</title>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="header">
+        <img src="../Image/logo.png" alt="logo_team">
+        <div>
+            <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
+            <h3>Đội Ngũ Phát Triễn - Team 2</h3>
+        </div>
+    </div>
+    <!-- Body -->
+    <div class="body">
+        <!-- sidebar -->
+        <div class="sidebar">
+            <div>
+                <ul>
+                    <div class="menu">
+                        <li><a href="./home.html" class="showContentLink">Trang Chủ</a></li>
+                    </div>
+                    <div class="menu">
+                        <li><a href="" class="showContentLink">Xóa Tài Khoản</a></li>
+                    </div>
+                    <div class="menu">
+                        <li><a href="../PHP/statistical.php" class="showContentLink">Thống Kê</a></li>
+                    </div>
+                    <div class="menu">
+                        <li><a href="" class="showContentLink">Thêm Sách</a></li>
+                    </div>
+                    <div class="menu">
+                        <li><a href="" class="showContentLink">Cập Nhật Chi Phí</a></li>
+                    </div>
+                    <div class="menu">
+                        <li class="log_out1"><a href="../PHP/log_in.php">Đăng Xuất</a></li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <!-- content -->
+        <div class="content">
+            <iframe id="contentFrame" src="./home.html" width="100%" height="500px"></iframe>
+
+            <script>
+                var contentFrame = document.getElementById("contentFrame");
+                var showLinks = document.querySelectorAll(".showContentLink");
+
+                showLinks.forEach(function (link) {
+                    link.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        contentFrame.src = this.href;
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <!--Footer-->
+    <div class="footer">
+        <ul>
+            <li>
+                <p><i class="fa-solid fa-location-dot"></i> Địa chỉ: 136 Phạm Như Xương, Hòa Khánh Nam, quận
+                    Liên Chiểu, TP.Đà Nẵng</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-phone"></i> Điện thoại: 0867548549 - 0702032064</p>
+            </li>
+            <li>
+                <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
+            </li>
+            <div class="license">
+                <li>
+                    <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
+                </li>
+            </div>
+
+    </div>
+</body>
+
+</html>

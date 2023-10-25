@@ -71,7 +71,7 @@ session_start();
 
                 // Câu lệnh SQL để chèn dữ liệu
                 $sql = "INSERT INTO library_records (Email, Book_id, Book_return_day, Expense_id) 
-            VALUES ('$email', '$book_id', '$return_day', '$expense' )";
+                       VALUES ('$email', '$book_id', '$return_day', '$expense' )";
                 // Thực thi câu lệnh SQL
                 if (mysqli_query($conn, $sql)) {
                     $sql1 = " SELECT library_records.Id, library_records.Email, library_records.Book_id, library_records.Book_borrowed_day, library_records.Book_return_day, expense.Charges

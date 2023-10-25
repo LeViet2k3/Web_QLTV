@@ -18,11 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $sql = "SELECT * FROM users 
-        where Email = '$email' and UserName = '$username' and Passwords = '$password'";
-
+    where Email = '$email' and UserName = '$username' and Passwords = '$password'";
+    $sql1 = "SELECT * FROM admins 
+    where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
     $result = mysqli_query($conn, $sql);
-
+    $result1 = mysqli_query($conn, $sql1);
     // Kiểm tra kết quả
     if (mysqli_num_rows($result) > 0) {
         // while ($row = mysqli_fetch_assoc($result)) {
@@ -33,8 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //     echo "Place of origin: " . $row["Place_of_origin"] . "<br>";
         //     echo "A phone number: " . $row["A_phone_number"] . "<br>";
         // }
-        header("Location: http://localhost:8282/Web_QLTV/HTML/index.html");
+        header("Location: http://localhost:8282/Web_QLTV/HTML/users_interface.html");
         exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+    } elseif (mysqli_num_rows($result1) > 0) {
+        header("Location: http://localhost:8282/Web_QLTV/HTML/admins_interface.html");
+        exit; // Đảm bảo rằng mã không tiếp tục chạy
     } else {
         echo "Không có dữ liệu trong bảng website.";
     }
@@ -49,9 +53,8 @@ db_disconnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/log_in.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/ok.css">
     <title>Log_in</title>
 </head>
 
@@ -83,7 +86,7 @@ db_disconnect();
     </div>
     <!-- login -->
     <div class="login">
-        <form action="../PHP/log_in.php" method="post">
+        <form action="" method="post">
             <div class="box1">
                 <h3>Log in</h3>
             </div>
@@ -124,7 +127,6 @@ db_disconnect();
                     <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
                 </li>
             </div>
-
     </div>
 </body>
 
