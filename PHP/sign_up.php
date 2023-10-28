@@ -9,10 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $place_of_origin = $_POST['place_of_origin'];
     $a_phone_number = $_POST['a_phone_number'];
-    $sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number)
-            VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number' )";
+    $sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status)
+            VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động' )";
     if (mysqli_query($conn, $sql)) {
-        echo "Thêm dữ liệu vào bảng thành công!";
+        // Chuyển hướng và truyền thông báo thành công
+        header("Location: http://localhost:8282/Web_QLTV/PHP/log_in.php?success=1");
+        exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
     } else {
         echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
     }
@@ -28,9 +30,8 @@ db_disconnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/sign_up.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../CSS/ok.css">
     <title>Sign_up</title>
 
 </head>

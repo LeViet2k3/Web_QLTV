@@ -56,6 +56,11 @@ db_disconnect();
     <link rel="stylesheet" href="../CSS/log_in.css">
     <link rel="stylesheet" href="../CSS/ok.css">
     <title>Log_in</title>
+    <style>
+        .thong_bao {
+            margin: 1% 0 0 15%;
+        }
+    </style>
 </head>
 
 <body>
@@ -83,6 +88,14 @@ db_disconnect();
                 <li>Thông báo về tài liệu đặc biệt và bộ sưu tập đặc trưng</li>
             </ol>
         </div>
+    </div>
+    <!-- thông báo -->
+    <div class="thong_bao">
+        <?php
+        if (isset($_GET['success']) && $_GET['success'] == 1) {
+            echo "Đăng ký thành công!";
+        }
+        ?>
     </div>
     <!-- login -->
     <div class="login">
