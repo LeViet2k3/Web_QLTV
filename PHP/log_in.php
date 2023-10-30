@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     $sql = "SELECT * FROM users 
-    where Email = '$email' and UserName = '$username' and Passwords = '$password'";
+    where Email = '$email' and UserName = '$username' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
     $sql1 = "SELECT * FROM admins 
     where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
@@ -41,6 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit; // Đảm bảo rằng mã không tiếp tục chạy
     } else {
         echo "Không có dữ liệu trong bảng website.";
+        header("Location: http://localhost:8282/Web_QLTV/PHP/sign_up.php?success=2");
+        exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
     }
 }
 // Đóng kết nối

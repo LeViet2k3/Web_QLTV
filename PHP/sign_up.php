@@ -9,16 +9,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $place_of_origin = $_POST['place_of_origin'];
     $a_phone_number = $_POST['a_phone_number'];
-    $sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status)
-            VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động' )";
-    if (mysqli_query($conn, $sql)) {
-        // Chuyển hướng và truyền thông báo thành công
-        header("Location: http://localhost:8282/Web_QLTV/PHP/log_in.php?success=1");
-        exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+    // Kiểm tra tồn tại
+    $sql1 = "SELECT Email FROM users WHERE Email = '$email' AND Users_status = 'Đã xóa'";
+    if (mysqli_query($conn, $sql1)) {
+        $sql2 = " UPDATE users 
+                    SET UserName = '$username', Gender = '$gender', Passwords = '$password', Place_of_origin = '$place_of_origin', A_phone_number = '$a_phone_number', Users_status = 'Đang hoạt động' 
+                    WHERE Email = '$email'";
+        if (mysqli_query($conn, $sql2)) {
+            header("Location: http://localhost:8282/Web_QLTV/PHP/log_in.php?success=1");
+            exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng 
+        }
     } else {
-        echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+        // Chèn dữ liệu
+        $sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status)
+                        VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động' )";
+        if (mysqli_query($conn, $sql)) {
+            // Chuyển hướng và truyền thông báo thành công
+            header("Location: http://localhost:8282/Web_QLTV/PHP/log_in.php?success=1");
+            exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+        } else {
+            echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+        }
     }
 }
+
 
 // Đóng kết nối
 db_disconnect();
@@ -33,6 +47,12 @@ db_disconnect();
     <link rel="stylesheet" href="../CSS/sign_up.css">
     <link rel="stylesheet" href="../CSS/ok.css">
     <title>Sign_up</title>
+    <style>
+        .thong_bao {
+            margin-top: 1%;
+            text-align: center;
+        }
+    </style>
 
 </head>
 
@@ -44,6 +64,14 @@ db_disconnect();
             <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
             <h3>Đội Ngũ Phát Triễn - Team 2</h3>
         </div>
+    </div>
+    <!-- thông báo -->
+    <div class="thong_bao">
+        <?php
+        if (isset($_GET['success']) && $_GET['success'] == 2) {
+            echo "Tài khoản chưa được đăng ký. Vui lòng đăng ký!";
+        }
+        ?>
     </div>
     <!-- Sign_up -->
     <form action="" method="post">

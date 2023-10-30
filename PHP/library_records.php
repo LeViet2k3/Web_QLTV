@@ -71,67 +71,73 @@ session_start();
                 $return_day = $_POST['time'];
                 $expense;
 
-                if ($_POST['time'] == "3 ngày") {
-                    $expense = "MP01";
+                // Xác định mức phí dựa trên thời hạn mượn
+                switch ($return_day) {
+                    case "3 ngày":
+                        $expense = "MP01";
+                        break;
+                    case "5 ngày":
+                        $expense = "MP02";
+                        break;
+                    case "7 ngày":
+                        $expense = "MP03";
+                        break;
+                    default:
+                        $expense = null; // Đảm bảo bạn đã xử lý mọi trường hợp
                 }
-                if ($_POST['time'] == "5 ngày") {
-                    $expense = "MP02";
-                }
-                if ($_POST['time'] == "7 ngày") {
-                    $expense = "MP03";
-                }
-
                 // Kiểm tra $remaining của sách
-                $sql_check_remaining = "SELECT COALESCE(quantity - Dem, quantity) AS remaining
-                    FROM book
-                    LEFT JOIN (
-                        SELECT Book_id, COUNT(Book_id) AS Dem
-                        FROM library_records
-                        WHERE Book_id = '$book_id'
-                        GROUP BY Book_id
-                    ) AS Q1 ON Q1.Book_id = book.Book_id";
+                $sql_check_remaining = "SELECT * FROM
+                (SELECT book.Book_id, COALESCE(book.quantity - Q1.Dem, book.quantity) AS remaining
+                FROM book
+                LEFT JOIN (
+                    SELECT Book_id, COUNT(Book_id) AS Dem
+                    FROM library_records
+                    GROUP BY Book_id
+                ) AS Q1 ON Q1.Book_id = book.Book_id) AS Q2
+                WHERE Q2.remaining > 0";
                 $result_check_remaining = mysqli_query($conn, $sql_check_remaining);
                 if (mysqli_num_rows($result_check_remaining) > 0) {
-                    $row = mysqli_fetch_assoc($result_check_remaining);
-                    $remaining = $row["remaining"];
+                    while ($row = mysqli_fetch_assoc($result_check_remaining)) {
+                        $book_id1 = $row["Book_id"];
 
-                    if ($remaining > 0) {
-                        // Câu lệnh SQL để chèn dữ liệu
-                        $sql = "INSERT INTO library_records (Email, Book_id, Book_return_day, Expense_id) 
+                        if ($book_id1 == $book_id) {
+                            // Câu lệnh SQL để chèn dữ liệu
+                            $sql = "INSERT INTO library_records (Email, Book_id, Book_return_day, Expense_id) 
                                 VALUES ('$email', '$book_id', '$return_day', '$expense' )";
-                        // Thực thi câu lệnh SQL
-                        if (mysqli_query($conn, $sql)) {
-                            $sql1 = "SELECT library_records.Email, library_records.Book_id, library_records.Book_borrowed_day, library_records.Book_return_day, expense.Charges
+                            // Thực thi câu lệnh SQL
+                            if (mysqli_query($conn, $sql)) {
+                                $sql1 = "SELECT library_records.Email, library_records.Book_id, library_records.Book_borrowed_day, library_records.Book_return_day, expense.Charges
                                         FROM library_records
                                         JOIN expense ON library_records.Expense_id = expense.Expense_id
                                         WHERE Email = '$email'
                                         ORDER BY library_records.Id ASC ";
-                            $result1 = mysqli_query($conn, $sql1);
-                            if (mysqli_num_rows($result1) > 0) {
-                                echo '<table>';
-                                echo '<tr>';
-                                echo '<th>Email</th>';
-                                echo '<th>Mã Sách</th>';
-                                echo '<th>Ngày Mượn</th>';
-                                echo '<th>Thời Hạn</th>';
-                                echo '<th>Mức Phí</th>';
-                                echo '</tr>';
-
-                                while ($row = mysqli_fetch_assoc($result1)) {
+                                $result1 = mysqli_query($conn, $sql1);
+                                if (mysqli_num_rows($result1) > 0) {
+                                    echo '<table>';
                                     echo '<tr>';
-                                    echo '<td>' . $row["Email"] . '</td>';
-                                    echo '<td>' . $row["Book_id"] . '</td>';
-                                    echo '<td>' . $row["Book_borrowed_day"] . '</td>';
-                                    echo '<td>' . $row["Book_return_day"] . '</td>';
-                                    echo '<td>' . $row["Charges"] . '</td>';
+                                    echo '<th>Email</th>';
+                                    echo '<th>Mã Sách</th>';
+                                    echo '<th>Ngày Mượn</th>';
+                                    echo '<th>Thời Hạn</th>';
+                                    echo '<th>Mức Phí</th>';
                                     echo '</tr>';
+
+                                    while ($row = mysqli_fetch_assoc($result1)) {
+                                        echo '<tr>';
+                                        echo '<td>' . $row["Email"] . '</td>';
+                                        echo '<td>' . $row["Book_id"] . '</td>';
+                                        echo '<td>' . $row["Book_borrowed_day"] . '</td>';
+                                        echo '<td>' . $row["Book_return_day"] . '</td>';
+                                        echo '<td>' . $row["Charges"] . '</td>';
+                                        echo '</tr>';
+                                    }
+                                    echo '</table>';
                                 }
-                                echo '</table>';
                             }
-                        } else {
-                            echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+                            break;
                         }
-                    } else {
+                    }
+                    if ($book_id1 != $book_id) {
                         echo "Sách đã hết. Không thể mượn thêm.";
                     }
                 } else {
@@ -139,8 +145,6 @@ session_start();
                 }
             }
 
-            // Đóng kết nối
-            db_disconnect();
             ?>
         </div>
         <div class="okok">
@@ -172,16 +176,16 @@ session_start();
 
                     </tr>
                     <?php
-                    $sql1 = "SELECT book.Book_id, book.Book_name, book.quantity, COALESCE(book.quantity - Q1.Dem, book.quantity) AS remaining
+                    $sql2 = "SELECT book.Book_id, book.Book_name, book.quantity, COALESCE(book.quantity - Q1.Dem, book.quantity) AS remaining
                     FROM book
                     LEFT JOIN (
                         SELECT Book_id, COUNT(Book_id) AS Dem
                         FROM library_records
                         GROUP BY Book_id
                     ) AS Q1 ON Q1.Book_id = book.Book_id ";
-                    $result1 = mysqli_query($conn, $sql1);
-                    if (mysqli_num_rows($result1) > 0) {
-                        while ($row = mysqli_fetch_assoc($result1)) {
+                    $result2 = mysqli_query($conn, $sql2);
+                    if (mysqli_num_rows($result2) > 0) {
+                        while ($row = mysqli_fetch_assoc($result2)) {
                             echo "<tr>";
                             echo "<td>" . $row["Book_id"] . "</td>";
                             echo "<td>" . $row["Book_name"] . "</td>";
