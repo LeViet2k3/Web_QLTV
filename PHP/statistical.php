@@ -60,7 +60,15 @@
             ?>
         </div>
     </div>
+    <!-- SELECT Email,Book_id, COUNT(Book_id) FROM `library_records`
+GROUP BY Book_id 
 
+SELECT Expense_id, COUNT(Expense_id) FROM `library_records` 
+GROUP BY Expense_id-->
 </body>
+<!-- SELECT q1.*, q1.tong * expense.Charges FROM `expense`
+JOIN
+(SELECT Book_id, Expense_id, COUNT(Book_id) AS tong FROM `library_records` 
+GROUP BY Book_id) AS q1 ON expense.Expense_id = q1.Expense_id -->
 
 </html>
