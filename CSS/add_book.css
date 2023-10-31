@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    text-align: center;
+    margin: auto;
+}
+
+.full_display {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5%;
+}
+
+.full_display h3 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.add_book {
+    padding: 1% 0;
+    box-shadow: 3px 3px 3px 3px rgb(174, 185, 188);
+}
+
+.add_book h2 {
+    text-align: center;
+    margin-bottom: 3%;
+}
+
+.full_form {
+    width: 30%;
+    margin: auto;
+}
+
+.input {
+    width: 100%;
+    height: 20px;
+    margin: 1% 0;
+}
+
+.submit {
+    margin: 1% 0 3%;
+    display: flex;
+    justify-content: center;
+
+}

@@ -1,66 +1,6 @@
 <?php
 include('libs/helper.php');
 db_connect();
-// Hiển thị bảng book
-$sql1 = "SELECT * FROM book ";
-$result1 = mysqli_query($conn, $sql1);
-if (mysqli_num_rows($result1) > 0) {
-    echo '<table>';
-    echo '<tr>';
-    echo '<th>Mã Sách</th>';
-    echo '<th>Tên Sách</th>';
-    echo '<th>Số Lượng</th>';
-    echo '<th>Mã Thể Loại</th>';
-    echo '</tr>';
-
-    while ($row = mysqli_fetch_assoc($result1)) {
-        echo '<tr>';
-        echo '<td>' . $row["Book_id"] . '</td>';
-        echo '<td>' . $row["Book_name"] . '</td>';
-        echo '<td>' . $row["quantity"] . '</td>';
-        echo '<td>' . $row["Genre_id"] . '</td>';
-        echo '</tr>';
-    }
-    echo '</table>';
-}
-// Hiển thị bảng genre
-$sql2 = "SELECT * FROM genre ";
-$result2 = mysqli_query($conn, $sql2);
-if (mysqli_num_rows($result2) > 0) {
-    echo '<table>';
-    echo '<tr>';
-    echo '<th>Mã Thể Loại</th>';
-    echo '<th>Tên Thể Loại</th>';
-    echo '</tr>';
-
-    while ($row = mysqli_fetch_assoc($result2)) {
-        echo '<tr>';
-        echo '<td>' . $row["Genre_id"] . '</td>';
-        echo '<td>' . $row["Genre_name"] . '</td>';
-        echo '</tr>';
-    }
-    echo '</table>';
-}
-
-// Hiển thị bảng author
-$sql15 = "SELECT * FROM author ";
-$result15 = mysqli_query($conn, $sql15);
-if (mysqli_num_rows($result15) > 0) {
-    echo '<table>';
-    echo '<tr>';
-    echo '<th>Mã Tác Giả</th>';
-    echo '<th>Tên Tác Giả</th>';
-    echo '</tr>';
-
-    while ($row = mysqli_fetch_assoc($result15)) {
-        echo '<tr>';
-        echo '<td>' . $row["Author_id"] . '</td>';
-        echo '<td>' . $row["Author_name"] . '</td>';
-        echo '</tr>';
-    }
-    echo '</table>';
-}
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book_id = $_POST['book_id'];
     $book_name = $_POST['book_name'];
@@ -80,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Thêm dữ liệu vào bảng genre
         $sql3 = "INSERT INTO genre(Genre_id, Genre_name)
-                        VALUES ('$new_genre_id', '$new_genre_name')";
+                VALUES ('$new_genre_id', '$new_genre_name')";
         if (mysqli_query($conn, $sql3)) {
             // Thêm dữ liệu vào bảng book
             $sql5 = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
-                        VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
+                VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
             $result5 = mysqli_query($conn, $sql5);
         }
     }
@@ -94,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_num_rows($result10) > 0) {
         // Thêm dữ liệu vào bảng book
         $sql11 = "INSERT INTO book_has_author(Book_id, Author_id)
-                    VALUES ('$book_id', '$author_id') ";
+                VALUES ('$book_id', '$author_id') ";
         $result11 = mysqli_query($conn, $sql11);
     } else {
         // Thêm dữ liệu vào bảng genre
@@ -110,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: http://localhost:8282/Web_QLTV/PHP/add_book.php");
     exit;
 }
-db_disconnect();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,32 +58,104 @@ db_disconnect();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/add_book.css">
     <title>Document</title>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
-    <div>
+    <div class="add_book">
+        <h2>Thêm Sách</h2>
         <form action="" method="post">
-            <input type="text" name="book_id" placeholder="Nhập mã sách" required><br>
-            <input type="text" name="book_name" placeholder="Nhập tên sách" required><br>
-            <input type="number" name="quantity" placeholder="Số lượng" required><br>
-            <input type="text" name="author_id" placeholder="Nhập mã tác giả" required><br>
-            <input type="text" name="author_name" placeholder="Nhập tên tác giả" required><br>
-            <input type="text" name="genre_id" placeholder="Nhập mã thể loại" required><br>
-            <input type="text" name="genre_name" placeholder="Nhập tên thể loại" required><br>
-            <input type="submit" value="ADD">
+            <div class="full_form">
+                <div><input class="input" type="text" name="book_id" placeholder="Nhập mã sách" required></div>
+                <div><input class="input" type="text" name="book_name" placeholder="Nhập tên sách" required></div>
+                <div><input class="input" type="number" name="quantity" placeholder="Số lượng" required></div>
+                <div><input class="input" type="text" name="author_id" placeholder="Nhập mã tác giả" required></div>
+                <div><input class="input" type="text" name="author_name" placeholder="Nhập tên tác giả" required></div>
+                <div><input class="input" type="text" name="genre_id" placeholder="Nhập mã thể loại" required></div>
+                <div><input class="input" type="text" name="genre_name" placeholder="Nhập tên thể loại" required></div>
+            </div>
+            <div class="submit"><input type="submit" value="ADD"></div>
+
         </form>
     </div>
+    <div class="full_display">
+        <div class="display_book">
+            <h3>Bảng Sách</h3>
+            <?php
+            // Hiển thị bảng book
+            $sql1 = "SELECT * FROM book ";
+            $result1 = mysqli_query($conn, $sql1);
+            if (mysqli_num_rows($result1) > 0) {
+                echo '<table>';
+                echo '<tr>';
+                echo '<th>Mã Sách</th>';
+                echo '<th>Tên Sách</th>';
+                echo '<th>Số Lượng</th>';
+                echo '<th>Mã Thể Loại</th>';
+                echo '</tr>';
+
+                while ($row = mysqli_fetch_assoc($result1)) {
+                    echo '<tr>';
+                    echo '<td>' . $row["Book_id"] . '</td>';
+                    echo '<td>' . $row["Book_name"] . '</td>';
+                    echo '<td>' . $row["quantity"] . '</td>';
+                    echo '<td>' . $row["Genre_id"] . '</td>';
+                    echo '</tr>';
+                }
+                echo '</table>';
+            }
+            ?>
+        </div>
+        <div class="display_genre">
+            <h3>Bảng Thể Loại</h3>
+            <?php
+            // Hiển thị bảng genre
+            $sql2 = "SELECT * FROM genre ";
+            $result2 = mysqli_query($conn, $sql2);
+            if (mysqli_num_rows($result2) > 0) {
+                echo '<table>';
+                echo '<tr>';
+                echo '<th>Mã Thể Loại</th>';
+                echo '<th>Tên Thể Loại</th>';
+                echo '</tr>';
+
+                while ($row = mysqli_fetch_assoc($result2)) {
+                    echo '<tr>';
+                    echo '<td>' . $row["Genre_id"] . '</td>';
+                    echo '<td>' . $row["Genre_name"] . '</td>';
+                    echo '</tr>';
+                }
+                echo '</table>';
+            }
+            ?>
+        </div>
+        <div class="display_author">
+            <h3>Bảng Tác Giả</h3>
+            <?php
+            // Hiển thị bảng author
+            $sql15 = "SELECT * FROM author ";
+            $result15 = mysqli_query($conn, $sql15);
+            if (mysqli_num_rows($result15) > 0) {
+                echo '<table>';
+                echo '<tr>';
+                echo '<th>Mã Tác Giả</th>';
+                echo '<th>Tên Tác Giả</th>';
+                echo '</tr>';
+
+                while ($row = mysqli_fetch_assoc($result15)) {
+                    echo '<tr>';
+                    echo '<td>' . $row["Author_id"] . '</td>';
+                    echo '<td>' . $row["Author_name"] . '</td>';
+                    echo '</tr>';
+                }
+                echo '</table>';
+            }
+            db_disconnect();
+            ?>
+        </div>
+    </div>
+
 </body>
 
 </html>
