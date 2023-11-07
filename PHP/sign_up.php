@@ -1,6 +1,6 @@
 <?php
 include('libs/helper.php');
-db_connect();
+Database::db_connect();
 // Dữ liệu bạn muốn chèn
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
@@ -10,32 +10,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $place_of_origin = $_POST['place_of_origin'];
     $a_phone_number = $_POST['a_phone_number'];
     // Kiểm tra tồn tại
-    $sql1 = "SELECT Email FROM users WHERE Email = '$email' AND Users_status = 'Đã xóa'";
-    if (mysqli_query($conn, $sql1)) {
-        $sql2 = " UPDATE users 
+    $sql_check_users = "SELECT Email FROM users WHERE Email = '$email' AND Users_status = 'Đã xóa'";
+    if (Database::db_execute($sql_check_users)) {
+        $sql_update_users = " UPDATE users 
                     SET UserName = '$username', Gender = '$gender', Passwords = '$password', Place_of_origin = '$place_of_origin', A_phone_number = '$a_phone_number', Users_status = 'Đang hoạt động' 
                     WHERE Email = '$email'";
-        if (mysqli_query($conn, $sql2)) {
-            header("Location: http://localhost:8282/Web_QLTV/PHP/log_in.php?success=1");
-            exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng 
+        if (Database::db_execute($sql_update_users)) {
+            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
         }
     } else {
         // Chèn dữ liệu
-        $sql = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status)
+        $sql_insert_users = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status)
                         VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động' )";
-        if (mysqli_query($conn, $sql)) {
+        if (Database::db_execute($sql_insert_users)) {
             // Chuyển hướng và truyền thông báo thành công
-            header("Location: http://localhost:8282/Web_QLTV/PHP/log_in.php?success=1");
-            exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
         } else {
-            echo "Lỗi khi thêm dữ liệu vào bảng: " . mysqli_error($conn);
+            echo "Lỗi khi thêm dữ liệu vào bảng: ";
         }
     }
 }
 
 
 // Đóng kết nối
-db_disconnect();
+Database::db_disconnect();
 ?>
 <!DOCTYPE html>
 <html lang="en">

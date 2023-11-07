@@ -1,6 +1,6 @@
 <?php
 include('libs/helper.php');
-db_connect();
+Database::db_connect();
 
 if (isset($_GET['Expense_id'])) {
     $id = $_GET['Expense_id'];
@@ -14,14 +14,8 @@ if (isset($_GET['Expense_id'])) {
         if (is_numeric($charges)) {
             // Chuẩn bị câu lệnh SQL
             $sql = "UPDATE expense SET Charges = $charges WHERE Expense_id = '$id'";
-            // Thực hiện truy vấn SQL
-            $result = mysqli_query($conn, $sql);
-
-            if ($result) {
-                header("Location: http://localhost:8282/Web_QLTV/PHP/update_expense.php");
-                exit;
-            } else {
-                echo "Lỗi: " . mysqli_error($conn);
+            if (Database::db_execute($sql)) {
+                Helper::redirect(Helper::get_url('../Web_QLTV/PHP/update_expense.php'));
             }
         } else {
             echo "Mức phí phải là một số hợp lệ.";
@@ -30,7 +24,7 @@ if (isset($_GET['Expense_id'])) {
 }
 
 // Đóng kết nối
-db_disconnect();
+Database::db_disconnect();
 ?>
 
 <!DOCTYPE html>

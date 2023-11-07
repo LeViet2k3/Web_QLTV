@@ -62,7 +62,7 @@ session_start();
         <div class="okok1">
             <?php
             include('libs/helper.php');
-            db_connect();
+            Database::db_connect();
 
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Dữ liệu bạn muốn chèn
@@ -95,24 +95,24 @@ session_start();
                     GROUP BY Book_id
                 ) AS Q1 ON Q1.Book_id = book.Book_id) AS Q2
                 WHERE Q2.remaining > 0";
-                $result_check_remaining = mysqli_query($conn, $sql_check_remaining);
-                if (mysqli_num_rows($result_check_remaining) > 0) {
-                    while ($row = mysqli_fetch_assoc($result_check_remaining)) {
-                        $book_id1 = $row["Book_id"];
+                // $result_check_remaining = mysqli_query($conn, $sql_check_remaining);
+                if (Database::db_execute($sql_check_remaining)) {
+                    $remainings = Database::db_get_list($sql_check_remaining);
+                    foreach ($remainings as $remaining) {
+                        $book_id1 = $remaining["Book_id"];
 
                         if ($book_id1 == $book_id) {
                             // Câu lệnh SQL để chèn dữ liệu
-                            $sql = "INSERT INTO library_records (Email, Book_id, Book_return_day, Expense_id) 
+                            $sql_insert_library_records = "INSERT INTO library_records (Email, Book_id, Book_return_day, Expense_id) 
                                 VALUES ('$email', '$book_id', '$return_day', '$expense' )";
                             // Thực thi câu lệnh SQL
-                            if (mysqli_query($conn, $sql)) {
-                                $sql1 = "SELECT library_records.Email, library_records.Book_id, library_records.Book_borrowed_day, library_records.Book_return_day, expense.Charges
+                            if (Database::db_execute($sql_insert_library_records)) {
+                                $sql_select_library_records = "SELECT library_records.Email, library_records.Book_id, library_records.Book_borrowed_day, library_records.Book_return_day, expense.Charges
                                         FROM library_records
                                         JOIN expense ON library_records.Expense_id = expense.Expense_id
                                         WHERE Email = '$email'
-                                        ORDER BY library_records.Id ASC ";
-                                $result1 = mysqli_query($conn, $sql1);
-                                if (mysqli_num_rows($result1) > 0) {
+                                        ORDER BY library_records.Id DESC ";
+                                if (Database::db_execute($sql_select_library_records)) {
                                     echo '<table>';
                                     echo '<tr>';
                                     echo '<th>Email</th>';
@@ -121,14 +121,14 @@ session_start();
                                     echo '<th>Thời Hạn</th>';
                                     echo '<th>Mức Phí</th>';
                                     echo '</tr>';
-
-                                    while ($row = mysqli_fetch_assoc($result1)) {
+                                    $librarys = Database::db_get_list($sql_select_library_records);
+                                    foreach ($librarys as $library) {
                                         echo '<tr>';
-                                        echo '<td>' . $row["Email"] . '</td>';
-                                        echo '<td>' . $row["Book_id"] . '</td>';
-                                        echo '<td>' . $row["Book_borrowed_day"] . '</td>';
-                                        echo '<td>' . $row["Book_return_day"] . '</td>';
-                                        echo '<td>' . $row["Charges"] . '</td>';
+                                        echo '<td>' . $library["Email"] . '</td>';
+                                        echo '<td>' . $library["Book_id"] . '</td>';
+                                        echo '<td>' . $library["Book_borrowed_day"] . '</td>';
+                                        echo '<td>' . $library["Book_return_day"] . '</td>';
+                                        echo '<td>' . $library["Charges"] . '</td>';
                                         echo '</tr>';
                                     }
                                     echo '</table>';
@@ -176,27 +176,27 @@ session_start();
 
                     </tr>
                     <?php
-                    $sql2 = "SELECT book.Book_id, book.Book_name, book.quantity, COALESCE(book.quantity - Q1.Dem, book.quantity) AS remaining
+                    $sql_select_books = "SELECT book.Book_id, book.Book_name, book.quantity, COALESCE(book.quantity - Q1.Dem, book.quantity) AS remaining
                     FROM book
                     LEFT JOIN (
                         SELECT Book_id, COUNT(Book_id) AS Dem
                         FROM library_records
                         GROUP BY Book_id
                     ) AS Q1 ON Q1.Book_id = book.Book_id ";
-                    $result2 = mysqli_query($conn, $sql2);
-                    if (mysqli_num_rows($result2) > 0) {
-                        while ($row = mysqli_fetch_assoc($result2)) {
+                    if (Database::db_execute($sql_select_books)) {
+                        $books = Database::db_get_list($sql_select_books);
+                        foreach ($books as $book) {
                             echo "<tr>";
-                            echo "<td>" . $row["Book_id"] . "</td>";
-                            echo "<td>" . $row["Book_name"] . "</td>";
-                            echo "<td>" . $row["quantity"] . "</td>";
-                            echo "<td>" . $row["remaining"] . "</td>";
+                            echo "<td>" . $book["Book_id"] . "</td>";
+                            echo "<td>" . $book["Book_name"] . "</td>";
+                            echo "<td>" . $book["quantity"] . "</td>";
+                            echo "<td>" . $book["remaining"] . "</td>";
                             echo "</tr>";
                         }
                     } else {
                         echo "Không có dữ liệu trong bảng website.";
                     }
-                    db_disconnect();
+                    Database::db_disconnect();
                     ?>
                 </table>
 

@@ -1,6 +1,6 @@
 <?php
 include('libs/helper.php');
-db_connect();
+Database::db_connect();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book_id = $_POST['book_id'];
     $book_name = $_POST['book_name'];
@@ -10,45 +10,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_genre_id = $_POST['genre_id'];
     $new_genre_name = $_POST['genre_name'];
     // Kiểm tra Genre_id bảng genre
-    $sql4 = "SELECT * FROM genre WHERE Genre_id = '$new_genre_id' AND Genre_name = '$new_genre_name'";
-    $result4 = mysqli_query($conn, $sql4);
-    if (mysqli_num_rows($result4) > 0) {
+    $sql_check_genre = "SELECT * FROM genre WHERE Genre_id = '$new_genre_id' AND Genre_name = '$new_genre_name'";
+    if (Database::db_execute($sql_check_genre)) {
         // Thêm dữ liệu vào bảng book
-        $sql = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
+        $sql_insert_book = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
                 VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
-        $result = mysqli_query($conn, $sql);
+        Database::db_execute($sql_insert_book);
     } else {
         // Thêm dữ liệu vào bảng genre
-        $sql3 = "INSERT INTO genre(Genre_id, Genre_name)
+        $sql_insert_genre = "INSERT INTO genre(Genre_id, Genre_name)
                 VALUES ('$new_genre_id', '$new_genre_name')";
-        if (mysqli_query($conn, $sql3)) {
+        if (Database::db_execute($sql_insert_genre)) {
             // Thêm dữ liệu vào bảng book
-            $sql5 = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
+            $sql_insert_book = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
                 VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
-            $result5 = mysqli_query($conn, $sql5);
+            Database::db_execute($sql_insert_book);
         }
     }
     // Kiểm tra Author_id bảng Author
-    $sql10 = "SELECT Author_id FROM author WHERE Author_id = '$author_id'";
-    $result10 = mysqli_query($conn, $sql10);
-    if (mysqli_num_rows($result10) > 0) {
-        // Thêm dữ liệu vào bảng book
-        $sql11 = "INSERT INTO book_has_author(Book_id, Author_id)
+    $sql_check_author = "SELECT Author_id FROM author WHERE Author_id = '$author_id'";
+    if (Database::db_execute($sql_check_author)) {
+        // Thêm dữ liệu vào bảng book_has_author
+        $sql_insert = "INSERT INTO book_has_author(Book_id, Author_id)
                 VALUES ('$book_id', '$author_id') ";
-        $result11 = mysqli_query($conn, $sql11);
+        Database::db_execute($sql_insert);
     } else {
-        // Thêm dữ liệu vào bảng genre
-        $sql12 = "INSERT INTO author(Author_id, Author_name)
+        // Thêm dữ liệu vào bảng author
+        $sql_insert_author = "INSERT INTO author(Author_id, Author_name)
                 VALUES ('$author_id', '$author_name')";
-        if (mysqli_query($conn, $sql12)) {
+        if (Database::db_execute($sql_insert_author)) {
             // Thêm dữ liệu vào bảng book_has_author
-            $sql14 = "INSERT INTO book_has_author(Book_id, Author_id)
+            $sql_insert = "INSERT INTO book_has_author(Book_id, Author_id)
                         VALUES ('$book_id', '$author_id') ";
-            $result14 = mysqli_query($conn, $sql14);
+            Database::db_execute($sql_insert);
         }
     }
-    header("Location: http://localhost:8282/Web_QLTV/PHP/add_book.php");
-    exit;
+    Helper::redirect(Helper::get_url('../Web_QLTV/PHP/add_book.php'));
 }
 
 ?>
@@ -84,9 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Bảng Sách</h3>
             <?php
             // Hiển thị bảng book
-            $sql1 = "SELECT * FROM book ";
-            $result1 = mysqli_query($conn, $sql1);
-            if (mysqli_num_rows($result1) > 0) {
+            $sql_select_book = "SELECT * FROM book ";
+            if (Database::db_execute($sql_select_book)) {
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Mã Sách</th>';
@@ -95,12 +91,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '<th>Mã Thể Loại</th>';
                 echo '</tr>';
 
-                while ($row = mysqli_fetch_assoc($result1)) {
+                $books = Database::db_get_list($sql_select_book);
+                foreach ($books as $book) {
                     echo '<tr>';
-                    echo '<td>' . $row["Book_id"] . '</td>';
-                    echo '<td>' . $row["Book_name"] . '</td>';
-                    echo '<td>' . $row["quantity"] . '</td>';
-                    echo '<td>' . $row["Genre_id"] . '</td>';
+                    echo '<td>' . $book["Book_id"] . '</td>';
+                    echo '<td>' . $book["Book_name"] . '</td>';
+                    echo '<td>' . $book["quantity"] . '</td>';
+                    echo '<td>' . $book["Genre_id"] . '</td>';
                     echo '</tr>';
                 }
                 echo '</table>';
@@ -111,19 +108,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Bảng Thể Loại</h3>
             <?php
             // Hiển thị bảng genre
-            $sql2 = "SELECT * FROM genre ";
-            $result2 = mysqli_query($conn, $sql2);
-            if (mysqli_num_rows($result2) > 0) {
+            $sql_select_genre = "SELECT * FROM genre ";
+            if (Database::db_execute($sql_select_genre)) {
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Mã Thể Loại</th>';
                 echo '<th>Tên Thể Loại</th>';
                 echo '</tr>';
 
-                while ($row = mysqli_fetch_assoc($result2)) {
+                $genres = Database::db_get_list($sql_select_genre);
+                foreach ($genres as $genre) {
                     echo '<tr>';
-                    echo '<td>' . $row["Genre_id"] . '</td>';
-                    echo '<td>' . $row["Genre_name"] . '</td>';
+                    echo '<td>' . $genre["Genre_id"] . '</td>';
+                    echo '<td>' . $genre["Genre_name"] . '</td>';
                     echo '</tr>';
                 }
                 echo '</table>';
@@ -134,24 +131,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Bảng Tác Giả</h3>
             <?php
             // Hiển thị bảng author
-            $sql15 = "SELECT * FROM author ";
-            $result15 = mysqli_query($conn, $sql15);
-            if (mysqli_num_rows($result15) > 0) {
+            $sql_select_author = "SELECT * FROM author ";
+            if (Database::db_execute($sql_select_author)) {
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Mã Tác Giả</th>';
                 echo '<th>Tên Tác Giả</th>';
                 echo '</tr>';
-
-                while ($row = mysqli_fetch_assoc($result15)) {
+                $authors = Database::db_get_list($sql_select_author);
+                foreach ($authors as $author) {
                     echo '<tr>';
-                    echo '<td>' . $row["Author_id"] . '</td>';
-                    echo '<td>' . $row["Author_name"] . '</td>';
+                    echo '<td>' . $author["Author_id"] . '</td>';
+                    echo '<td>' . $author["Author_name"] . '</td>';
                     echo '</tr>';
                 }
                 echo '</table>';
             }
-            db_disconnect();
+            Database::db_disconnect();
             ?>
         </div>
     </div>

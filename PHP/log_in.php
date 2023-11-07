@@ -4,7 +4,7 @@ session_start();
 ?>
 <?php
 include('libs/helper.php');
-db_connect();
+Database::db_connect();
 
 
 
@@ -17,36 +17,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
 
-    $sql = "SELECT * FROM users 
+    $sql_check_users = "SELECT * FROM users 
     where Email = '$email' and UserName = '$username' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
-    $sql1 = "SELECT * FROM admins 
+    $sql_check_admin = "SELECT * FROM admins 
     where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
-    $result = mysqli_query($conn, $sql);
-    $result1 = mysqli_query($conn, $sql1);
-    // Kiểm tra kết quả
-    if (mysqli_num_rows($result) > 0) {
-        // while ($row = mysqli_fetch_assoc($result)) {
-        //     echo "Email: " . $row["Email"] . "<br>";
-        //     echo "UserName: " . $row["UserName"] . "<br>";
-        //     echo "Gender: " . $row["Gender"] . "<br>";
-        //     echo "Password: " . $row["Passwords"] . "<br>";
-        //     echo "Place of origin: " . $row["Place_of_origin"] . "<br>";
-        //     echo "A phone number: " . $row["A_phone_number"] . "<br>";
-        // }
-        header("Location: http://localhost:8282/Web_QLTV/HTML/users_interface.html");
-        exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
-    } elseif (mysqli_num_rows($result1) > 0) {
-        header("Location: http://localhost:8282/Web_QLTV/HTML/admins_interface.html");
-        exit; // Đảm bảo rằng mã không tiếp tục chạy
+    if (Database::db_execute($sql_check_users)) {
+        Helper::redirect(Helper::get_url('../Web_QLTV/HTML/users_interface.html'));
+    } elseif (Database::db_execute($sql_check_admin)) {
+        Helper::redirect(Helper::get_url('../Web_QLTV/HTML/admins_interface.html'));
     } else {
-        echo "Không có dữ liệu trong bảng website.";
-        header("Location: http://localhost:8282/Web_QLTV/PHP/sign_up.php?success=2");
-        exit; // Đảm bảo rằng mã không tiếp tục chạy sau khi chuyển hướng
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=2'));
     }
 }
 // Đóng kết nối
-db_disconnect();
+Database::db_disconnect();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,12 +42,6 @@ db_disconnect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/log_in.css">
     <link rel="stylesheet" href="../CSS/header_footer.css">
-    <title>Log_in</title>
-    <style>
-        .thong_bao {
-            margin: 1% 0 0 15%;
-        }
-    </style>
 </head>
 
 <body>

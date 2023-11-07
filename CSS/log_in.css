@@ -5,6 +5,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.thong_bao {
+    margin: 1% 0 0 15%;
+}
+
 .login {
     width: 400px;
     height: 300px;

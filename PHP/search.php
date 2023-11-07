@@ -57,13 +57,13 @@
         <div class="search">
             <?php
             include('libs/helper.php');
-            db_connect();
-            $sql1 = "SELECT Author_name FROM author ";
-            $result1 = mysqli_query($conn, $sql1);
+            Database::db_connect();
+            $sql_select_authorname = "SELECT Author_name FROM author ";
             echo "<h2>Danh sách Tác Giả:</h2>";
-            if (mysqli_num_rows($result1) > 0) {
-                while ($row = mysqli_fetch_assoc($result1)) {
-                    echo '<a href="?authorname=' . $row["Author_name"] . '">' . $row["Author_name"] . '</a><br>';
+            if (Database::db_execute($sql_select_authorname)) {
+                $authorname = Database::db_get_list($sql_select_authorname);
+                foreach ($authorname as $author) {
+                    echo '<a href="?authorname=' . $author["Author_name"] . '">' . $author["Author_name"] . '</a><br>';
                 }
             }
             ?>
@@ -74,16 +74,14 @@
             // Xử lý khi có tham số truyền vào
             if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['authorname'])) {
                 $authorname = $_GET['authorname'];
-                $sql = "SELECT book.Book_id, book.Book_name, genre.Genre_name, author.Author_name
+                $sql_select_info = "SELECT book.Book_id, book.Book_name, genre.Genre_name, author.Author_name
                 FROM book_has_author
                 JOIN book ON book_has_author.Book_id = book.Book_id
                 JOIN author ON book_has_author.Author_id = author.Author_id
                 JOIN genre ON book.Genre_id = genre.Genre_id
                 WHERE author.Author_name LIKE '%$authorname%'";
 
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
+                if (Database::db_execute($sql_select_info)) {
                     echo "<h2> Thông tin về sách bạn cần tìm</h2>";
                     echo '<table>';
                     echo '<tr>';
@@ -93,12 +91,13 @@
                     echo '<th>Tên Tác Giả</th>';
                     echo '</tr>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
+                    $info_book = Database::db_get_list($sql_select_info);
+                    foreach ($info_book as $book) {
                         echo '<tr>';
-                        echo '<td>' . $row["Book_id"] . '</td>';
-                        echo '<td>' . $row["Book_name"] . '</td>';
-                        echo '<td>' . $row["Genre_name"] . '</td>';
-                        echo '<td>' . $row["Author_name"] . '</td>';
+                        echo '<td>' . $book["Book_id"] . '</td>';
+                        echo '<td>' . $book["Book_name"] . '</td>';
+                        echo '<td>' . $book["Genre_name"] . '</td>';
+                        echo '<td>' . $book["Author_name"] . '</td>';
                         echo '</tr>';
                     }
                     echo '</table>';
@@ -107,7 +106,7 @@
                 }
             }
 
-            db_disconnect();
+            Database::db_disconnect();
             ?>
         </div>
     </div>

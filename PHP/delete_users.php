@@ -27,11 +27,10 @@
     <div class="delete_user">
         <?php
         include('libs/helper.php');
-        db_connect();
-        $sql = "SELECT Email, UserName, Gender, Place_of_origin, A_phone_number
+        Database::db_connect();
+        $sql_select_users = "SELECT Email, UserName, Gender, Place_of_origin, A_phone_number
         FROM users WHERE Users_status = 'Đang hoạt động'";
-        $result = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($result) > 0) {
+        if (Database::db_execute($sql_select_users)) {
             echo '<table>';
             echo '<tr>';
             echo '<th>Email</th>';
@@ -41,15 +40,16 @@
             echo '<th>Số Điện Thoại</th>';
             echo '<th>Xóa</th>';
             echo '</tr>';
-            while ($row = mysqli_fetch_assoc($result)) {
+            $users = Database::db_get_list($sql_select_users);
+            foreach ($users as $user) {
                 echo "<tr>";
-                echo "<td>" . $row['Email'] . "</td>";
-                echo "<td>" . $row['UserName'] . "</td>";
-                echo "<td>" . $row['Gender'] . "</td>";
-                echo "<td>" . $row['Place_of_origin'] . "</td>";
-                echo "<td>" . $row['A_phone_number'] . "</td>";
+                echo "<td>" . $user['Email'] . "</td>";
+                echo "<td>" . $user['UserName'] . "</td>";
+                echo "<td>" . $user['Gender'] . "</td>";
+                echo "<td>" . $user['Place_of_origin'] . "</td>";
+                echo "<td>" . $user['A_phone_number'] . "</td>";
                 echo "<td>
-                <a href='delete.php?email=" . $row['Email'] . "'><button>Xóa</button></a>
+                <a href='delete.php?email=" . $user['Email'] . "'><button>Xóa</button></a>
                 </td>";
 
                 echo '</tr>';
@@ -57,7 +57,7 @@
             echo '</table>';
         }
 
-        db_disconnect();
+        Database::db_disconnect();
         ?>
     </div>
 </body>

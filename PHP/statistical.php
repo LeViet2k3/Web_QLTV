@@ -27,12 +27,10 @@
         <div>
             <?php
             include('libs/helper.php');
-            db_connect();
+            Database::db_connect();
 
             $sql = "SELECT * FROM library_records";
-
-            $result = mysqli_query($conn, $sql);
-            if (mysqli_num_rows($result) > 0) {
+            if (Database::db_execute($sql)) {
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Id</th>';
@@ -43,20 +41,22 @@
                 echo '<th>Mã Phí</th>';
                 echo '</tr>';
 
-                while ($row = mysqli_fetch_assoc($result)) {
+                $library_records = Database::db_get_list($sql);
+                foreach ($library_records as $records) {
                     echo '<tr>';
-                    echo '<td>' . $row["Id"] . '</td>';
-                    echo '<td>' . $row["Email"] . '</td>';
-                    echo '<td>' . $row["Book_id"] . '</td>';
-                    echo '<td>' . $row["Book_borrowed_day"] . '</td>';
-                    echo '<td>' . $row["Book_return_day"] . '</td>';
-                    echo '<td>' . $row["Expense_id"] . '</td>';
+                    echo '<td>' . $records["Id"] . '</td>';
+                    echo '<td>' . $records["Email"] . '</td>';
+                    echo '<td>' . $records["Book_id"] . '</td>';
+                    echo '<td>' . $records["Book_borrowed_day"] . '</td>';
+                    echo '<td>' . $records["Book_return_day"] . '</td>';
+                    echo '<td>' . $records["Expense_id"] . '</td>';
                     echo '</tr>';
                 }
                 echo '</table>';
             } else {
                 echo "Không có dữ liệu trong bảng website.";
             }
+            Database::db_disconnect();
             ?>
         </div>
     </div>
