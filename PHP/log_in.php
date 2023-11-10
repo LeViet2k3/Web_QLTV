@@ -40,6 +40,7 @@ Database::db_disconnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../CSS/log_in.css">
     <link rel="stylesheet" href="../CSS/header_footer.css">
 </head>
@@ -91,7 +92,8 @@ Database::db_disconnect();
                 <input type="text" name="username" class="mail" placeholder="UserName" required>
             </div>
             <div class="box2">
-                <input type="password" name="password" class="mail" placeholder="Password" required>
+                <input id="password" type="password" name="password" class="mail" placeholder="Password" required>
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
             </div>
             <div class="box3">
                 <button type="submit">Log in</button>
@@ -103,6 +105,16 @@ Database::db_disconnect();
             <a href="./sign_up.php">Sign up</a>
         </div>
     </div>
+    <script>
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function() {
+            password.type = password.type === "password" ? "text" : "password";
+            this.classList.toggle("bi-eye");
+
+        });
+    </script>
     <!--Footer-->
     <div class="footer">
         <ul>

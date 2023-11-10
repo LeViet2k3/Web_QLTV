@@ -7,11 +7,18 @@
 table,
 th,
 td {
-    border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
     text-align: center;
     margin: auto;
+}
+
+tr:nth-child(even) {
+    background-color: #e1cbcb;
+}
+
+table {
+    border: 1px solid black;
 }
 
 .full_display {

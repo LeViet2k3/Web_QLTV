@@ -40,6 +40,16 @@
     outline: none;
 }
 
+.box2 i {
+    position: absolute;
+    right: 67%;
+    top: 49%;
+    transform: translateY(-50%);
+
+}
+
+
+
 .mail:hover {
     background-color: rgb(219, 228, 235);
 }
