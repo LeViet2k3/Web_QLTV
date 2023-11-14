@@ -1,0 +1,58 @@
+<?php
+// Start the session
+session_start();
+?>
+<?php
+include('../libs/helper.php');
+Database::db_connect();
+// Thực hiện sau khi nhấn đăng kí
+if (isset($_GET['book_id'])) {
+    $book_id = $_GET['book_id'];
+    $email = $_SESSION['email'];
+
+    $sql_check_remaining = "SELECT * FROM book WHERE quantity > 0 AND Book_id = '$book_id' ";
+    if (Database::db_execute($sql_check_remaining)) {
+        $remainings = Database::db_get_list($sql_check_remaining);
+        // Kiểm tra sách đã thuê chưa
+        $sql_check = "SELECT Email FROM library_records
+                          WHERE Email = '$email' AND Book_id = '$book_id'";
+        if (Database::db_execute($sql_check)) {
+            echo "Sách Này Bạn Đã Thuê";
+        } else {
+            $sql = "INSERT INTO library_records(Email,Book_id)
+                            VALUES ('$email','$book_id')";
+            if (Database::db_execute($sql)) {
+                echo "<h2> Bạn Đã Đăng Ký Thành Công</h2>";
+                $sql_select = " SELECT lr.Email, book.Book_name, book.Price, lr.Book_borrowed_day
+                                        FROM library_records lr
+                                        JOIN book ON lr.Book_id = book.Book_id
+                                        WHERE lr.Email = '$email' AND lr.Book_id = '$book_id'";
+                if (Database::db_execute($sql_select)) {
+                    echo '<table>';
+                    echo '<tr>';
+                    echo '<th>Người Thuê</th>';
+                    echo '<th>Tên Sách</th>';
+                    echo '<th>Giá</th>';
+                    echo '<th>Ngày Đăng Ký</th>';
+                    echo '</tr>';
+
+                    $info_book = Database::db_get_list($sql_select);
+                    foreach ($info_book as $book) {
+                        echo '<tr>';
+                        echo '<td>' . $book["Email"] . '</td>';
+                        echo '<td>' . $book["Book_name"] . '</td>';
+                        echo '<td>' . $book["Price"] . '</td>';
+                        echo '<td>' . $book["Book_borrowed_day"] . '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+                }
+            }
+        }
+    } else {
+        echo "Sách đã hết. Không thể mượn thêm.";
+    }
+}
+
+
+Database::db_disconnect();

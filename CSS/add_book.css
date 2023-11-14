@@ -14,7 +14,7 @@ td {
 }
 
 tr:nth-child(even) {
-    background-color: #e1cbcb;
+    background-color: #dfe6ea;
 }
 
 table {
@@ -30,6 +30,18 @@ table {
 .full_display h3 {
     text-align: center;
     margin-bottom: 15px;
+}
+
+.display_book {
+    width: 50%;
+}
+
+.display_genre {
+    width: 20%;
+}
+
+.display_author {
+    width: 25%;
 }
 
 .add_book {

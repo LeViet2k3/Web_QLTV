@@ -5,6 +5,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
 /* Body */
 .body {
     display: flex;
@@ -13,7 +14,7 @@
 
 .sidebar {
     flex-basis: 100%;
-    background-color: black;
+    background-color: rgb(150, 181, 192);
 
 }
 
@@ -41,7 +42,7 @@ a:hover {
 
 
 .content {
-    flex-basis: 90%;
+    flex-basis: 100%;
 }
 
 @media(min-width: 576px) {

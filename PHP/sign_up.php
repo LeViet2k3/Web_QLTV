@@ -53,7 +53,7 @@ Database::db_disconnect();
         <img src="../Image/logo.png" alt="logo_team">
         <div>
             <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
-            <h3>Đội Ngũ Phát Triễn - Team 2</h3>
+            <h3>Đội Ngũ Phát Triển - Team 2</h3>
         </div>
     </div>
     <!-- thông báo -->

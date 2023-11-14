@@ -10,8 +10,8 @@
 }
 
 .login {
-    width: 400px;
-    height: 300px;
+    width: 450px;
+    height: 350px;
     padding: 10px 30px;
     display: flex;
     justify-content: center;
@@ -27,6 +27,8 @@
     font-size: 20px;
 }
 
+
+
 .box2 .mail {
     display: flex;
     width: 100%;
@@ -40,11 +42,9 @@
     outline: none;
 }
 
-.box2 i {
-    position: absolute;
-    right: 67%;
-    top: 49%;
-    transform: translateY(-50%);
+.showpass {
+    font-size: 0.9rem;
+    margin: 0 0 10px 20px;
 
 }
 
