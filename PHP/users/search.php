@@ -8,61 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            background-image: url(../Image/background/anh7.jpg);
-            background-size: cover;
-        }
-
-        .full_search {
-            display: flex;
-        }
-
-        .search {
-            width: 35%;
-
-        }
-
-        .search h2 {
-            text-align: center;
-        }
-
-        .search a {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            text-decoration: none;
-            border: 1px solid black;
-            text-align: center;
-            margin: auto;
-            color: black;
-            padding: 10px;
-            width: 50%;
-        }
-
-        .display {
-            width: 65%;
-        }
-
-        .display table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 10px;
-            text-align: center;
-            margin: auto;
-        }
-
-        .display table {
-            width: 90%;
-        }
-
-        .display h2 {
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../../CSS/search.css">
 </head>
 
 <body>
@@ -113,7 +59,7 @@ session_start();
                         echo '<td>' . $book["Author_name"] . '</td>';
                         echo '<td>' . $book["Price"] . '</td>';
                         echo '<td>' . $book["quantity"] . '</td>';
-                        echo '<td><a href="./library_records.php?book_id=' . $book["Book_id"]  . '">Đăng Ký</a></td>';
+                        echo '<td><a href="./library_records.php?book_id=' . $book["Book_id"]  . '&price=' . $book["Price"] . '">Đăng Ký</a></td>';
                         echo '</tr>';
                     }
                     echo '</table>';

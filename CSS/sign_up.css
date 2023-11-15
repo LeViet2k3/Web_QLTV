@@ -2,53 +2,42 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins';
 }
 
-
-.thong_bao {
-    margin-top: 1%;
-    text-align: center;
+#form {
+    width: 60%;
 }
 
-.sign_up {
+#Sign_up {
+    margin: 3% auto;
+    border: 1px solid black;
+    width: 75%;
+    display: flex;
+    box-shadow: 3px 3px 5px 5px rgb(174, 185, 188);
+}
+
+#sidebar {
     width: 35%;
-    border: 1px solid rgb(52, 49, 49);
-    border-radius: 30px;
-    margin: auto;
-    margin-top: 1%;
-    margin-bottom: 2%;
-    background-color: rgba(240, 248, 255, 0.7);
+    background-image: url(../Image/background/anh8.jpg);
+    background-size: cover;
+    border: 1px solid black;
 }
 
-.title {
+#thong_bao {
+    margin: 1% 0;
     text-align: center;
-    margin-top: 10px;
-
+    font-size: 20px;
 }
 
-.info {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    padding: 20px;
-    font-size: 13px;
+h2 {
+    text-align: center;
 }
 
-.submit {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
+#btn {
+    margin-left: 40%;
 }
 
-.submit button {
-    width: 20%;
-    height: 30px;
-    border-radius: 30px;
-    font-size: 15px;
-    font-weight: 600;
-    background-color: black;
-    color: azure;
-    cursor: pointer;
+#btn button {
+    background-color: lightgrey;
 }

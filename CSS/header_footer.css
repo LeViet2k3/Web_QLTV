@@ -1,5 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
 /* Header */
 .header {
+    height: 100px;
     display: flex;
     border: 1px solid black;
     padding-left: 10%;
@@ -19,6 +27,7 @@
     text-align: center;
     margin-top: 5px;
 }
+
 
 /* footer */
 .footer {

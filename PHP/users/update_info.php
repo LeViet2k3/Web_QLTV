@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Thực hiện câu lệnh UPDATE
     if (Database::db_execute($UpdateSql)) {
-        echo "<h3>Cập nhật thành công.<br></h3>";
+        echo "<h3><b>Cập nhật thành công.</b></h3>";
     } else {
         echo "Lỗi trong quá trình cập nhật dữ liệu: ";
     }
@@ -34,14 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../../CSS/sign_up.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../CSS/update_infor.css">
     <title>Update</title>
-    <style>
-        h3 {
-            text-align: center;
-            margin-top: 5px;
-        }
-    </style>
 </head>
 
 <body>
@@ -66,24 +63,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Database::db_disconnect();
     ?>
     <!-- Update -->
-    <form action="" method="post">
-        <div class="sign_up">
+    <div class="update">
+        <div id="update">
             <div class="title">
-                <h3>Thông tin cá nhân</h3>
+                <h3><b>Thông tin cá nhân</b></h3>
                 <h4><?php echo $email ?></h4>
             </div>
-            <div class="info">
-                UserName: <input type="text" name="username" value="<?php echo $username ?>"><br>
-                Gender: <input type="text" name="gender" value="<?php echo $gender ?>"><br>
-                Password: <input type="text" name="password" value="<?php echo $password ?>"> <br>
-                Place of origin: <input type="text" name="place_of_origin" value="<?php echo $place_of_origin ?>"><br>
-                A phone number: <input type="number" name="a_phone_number" value="<?php echo $a_phone_number ?>">
+            <div>
+                <form class="form-horizontal" action="" method="post">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">User Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<?php echo $username ?>" name="username" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Gender:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<?php echo $gender ?>" name="gender" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="pwd">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<?php echo $password ?>" name="password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">Place of Origin:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<?php echo $place_of_origin ?>" name="place_of_origin" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="email">A Phone Number:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" value="<?php echo $a_phone_number ?>" name="a_phone_number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="btn" class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Update</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="submit">
-                <button type="submit">Update</button>
-            </div>
+
         </div>
-    </form>
+    </div>
 </body>
 
 </html>

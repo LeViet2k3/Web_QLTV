@@ -8,107 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            background-image: url(../Image/background/anh7.jpg);
-            background-size: cover;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .full_search {
-            display: flex;
-            width: 100%;
-        }
-
-        .search {
-            width: 50%;
-            /* border: 1px solid blue; */
-
-        }
-
-        .search h2 {
-            text-align: center;
-        }
-
-        .search a {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            text-decoration: none;
-            border: 1px solid black;
-            text-align: center;
-            margin: auto;
-            color: black;
-            padding: 10px;
-            width: 50%;
-        }
-
-        .display {
-            width: 50%;
-        }
-
-        .display table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 10px;
-            text-align: center;
-            margin: auto;
-        }
-
-        .display table {
-            width: 90%;
-        }
-
-        .display h2 {
-            text-align: center;
-        }
-
-        .show_modal {
-            font-size: 1.5rem;
-            font-weight: 600;
-            padding: 3%;
-            margin: 20% 30%;
-            border: none;
-            background-color: #fff;
-            color: #444;
-            border-radius: 10rem;
-            cursor: pointer;
-            border: 1px solid black;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 2.5rem;
-            right: 2.3rem;
-            font-size: 3.5rem;
-            color: rgb(190, 192, 195);
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            z-index: 10;
-        }
-    </style>
+    <link rel="stylesheet" href="../../CSS/read_book.css">
 </head>
 
 <body>
@@ -119,7 +19,7 @@ session_start();
             Database::db_connect();
             $sql_select_bookname = "SELECT Book_name FROM book
                                     JOIN library_records ON book.Book_id = library_records.Book_id ";
-            echo "<h2>Tất Cả Sách Trong Thư Viện:</h2>";
+            echo "<h2>Tất Cả Sách Bạn Thuê:</h2>";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
                 foreach ($bookname as $name) {

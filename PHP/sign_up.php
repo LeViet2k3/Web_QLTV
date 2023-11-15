@@ -42,22 +42,16 @@ Database::db_disconnect();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../CSS/sign_up.css">
-    <link rel="stylesheet" href="../CSS/header_footer.css">
     <title>Sign_up</title>
 </head>
 
 <body>
-    <!-- header -->
-    <div class="header">
-        <img src="../Image/logo.png" alt="logo_team">
-        <div>
-            <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
-            <h3>Đội Ngũ Phát Triển - Team 2</h3>
-        </div>
-    </div>
     <!-- thông báo -->
-    <div class="thong_bao">
+    <div id="thong_bao">
         <?php
         if (isset($_GET['success']) && $_GET['success'] == 2) {
             echo "Tài khoản chưa được đăng ký. Vui lòng đăng ký!";
@@ -65,45 +59,54 @@ Database::db_disconnect();
         ?>
     </div>
     <!-- Sign_up -->
-    <form action="" method="post">
-        <div class="sign_up">
-            <div class="title">
-                <h3>Vui Lòng Điền Các Thông Tin</h3>
-            </div>
-            <div class="info">
-                Email: <input type="email" name="email" required><br>
-                UserName: <input type="text" name="username" required><br>
-                Gender: <input type="text" name="gender" required><br>
-                Password: <input type="password" name="password" required> <br>
-                Place of origin: <input type="text" name="place_of_origin" required><br>
-                A phone number: <input type="number" name="a_phone_number" required>
-            </div>
-            <div class="submit">
-                <button type="submit">Sign up</button>
-            </div>
+    <div id="Sign_up">
+        <div class="container" id="form">
+            <h2>Infomation Register</h2>
+            <form class="form-horizontal" action="" method="post">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email: </label>
+                    <div class="col-sm-10">
+                        <input type="email" id="email" class="form-control" placeholder="Enter email" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">User Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter username" name="username" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Gender:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter genre" name="gender" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" placeholder="Enter password" name="password" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Place of Origin:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter place of origin" name="place_of_origin" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">A Phone Number:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter a phone number" name="a_phone_number" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div id="btn" class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </div>
+            </form>
         </div>
-
-
-    </form>
-    <!--Footer-->
-    <div class="footer">
-        <ul>
-            <li>
-                <p><i class="fa-solid fa-location-dot"></i> Địa chỉ: 136 Phạm Như Xương, Hòa Khánh Nam, quận
-                    Liên Chiểu, TP.Đà Nẵng</p>
-            </li>
-            <li>
-                <p><i class="fa-solid fa-phone"></i> Điện thoại: 0867548549 - 0702032064</p>
-            </li>
-            <li>
-                <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
-            </li>
-            <div class="license">
-                <li>
-                    <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
-                </li>
-            </div>
-
+        <div id="sidebar"></div>
     </div>
 </body>
 

@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+h3 {
+    text-align: center;
+    margin-top: 1%;
+    color: black;
+}
+
+h4 {
+    text-align: center;
+    color: black;
+}
+
+.title {
+    color: black;
+}
+
+#update {
+    width: 65%;
+    margin: 3% auto;
+    z-index: 10;
+}
+
+.update::before {
+    content: "";
+    background-image: url(../Image/background/anh2.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.3;
+}
+
+#btn {
+    margin-left: 40%;
+}
+
+#btn button {
+    background-color: lightblue;
+}

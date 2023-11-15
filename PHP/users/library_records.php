@@ -8,6 +8,7 @@ Database::db_connect();
 // Thực hiện sau khi nhấn đăng kí
 if (isset($_GET['book_id'])) {
     $book_id = $_GET['book_id'];
+    $price = $_GET['price'];
     $email = $_SESSION['email'];
 
     $sql_check_remaining = "SELECT * FROM book WHERE quantity > 0 AND Book_id = '$book_id' ";
@@ -17,10 +18,11 @@ if (isset($_GET['book_id'])) {
         $sql_check = "SELECT Email FROM library_records
                           WHERE Email = '$email' AND Book_id = '$book_id'";
         if (Database::db_execute($sql_check)) {
-            echo "Sách Này Bạn Đã Thuê";
+            echo "<h3>Sách Này Bạn Đã Thuê</h3>";
+            echo '<div class = "btn"><button><a href="./search.php">Come Back</a></button></div>';
         } else {
-            $sql = "INSERT INTO library_records(Email,Book_id)
-                            VALUES ('$email','$book_id')";
+            $sql = "INSERT INTO library_records(Email, Book_id, Price)
+                            VALUES ('$email','$book_id','$price')";
             if (Database::db_execute($sql)) {
                 echo "<h2> Bạn Đã Đăng Ký Thành Công</h2>";
                 $sql_select = " SELECT lr.Email, book.Book_name, book.Price, lr.Book_borrowed_day
@@ -46,13 +48,26 @@ if (isset($_GET['book_id'])) {
                         echo '</tr>';
                     }
                     echo '</table>';
+                    echo '<div class = "btn"><button><a href="./read_book.php">Read Book</a></button></div>';
                 }
             }
         }
     } else {
-        echo "Sách đã hết. Không thể mượn thêm.";
+        echo "<h3>Sách đã hết. Không thể mượn thêm.</h3>";
+        echo '<div class = "btn"><button><a href="./search.php">Come Back</a></button></div>';
     }
 }
 
 
 Database::db_disconnect();
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/library_records.css">
+</head>
+
+</html>

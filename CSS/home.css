@@ -2,34 +2,40 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins';
 }
 
 body {
-    background-image: url(../Image/background/anh6.jpg);
+    background-image: url(../Image/background/anh7.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .title h2 {
     text-align: center;
     margin-top: 2%;
+
 }
 
 .home {
     display: flex;
     margin-top: 5%;
+
 }
 
 .home_background img {
     width: 60%;
     height: auto;
-    margin-left: 10%;
+    margin-right: 7%;
+    /* opacity: 0.3; */
+    float: right;
 }
 
 .home_book {
     width: 60%;
     height: auto;
     margin-right: 5%;
+    z-index: 3;
 }
 
 .home_book div img {
