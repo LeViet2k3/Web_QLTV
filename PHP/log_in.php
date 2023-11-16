@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
     if (Database::db_execute($sql_check_users)) {
-        Helper::redirect(Helper::get_url('../Web_QLTV/HTML/users_interface.html'));
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/users_interface.php'));
     } elseif (Database::db_execute($sql_check_admin)) {
-        Helper::redirect(Helper::get_url('../Web_QLTV/HTML/admins_interface.html'));
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } else {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=2'));
     }
@@ -45,96 +45,100 @@ Database::db_disconnect();
 </head>
 
 <body>
-    <!-- header -->
-    <div class="header">
-        <img src="../Image/logo.png" alt="logo_team">
-        <div>
-            <h2>HỆ THỐNG QUẢN LÝ THƯ VIỆN</h2>
-            <h3>Đội Ngũ Phát Triển - Team 2</h3>
-        </div>
-    </div>
-    <!-- sidebar -->
-    <div class="sidebar">
-        <div class="title">
-            <h4>Thông Báo Mới Nhất</h4>
-        </div>
-        <div>
-            <ol>
-                <li>Thông tin về giờ mở cửa và đóng cửa</li>
-                <li>Thông tin về các sự kiện sắp tới</li>
-                <li>Thông tin về tình trạng sách và tài liệu mới</li>
-                <li>Thông tin về tình trạng các dự án xây dựng và nâng cấp thư viện</li>
-                <li>Thông tin về tình trạng tài khoản và mượn trả sách</li>
-                <li>Thông báo về tình trạng vị trí và tiện ích trong thư viện</li>
-                <li>Thông báo về tài liệu đặc biệt và bộ sưu tập đặc trưng</li>
-            </ol>
-        </div>
-    </div>
-    <!-- thông báo -->
-    <div class="thong_bao">
-        <?php
-        if (isset($_GET['success']) && $_GET['success'] == 1) {
-            echo "Đăng ký thành công!";
-        }
-        ?>
-    </div>
-    <!-- login -->
-    <div class="login">
-        <form action="" method="post">
-            <div class="box1">
-                <h3>Log in</h3>
+    <div class="full">
+        <!-- header -->
+        <div class="header">
+            <img src="../Image/logo.png" alt="logo_team">
+            <div>
+                <h2>Library Management System</h2>
+                <h3>Development Team - Team 2</h3>
             </div>
-            <div class="box2">
-                <input type="email" name="email" class="mail" placeholder="Email" required>
-            </div>
-            <div class="box2">
-                <input type="text" name="username" class="mail" placeholder="UserName" required>
-            </div>
-            <div class="box2">
-                <div>
-                    <input id="pass" type="password" name="password" class="mail" placeholder="Password" required>
+        </div>
+        <div class="full_home_page">
+            <!-- sidebar -->
+            <div class="home_book">
+                <div class="home_img_book">
+                    <img src="../Image/book1.jpg" alt="book1">
+                    <img src="../Image/book2.jpg" alt="book2">
+                    <img src="../Image/book3.jpg" alt="book3">
                 </div>
-                <div class="showpass">
-                    <input id="check" type="checkbox"> Show password
+                <div class="home_img_book">
+                    <img src="../Image/book4.jpg" alt="book4">
+                    <img src="../Image/book5.jpg" alt="book5">
+                    <img src="../Image/book6.jpg" alt="book6">
                 </div>
             </div>
-            <div class="box3">
-                <button type="submit">Log in</button>
+            <!-- login -->
+            <div class="full_login">
+                <!-- thông báo -->
+                <div class="thong_bao">
+                    <?php
+                    if (isset($_GET['success']) && $_GET['success'] == 1) {
+                        echo "Registration Successful!";
+                    }
+                    ?>
+                </div>
+
+                <div class="login">
+                    <form action="" method="post">
+                        <div class="box1">
+                            <h3>Log in</h3>
+                        </div>
+                        <div class="box2">
+                            <input type="email" name="email" class="mail" placeholder="Email" required>
+                        </div>
+                        <div class="box2">
+                            <input type="text" name="username" class="mail" placeholder="UserName" required>
+                        </div>
+                        <div class="box2">
+                            <div>
+                                <input id="pass" type="password" name="password" class="mail" placeholder="Password" required>
+                            </div>
+                            <div class="showpass">
+                                <input id="check" type="checkbox"> Show password
+                            </div>
+                        </div>
+                        <div class="box3">
+                            <button type="submit">Log in</button>
+                        </div>
+                    </form>
+
+                    <div class="box4">
+                        <p> Don't have a account</p>
+                        <a href="./sign_up.php">Sign up</a>
+                    </div>
+                </div>
             </div>
-        </form>
-
-        <div class="box4">
-            <p> Don't have a account</p>
-            <a href="./sign_up.php">Sign up</a>
         </div>
-    </div>
-    <script>
-        check.onclick = togglePassword;
-
-        function togglePassword() {
-            if (check.checked) pass.type = "text";
-            else pass.type = "password";
-        }
-    </script>
-    <!--Footer-->
-    <div class="footer">
-        <ul>
-            <li>
-                <p><i class="fa-solid fa-location-dot"></i> Địa chỉ: 136 Phạm Như Xương, Hòa Khánh Nam, quận
-                    Liên Chiểu, TP.Đà Nẵng</p>
-            </li>
-            <li>
-                <p><i class="fa-solid fa-phone"></i> Điện thoại: 0867548549 - 0702032064</p>
-            </li>
-            <li>
-                <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
-            </li>
-            <div class="license">
+        <!--Footer-->
+        <div class="footer">
+            <ul>
                 <li>
-                    <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Address: 136 Phạm Như Xương, Hòa Khánh Nam, quận
+                        Liên Chiểu, TP.Đà Nẵng</p>
                 </li>
-            </div>
+                <li>
+                    <p><i class="fa-solid fa-phone"></i> A Phone Number: 0867548549 - 0702032064</p>
+                </li>
+                <li>
+                    <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
+                </li>
+                <div class="license">
+                    <li>
+                        <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </div>
 </body>
+<script>
+    check.onclick = togglePassword;
+
+    function togglePassword() {
+        if (check.checked) pass.type = "text";
+        else pass.type = "password";
+    }
+</script>
 
 </html>

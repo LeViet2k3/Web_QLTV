@@ -10,16 +10,17 @@
 }
 
 .login {
-    width: 450px;
+    width: 400px;
     height: 350px;
     padding: 10px 30px;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid black;
+    border: 1px solid rgb(181, 177, 177);
     border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.1);
-    margin: 10px 0 90px 70px;
+    background-color: rgba(153, 150, 150, 0.1);
+    margin: 20px 10px 90px 150px;
+    float: right;
 }
 
 .box1 {
@@ -88,20 +89,43 @@
     text-decoration: underline;
 }
 
-.sidebar {
-    border: 1px solid black;
-    border-radius: 10px;
-    max-width: 50%;
+.home_book {
+    width: 40%;
     height: auto;
-    padding: 5px 10px 10px 30px;
-    float: right;
-    margin: 80px 70px 0 0;
-
+    margin: 4% 5% 0 2%;
+    z-index: 3;
 }
 
-.sidebar .title {
-    text-align: center;
-    color: rgb(196, 62, 62);
+.home_book div img {
+    width: 30%;
+    padding: 2%;
+    box-shadow: 3px 3px 3px 3px rgb(174, 185, 188);
+    z-index: 5;
+}
+
+.home_img_book {
+    display: flex;
+    justify-content: space-evenly;
     margin-bottom: 20px;
-    font-size: 20px;
+}
+
+.full_login {
+    width: 50%;
+    z-index: 5;
+}
+
+.full_home_page {
+    display: flex;
+}
+
+.full::before {
+    content: "";
+    background-image: url(../Image/background/anh2.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.3;
 }

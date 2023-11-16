@@ -17,16 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Kiểm tra file tồn tại trước khi upload
     if (file_exists($target_file)) {
-        echo "File đã tồn tại.";
+        echo "The file already exists.";
         $uploadOk = 0;
     }
     if ($uploadOk == 0) {
-        echo "Không thể upload file.";
+        echo "Unable to upload the file.";
     } else {
         if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $target_file)) {
             $File_pdf = htmlspecialchars(basename($_FILES["pdfFile"]["name"]));
         } else {
-            echo "Có lỗi xảy ra khi upload file.";
+            echo "An error occurred while uploading the file.";
         }
     }
     // Kiểm tra Genre_id bảng genre
@@ -75,43 +75,89 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../CSS/add_book.css">
     <title>Document</title>
 </head>
 
 <body>
     <div class="add_book">
-        <h2>Thêm Sách</h2>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-            <div class="full_form">
-                <div><input class="input" type="text" name="book_id" placeholder="Nhập mã sách" required></div>
-                <div><input class="input" type="text" name="book_name" placeholder="Nhập tên sách" required></div>
-                <input type="file" name="pdfFile" id="pdfFile">
-                <div><input class="input" type="number" name="quantity" placeholder="Số lượng" required></div>
-                <div><input class="input" type="number" name="price" placeholder="Giá" required></div>
-                <div><input class="input" type="text" name="author_id" placeholder="Nhập mã tác giả" required></div>
-                <div><input class="input" type="text" name="author_name" placeholder="Nhập tên tác giả" required></div>
-                <div><input class="input" type="text" name="genre_id" placeholder="Nhập mã thể loại" required></div>
-                <div><input class="input" type="text" name="genre_name" placeholder="Nhập tên thể loại" required></div>
-            </div>
-            <div class="submit"><input type="submit" value="ADD"></div>
+        <h2>Add Book</h2>
+        <div id="form_add_book">
+            <div class="form">
+                <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="text" class="form-control" name="book_id" placeholder="Enter book id" required required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="text" class="form-control" name="book_name" placeholder="Enter book name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input type="file" name="pdfFile" id="pdfFile">
+                        </div>
+                    </div>
 
-        </form>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="number" class="form-control" name="quantity" placeholder="Quantity" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="number" class="form-control" name="price" placeholder="Price" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="text" class="form-control" name="author_id" placeholder="Enter author id" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="text" class="form-control" name="author_name" placeholder="Enter author name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="text" class="form-control" name="genre_id" placeholder="Enter genre id" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <input id="input" type="text" class="form-control" name="genre_name" placeholder="Enter genre name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="btn" class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">ADD</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
     </div>
     <div class="full_display">
         <div class="display_book">
-            <h3>Bảng Sách</h3>
+            <h3>Book Table</h3>
             <?php
             // Hiển thị bảng book
             $sql_select_book = "SELECT * FROM book ";
             if (Database::db_execute($sql_select_book)) {
                 echo '<table>';
                 echo '<tr>';
-                echo '<th>Mã Sách</th>';
-                echo '<th>Tên Sách</th>';
-                echo '<th>Số Lượng</th>';
-                echo '<th>Giá</th>';
-                echo '<th>Mã Thể Loại</th>';
+                echo '<th>Book ID</th>';
+                echo '<th>Book Name</th>';
+                echo '<th>Quantity</th>';
+                echo '<th>Price</th>';
+                echo '<th>Genre ID</th>';
                 echo '</tr>';
 
                 $books = Database::db_get_list($sql_select_book);
@@ -129,15 +175,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
         <div class="display_genre">
-            <h3>Bảng Thể Loại</h3>
+            <h3>Genre Table</h3>
             <?php
             // Hiển thị bảng genre
             $sql_select_genre = "SELECT * FROM genre ";
             if (Database::db_execute($sql_select_genre)) {
                 echo '<table>';
                 echo '<tr>';
-                echo '<th>Mã Thể Loại</th>';
-                echo '<th>Tên Thể Loại</th>';
+                echo '<th>Genre ID</th>';
+                echo '<th>Genre Name</th>';
                 echo '</tr>';
 
                 $genres = Database::db_get_list($sql_select_genre);
@@ -152,15 +198,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </div>
         <div class="display_author">
-            <h3>Bảng Tác Giả</h3>
+            <h3>Author Table</h3>
             <?php
             // Hiển thị bảng author
             $sql_select_author = "SELECT * FROM author ";
             if (Database::db_execute($sql_select_author)) {
                 echo '<table>';
                 echo '<tr>';
-                echo '<th>Mã Tác Giả</th>';
-                echo '<th>Tên Tác Giả</th>';
+                echo '<th>Author ID</th>';
+                echo '<th>Author Name</th>';
                 echo '</tr>';
                 $authors = Database::db_get_list($sql_select_author);
                 foreach ($authors as $author) {

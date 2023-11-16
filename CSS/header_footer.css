@@ -17,15 +17,20 @@
 
 .header img {
     width: 100px;
+    z-index: 5;
+
 }
 
 .header div {
     margin: 20px;
+    z-index: 5;
+
 }
 
 .header div h3 {
     text-align: center;
     margin-top: 5px;
+
 }
 
 
@@ -36,8 +41,10 @@
     background-color: rgb(192, 192, 232);
     color: black;
     padding: 7px 0;
-    /* position: absolute;
-    bottom: 0; */
+    position: absolute;
+    z-index: 5;
+
+
 
 }
 

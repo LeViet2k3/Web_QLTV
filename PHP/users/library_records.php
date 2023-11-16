@@ -18,13 +18,13 @@ if (isset($_GET['book_id'])) {
         $sql_check = "SELECT Email FROM library_records
                           WHERE Email = '$email' AND Book_id = '$book_id'";
         if (Database::db_execute($sql_check)) {
-            echo "<h3>Sách Này Bạn Đã Thuê</h3>";
-            echo '<div class = "btn"><button><a href="./search.php">Come Back</a></button></div>';
+            echo "<h3>This Book Is Currently Rented by You:</h3>";
+            echo '<div class = "btn"><button><a href="./search.php">Go Back</a></button></div>';
         } else {
             $sql = "INSERT INTO library_records(Email, Book_id, Price)
                             VALUES ('$email','$book_id','$price')";
             if (Database::db_execute($sql)) {
-                echo "<h2> Bạn Đã Đăng Ký Thành Công</h2>";
+                echo "<h2>You Have Successfully Registered.</h2>";
                 $sql_select = " SELECT lr.Email, book.Book_name, book.Price, lr.Book_borrowed_day
                                         FROM library_records lr
                                         JOIN book ON lr.Book_id = book.Book_id
@@ -32,10 +32,10 @@ if (isset($_GET['book_id'])) {
                 if (Database::db_execute($sql_select)) {
                     echo '<table>';
                     echo '<tr>';
-                    echo '<th>Người Thuê</th>';
-                    echo '<th>Tên Sách</th>';
-                    echo '<th>Giá</th>';
-                    echo '<th>Ngày Đăng Ký</th>';
+                    echo '<th>Customer</th>';
+                    echo '<th>Book Name</th>';
+                    echo '<th>Price</th>';
+                    echo '<th>Registration Date</th>';
                     echo '</tr>';
 
                     $info_book = Database::db_get_list($sql_select);
@@ -53,8 +53,8 @@ if (isset($_GET['book_id'])) {
             }
         }
     } else {
-        echo "<h3>Sách đã hết. Không thể mượn thêm.</h3>";
-        echo '<div class = "btn"><button><a href="./search.php">Come Back</a></button></div>';
+        echo "<h3>The book is out of stock.Please choose another book.</h3>";
+        echo '<div class = "btn"><button><a href="./search.php">Go Back</a></button></div>';
     }
 }
 

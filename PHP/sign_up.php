@@ -78,7 +78,7 @@ Database::db_disconnect();
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Gender:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter genre" name="gender" required>
+                        <input type="text" class="form-control" placeholder="Enter gender" name="gender" required>
                     </div>
                 </div>
                 <div class="form-group">

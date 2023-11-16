@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Thực hiện câu lệnh UPDATE
     if (Database::db_execute($UpdateSql)) {
-        echo "<h3><b>Cập nhật thành công.</b></h3>";
+        echo "<h3><b>Update Successful.</b></h3>";
     } else {
-        echo "Lỗi trong quá trình cập nhật dữ liệu: ";
+        echo "<h3><b>Error during data update</b></h3> ";
     }
 }
 
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="update">
         <div id="update">
             <div class="title">
-                <h3><b>Thông tin cá nhân</b></h3>
+                <h3><b>Personal Information</b></h3>
                 <h4><?php echo $email ?></h4>
             </div>
             <div>

@@ -18,7 +18,7 @@ tr:nth-child(even) {
 }
 
 table {
-    border: 1px solid black;
+    border: 1px solid rgb(156, 152, 152);
 }
 
 .full_display {
@@ -45,13 +45,13 @@ table {
 }
 
 .add_book {
-    padding: 1% 0;
+    padding-bottom: 2%;
     box-shadow: 3px 3px 3px 3px rgb(174, 185, 188);
 }
 
 .add_book h2 {
     text-align: center;
-    margin-bottom: 3%;
+    margin-bottom: 2%;
 }
 
 .full_form {
@@ -59,15 +59,32 @@ table {
     margin: auto;
 }
 
-.input {
+/* .input {
     width: 100%;
     height: 20px;
     margin: 1% 0;
-}
+} */
 
-.submit {
+/* .submit {
     margin: 1% 0 3%;
     display: flex;
     justify-content: center;
 
+} */
+
+#form_add_book {
+    width: 35%;
+    margin: auto;
+}
+
+#input {
+    width: 120%;
+}
+
+#btn {
+    margin-left: 38%;
+}
+
+#btn button {
+    background-color: lightgrey;
 }

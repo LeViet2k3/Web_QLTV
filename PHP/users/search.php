@@ -18,7 +18,7 @@ session_start();
             include('../libs/helper.php');
             Database::db_connect();
             $sql_select_bookname = "SELECT Book_name FROM book ";
-            echo "<h2>Tất Cả Sách Trong Thư Viện:</h2>";
+            echo "<h2>All Books In The Library:</h2>";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
                 foreach ($bookname as $name) {
@@ -42,15 +42,15 @@ session_start();
 
                 $info_book = Database::db_get_list($sql_select_info);
                 if (!empty($info_book)) {
-                    echo "<h2> Thông Tin Về Sách Bạn Cần Tìm</h2>";
+                    echo "<h2> Information About The Book You Are Looking For:</h2>";
                     echo '<table>';
                     echo '<tr>';
-                    echo '<th>Tên Sách</th>';
-                    echo '<th>Thể Loại</th>';
-                    echo '<th>Tên Tác Giả</th>';
-                    echo '<th>Giá</th>';
-                    echo '<th>Sách Còn</th>';
-                    echo '<th>Đăng Ký</th>';
+                    echo '<th>Book Name</th>';
+                    echo '<th>Genre</th>';
+                    echo '<th>Author Name</th>';
+                    echo '<th>Price</th>';
+                    echo '<th>Remaining Of Books</th>';
+                    echo '<th>Register</th>';
                     echo '</tr>';
                     foreach ($info_book as $book) {
                         echo '<tr>';
@@ -59,12 +59,12 @@ session_start();
                         echo '<td>' . $book["Author_name"] . '</td>';
                         echo '<td>' . $book["Price"] . '</td>';
                         echo '<td>' . $book["quantity"] . '</td>';
-                        echo '<td><a href="./library_records.php?book_id=' . $book["Book_id"]  . '&price=' . $book["Price"] . '">Đăng Ký</a></td>';
+                        echo '<td><a href="./library_records.php?book_id=' . $book["Book_id"]  . '&price=' . $book["Price"] . '">Register</a></td>';
                         echo '</tr>';
                     }
                     echo '</table>';
                 } else {
-                    echo "Không có dữ liệu trong bảng website.";
+                    echo "No data in the website table.";
                 }
             }
             Database::db_disconnect();

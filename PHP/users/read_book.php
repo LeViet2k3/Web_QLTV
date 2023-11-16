@@ -17,9 +17,11 @@ session_start();
             <?php
             include('../libs/helper.php');
             Database::db_connect();
+            $email = $_SESSION['email'];
             $sql_select_bookname = "SELECT Book_name FROM book
-                                    JOIN library_records ON book.Book_id = library_records.Book_id ";
-            echo "<h2>Tất Cả Sách Bạn Thuê:</h2>";
+                                    JOIN library_records ON book.Book_id = library_records.Book_id 
+                                    WHERE library_records.Email = '$email'";
+            echo "<h2>All Borrowed Books:</h2>";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
                 foreach ($bookname as $name) {

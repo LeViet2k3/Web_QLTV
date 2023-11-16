@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../CSS/update_expense.css">
+    <link rel="stylesheet" href="../../CSS/update_price.css">
     <title>Document</title>
 </head>
 
@@ -16,11 +16,12 @@
             Database::db_connect();
             $sql_select_expense = "SELECT Book_name, Price, Book_id FROM book";
             if (Database::db_execute($sql_select_expense)) {
+                echo '<h2>Price Table For All Books In The Library</h2>';
                 echo '<table>';
                 echo '<tr>';
-                echo '<th>Tên Sách</th>';
-                echo '<th>Giá</th>';
-                echo '<th>Cập Nhật</th>';
+                echo '<th>Book Name</th>';
+                echo '<th>Price</th>';
+                echo '<th>Update</th>';
                 echo '</tr>';
                 $expenses = Database::db_get_list($sql_select_expense);
                 foreach ($expenses as $expense) {
@@ -28,7 +29,7 @@
                     echo "<td>" . $expense['Book_name'] . "</td>";
                     echo "<td>" . $expense['Price'] . "</td>";
                     echo "<td>
-                        <a href='?Book_id=" . $expense['Book_id'] . "'><button>Cập Nhật</button></a>
+                        <a href='?Book_id=" . $expense['Book_id'] . "'><button>Update</button></a>
                         </td>";
 
                     echo '</tr>';
@@ -55,14 +56,15 @@
                             Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admin/update_price.php'));
                         }
                     } else {
-                        echo "Mức phí phải là một số hợp lệ.";
+                        echo "The fee must be a valid number.";
                     }
                 }
             ?>
-                <div>
+                <h3>Update Book Prices</h3>
+                <div class="form">
                     <form action="" method="post">
-                        <input type="text" placeholder="Nhập mức phí" name="price">
-                        <button type="submit">Cập nhật</button>
+                        <input type="text" placeholder="Enter book price" name="price">
+                        <button type="submit">Update</button>
                     </form>
                 </div>
             <?php
