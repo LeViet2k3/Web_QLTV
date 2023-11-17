@@ -15,7 +15,7 @@ $check = Database::db_get_list($sql_check);
 foreach ($check as $row) {
     $email_admin = $row['Email'];
 }
-if ($_SESSION['email'] && !$_SESSION['email'] = $email_admin) {
+if ($_SESSION['email'] && $_SESSION['email'] != $email_admin) {
     Helper::redirect(Helper::get_url('../Web_QLTV/PHP/users_interface.php'));
 }
 // Đóng kết nối

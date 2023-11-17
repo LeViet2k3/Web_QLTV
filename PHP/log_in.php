@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
     if (Database::db_execute($sql_check_users)) {
-        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/users_interface.php'));
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } elseif (Database::db_execute($sql_check_admin)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } else {

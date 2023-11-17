@@ -14,13 +14,15 @@
             <?php
             include('../libs/helper.php');
             Database::db_connect();
-            $sql_select_expense = "SELECT Book_name, Price, Book_id FROM book";
+            $sql_select_expense = "SELECT Book_name, Price, quantity, Genre_id, Book_id FROM book";
             if (Database::db_execute($sql_select_expense)) {
                 echo '<h2>Price Table For All Books In The Library</h2>';
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Book Name</th>';
                 echo '<th>Price</th>';
+                echo '<th>Quantity</th>';
+                echo '<th>Genre_id</th>';
                 echo '<th>Update</th>';
                 echo '</tr>';
                 $expenses = Database::db_get_list($sql_select_expense);
@@ -28,6 +30,8 @@
                     echo "<tr>";
                     echo "<td>" . $expense['Book_name'] . "</td>";
                     echo "<td>" . $expense['Price'] . "</td>";
+                    echo "<td>" . $expense['quantity'] . "</td>";
+                    echo "<td>" . $expense['Genre_id'] . "</td>";
                     echo "<td>
                         <a href='?Book_id=" . $expense['Book_id'] . "'><button>Update</button></a>
                         </td>";
@@ -45,14 +49,21 @@
 
                 // Kiểm tra xem biểu mẫu đã được gửi đi chưa
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $book_name = $_POST['book_name'];
                     $price = $_POST['price'];
+                    $quantity = $_POST['quantity'];
+                    $genre_id = $_POST['genre_id'];
                     $id = $_GET['Book_id']; // Lấy ID từ URL
+                    echo $quantity;
 
                     // Kiểm tra xem giá trị $charges có phải là số hay không
                     if (is_numeric($price)) {
                         // Chuẩn bị câu lệnh SQL
-                        $sql = "UPDATE book SET Price = $price WHERE Book_id = '$id'";
+                        $sql = "UPDATE book 
+                                SET Book_name = '$book_name', quantity = $quantity, Price = $price, Genre_id = '$genre_id'
+                                WHERE Book_id = '$id'";
                         if (Database::db_execute($sql)) {
+                            echo $quantity;
                             Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admin/update_price.php'));
                         }
                     } else {
@@ -63,7 +74,10 @@
                 <h3>Update Book Prices</h3>
                 <div class="form">
                     <form action="" method="post">
-                        <input type="text" placeholder="Enter book price" name="price">
+                        <input type="text" placeholder="Enter book name" name="book_name">
+                        <input type="number" placeholder="Enter book price" name="price">
+                        <input type="number" placeholder="Enter book quantity" name="quantity">
+                        <input type="text" placeholder="Enter genre_id" name="genre_id">
                         <button type="submit">Update</button>
                     </form>
                 </div>
