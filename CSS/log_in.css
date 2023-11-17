@@ -7,6 +7,7 @@
 
 .thong_bao {
     margin: 1% 0 0 18%;
+    border: 1px solid black;
 }
 
 .login {
@@ -128,4 +129,9 @@
     bottom: 0;
     left: 0;
     opacity: 0.3;
+}
+
+.notification {
+    margin: 0 0 10px 10%;
+    color: red;
 }
