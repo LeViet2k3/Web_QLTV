@@ -13,14 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Set session variables
     $_SESSION['email'] = $_POST['email'];
     $email = $_POST['email'];
-    $username = $_POST['username'];
     $password = $_POST['password'];
 
 
     $sql_check_users = "SELECT * FROM users 
-    where Email = '$email' and UserName = '$username' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
+    where Email = '$email' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
     $sql_check_admin = "SELECT * FROM admins 
-    where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
+    where Email = '$email' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
     if (Database::db_execute($sql_check_users)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
