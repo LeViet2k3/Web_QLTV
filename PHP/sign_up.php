@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động' )";
         if (Database::db_execute($sql_insert_users)) {
             // Chuyển hướng và truyền thông báo thành công
-            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
+            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=1'));
         }
     }
 }
@@ -50,9 +50,9 @@ Database::db_disconnect();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../CSS/sign_up.css">
-    <title>Sign_up</title>
+    <title>Team 2 - Sign Up</title>
     <style>
-        .ok h4{
+        .notification h4 {
             text-align: center;
         }
     </style>
@@ -63,7 +63,7 @@ Database::db_disconnect();
     <div id="thong_bao">
         <?php
         if (isset($_GET['success']) && $_GET['success'] == 2) {
-            echo "Tài khoản chưa được đăng ký. Vui lòng đăng ký!";
+            echo "Account is not registered. Please register!";
         }
         ?>
     </div>
@@ -116,12 +116,19 @@ Database::db_disconnect();
                     </div>
                 </div>
             </form>
-            <div class="ok">
-            <?php
-        if (isset($_GET['success']) && $_GET['success'] == 4) {
-            echo "<h4>Email address has been used. Please, choose another account!</h4>";
-        }
-        ?>
+            <div class="notification">
+                <?php
+                if (isset($_GET['success']) && $_GET['success'] == 4) {
+                    echo "<h4>Email address has been used. Please, choose another account!</h4>";
+                }
+                ?>
+            </div>
+            <div class="notification">
+                <?php
+                if (isset($_GET['success']) && $_GET['success'] == 1) {
+                    echo '<h4>Registration Successful! <a href="./log_in.php">Log_in</a></h4>';
+                }
+                ?>
             </div>
         </div>
         <div id="sidebar"></div>
