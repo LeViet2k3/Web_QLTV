@@ -87,7 +87,9 @@ Database::db_disconnect();
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Gender:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter gender" name="gender" required>
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Nam"> Nam &emsp;
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Nữ"> Nữ &emsp;
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Khác"> Khác
                     </div>
                 </div>
                 <div class="form-group">
@@ -114,6 +116,13 @@ Database::db_disconnect();
                     </div>
                 </div>
             </form>
+            <div class="ok">
+            <?php
+        if (isset($_GET['success']) && $_GET['success'] == 4) {
+            echo "<h4>Email address has been used. Please, choose another account!</h4>";
+        }
+        ?>
+            </div>
         </div>
         <div id="sidebar"></div>
     </div>
