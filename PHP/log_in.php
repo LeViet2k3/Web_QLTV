@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (Database::db_execute($sql_check_admin)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } else {
-        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=2'));
+        // echo "Email or password was wrong. Please sign in again!";
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=5'));
     }
 }
 // Đóng kết nối
@@ -41,6 +42,7 @@ Database::db_disconnect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/log_in.css">
     <link rel="stylesheet" href="../CSS/header_footer.css">
+    <title>Team 2 - Log In</title>
 </head>
 
 <body>
@@ -49,7 +51,7 @@ Database::db_disconnect();
         <div class="header">
             <img src="../Image/logo.png" alt="logo_team">
             <div>
-                <h2>Library Management System</h2>
+                <h2>Open Library</h2>
                 <h3>Development Team - Team 2</h3>
             </div>
         </div>
@@ -70,13 +72,6 @@ Database::db_disconnect();
             <!-- login -->
             <div class="full_login">
                 <!-- thông báo -->
-                <div class="thong_bao">
-                    <?php
-                    if (isset($_GET['success']) && $_GET['success'] == 1) {
-                        echo "Registration Successful!";
-                    }
-                    ?>
-                </div>
 
                 <div class="login">
                     <form action="" method="post">
@@ -87,11 +82,15 @@ Database::db_disconnect();
                             <input type="email" name="email" class="mail" placeholder="Email" required>
                         </div>
                         <div class="box2">
-                            <input type="text" name="username" class="mail" placeholder="UserName" required>
-                        </div>
-                        <div class="box2">
                             <div>
                                 <input id="pass" type="password" name="password" class="mail" placeholder="Password" required>
+                            </div>
+                            <div class="notification">
+                                <?php
+                                if (isset($_GET['success']) && $_GET['success'] == 5) {
+                                    echo "<h5>Email/password was wrong. Please sign in again!</h5>";
+                                }
+                                ?>
                             </div>
                             <div class="showpass">
                                 <input id="check" type="checkbox"> Show password
