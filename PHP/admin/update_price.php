@@ -74,11 +74,15 @@
                 <h3>Update Book Prices</h3>
                 <div class="form">
                     <form action="" method="post">
-                        <input type="text" placeholder="Enter book name" name="book_name">
-                        <input type="number" placeholder="Enter book price" name="price">
-                        <input type="number" placeholder="Enter book quantity" name="quantity">
-                        <input type="text" placeholder="Enter genre_id" name="genre_id">
-                        <button type="submit">Update</button>
+                        <div class="full_input">
+                            <input class="input" type="text" placeholder="Enter book name" name="book_name">
+                            <input class="input" type="number" placeholder="Enter book price" name="price">
+                            <input class="input" type="number" placeholder="Enter book quantity" name="quantity">
+                            <input class="input" type="text" placeholder="Enter genre_id" name="genre_id">
+                        </div>
+                        <div class="btn">
+                            <button type="submit">Update</button>
+                        </div>
                     </form>
                 </div>
             <?php
