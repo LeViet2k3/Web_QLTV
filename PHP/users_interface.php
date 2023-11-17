@@ -15,7 +15,7 @@ if (!$_SESSION['email']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/index.css">
-    <title>Quản Lý Thư Viện</title>
+    <title>Team 2 - User</title>
     <style>
         * {
             margin: 0;
@@ -45,6 +45,7 @@ if (!$_SESSION['email']) {
             background-color: rgb(192, 192, 232);
             color: black;
             padding: 7px 0;
+
 
         }
 

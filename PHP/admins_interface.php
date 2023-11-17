@@ -29,7 +29,7 @@ Database::db_disconnect();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/header_footer.css">
-    <title>Quản Lý Thư Viện</title>
+    <title>Team 2 - Admin</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@ Database::db_disconnect();
     <div class="header">
         <img src="../Image/logo.png" alt="logo_team">
         <div>
-            <h2>Library Management System</h2>
+            <h2>Open Library</h2>
             <h3>Development Team - Team 2</h3>
         </div>
     </div>
