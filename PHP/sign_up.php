@@ -10,13 +10,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $place_of_origin = $_POST['place_of_origin'];
     $a_phone_number = $_POST['a_phone_number'];
     // Kiểm tra tồn tại
-    $sql_check_users = "SELECT Email FROM users WHERE Email = '$email' AND Users_status = 'Đã xóa'";
+    $sql_check_users = "SELECT Email FROM users WHERE Email = '$email'";
     if (Database::db_execute($sql_check_users)) {
-        $sql_update_users = " UPDATE users 
-                    SET UserName = '$username', Gender = '$gender', Passwords = '$password', Place_of_origin = '$place_of_origin', A_phone_number = '$a_phone_number', Users_status = 'Đang hoạt động' 
-                    WHERE Email = '$email'";
-        if (Database::db_execute($sql_update_users)) {
-            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
+        $sql_check_users = "SELECT Email FROM users WHERE Email = '$email' AND Users_status = 'Đã xoá'";
+        if (Database::db_execute($sql_check_users)) {
+            $sql_update_users = " UPDATE users 
+            SET UserName = '$username', Gender = '$gender', Passwords = '$password', Place_of_origin = '$place_of_origin', A_phone_number = '$a_phone_number', Users_status = 'Đang hoạt động' 
+            WHERE Email = '$email'";
+            if (Database::db_execute($sql_update_users)) {
+                Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
+            }
+        } else {
+            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=4'));
+            echo "Lỗi khi thêm dữ liệu vào bảng: ";
         }
     } else {
         // Chèn dữ liệu
@@ -25,8 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (Database::db_execute($sql_insert_users)) {
             // Chuyển hướng và truyền thông báo thành công
             Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
-        } else {
-            echo "Lỗi khi thêm dữ liệu vào bảng: ";
         }
     }
 }
@@ -47,6 +51,11 @@ Database::db_disconnect();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../CSS/sign_up.css">
     <title>Sign_up</title>
+    <style>
+        .ok h4 {
+            text-align: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -78,7 +87,9 @@ Database::db_disconnect();
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Gender:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="Enter gender" name="gender" required>
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Nam"> Nam &emsp;
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Nữ"> Nữ &emsp;
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Khác"> Khác
                     </div>
                 </div>
                 <div class="form-group">
@@ -105,6 +116,13 @@ Database::db_disconnect();
                     </div>
                 </div>
             </form>
+            <div class="ok">
+                <?php
+                if (isset($_GET['success']) && $_GET['success'] == 4) {
+                    echo "<h4>Email address has been used. Please, choose another account!</h4>";
+                }
+                ?>
+            </div>
         </div>
         <div id="sidebar"></div>
     </div>
