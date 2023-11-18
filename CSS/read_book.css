@@ -86,8 +86,8 @@ td {
 
 .close-modal {
     position: absolute;
-    top: 4rem;
-    right: 3rem;
+    top: 5.8rem;
+    right: 5rem;
     font-size: 3.5rem;
     color: rgb(190, 192, 195);
     cursor: pointer;

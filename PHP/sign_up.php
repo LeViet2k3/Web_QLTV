@@ -31,6 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (Database::db_execute($sql_insert_users)) {
             // Chuyển hướng và truyền thông báo thành công
             Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
+        } else {
+            echo "Lỗi khi thêm dữ liệu vào bảng: ";
         }
     }
 }
@@ -51,11 +53,6 @@ Database::db_disconnect();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../CSS/sign_up.css">
     <title>Sign_up</title>
-    <style>
-        .ok h4 {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -63,7 +60,7 @@ Database::db_disconnect();
     <div id="thong_bao">
         <?php
         if (isset($_GET['success']) && $_GET['success'] == 2) {
-            echo "Tài khoản chưa được đăng ký. Vui lòng đăng ký!";
+            echo "Account is not registered. Please register!";
         }
         ?>
     </div>
@@ -116,13 +113,6 @@ Database::db_disconnect();
                     </div>
                 </div>
             </form>
-            <div class="ok">
-                <?php
-                if (isset($_GET['success']) && $_GET['success'] == 4) {
-                    echo "<h4>Email address has been used. Please, choose another account!</h4>";
-                }
-                ?>
-            </div>
         </div>
         <div id="sidebar"></div>
     </div>

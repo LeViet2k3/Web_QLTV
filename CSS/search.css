@@ -9,15 +9,9 @@
     display: flex;
 }
 
-.full_search::before {
-    content: "";
+body {
     background-image: url(../Image/background/anh6.webp);
     background-size: cover;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
 }
 
 .search {

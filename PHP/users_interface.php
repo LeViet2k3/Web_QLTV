@@ -15,69 +15,23 @@ if (!$_SESSION['email']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/index.css">
-    <title>Quản Lý Thư Viện</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins';
-        }
-
-        /* Header */
-        .header {
-            display: flex;
-            background-color: rgb(104, 153, 169);
-            width: 100%;
-
-
-        }
-
-        .header img {
-            width: 100px;
-            margin: auto;
-        }
-
-        /* footer */
-        .footer {
-            width: 100%;
-            height: auto;
-            background-color: rgb(192, 192, 232);
-            color: black;
-            padding: 7px 0;
-
-        }
-
-        .footer ul {
-            list-style-type: none;
-            max-width: 40%;
-            margin: auto;
-            font-size: 12px;
-        }
-
-        .footer ul i {
-            font-size: 12px;
-            color: rgb(69, 69, 55);
-        }
-
-        .license {
-            padding-top: 3px;
-            width: 100%;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/header_footer.css">
+    <title>Team 2 - User</title>
 </head>
 
 <body>
-
+    <!-- header -->
+    <div class="header">
+        <img src="../Image/logo.png" alt="logo_team">
+        <div>
+            <h2>Open Library</h2>
+            <h3>Development Team - Team 2</h3>
+        </div>
+    </div>
     <!-- Body -->
     <div class="body">
         <!-- sidebar -->
         <div class="sidebar">
-            <!-- header -->
-            <div class="header">
-                <img src="../Image/logo.png" alt="logo_team">
-            </div>
             <div>
                 <ul>
                     <div class="menu">

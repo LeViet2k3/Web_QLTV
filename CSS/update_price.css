@@ -39,11 +39,32 @@ td {
 }
 
 .form_update {
-    width: 30%;
+    width: 15%;
     margin-top: 3%;
 }
 
 .form {
+    
+    width: 100%;
     display: flex;
     justify-content: center;
+
+}
+.full_input{
+
+    justify-content: center;
+   
+}
+.input{
+    width: 100%;
+    margin: 1%;
+}
+.btn{
+    width: 20%;
+    padding: 2% 0 2% 35%;
+}
+
+.btn button{
+    padding: 2px;
+
 }

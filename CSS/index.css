@@ -6,7 +6,6 @@
 
 }
 
-
 /* Body */
 .body {
     display: flex;
@@ -14,7 +13,8 @@
 }
 
 .sidebar {
-    flex-basis: 100%;
+    flex-basis: 18%;
+    height: 83vh;
     background-color: rgb(150, 181, 192);
 
 }
@@ -40,28 +40,10 @@ a:hover {
     padding: 10px;
 }
 
-
-
-.content {
-    flex-basis: 100%;
+.log_out a {
+    margin-top: 95%;
 }
 
-@media(min-width: 576px) {
-    .sidebar {
-        flex-basis: 18%;
-        /* margin-left: 20px; */
-    }
-
-    .content {
-        flex-basis: 82%;
-    }
-
-    .log_out a {
-        margin-top: 95%;
-    }
-
-    .log_out1 a {
-        margin-top: 65%;
-    }
-
+.content {
+    flex-basis: 82%;
 }

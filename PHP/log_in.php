@@ -13,21 +13,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Set session variables
     $_SESSION['email'] = $_POST['email'];
     $email = $_POST['email'];
-    $username = $_POST['username'];
     $password = $_POST['password'];
 
 
     $sql_check_users = "SELECT * FROM users 
-    where Email = '$email' and UserName = '$username' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
+    where Email = '$email' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
     $sql_check_admin = "SELECT * FROM admins 
-    where Email = '$email' and Admin_name = '$username' and Passwords = '$password'";
+    where Email = '$email' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
     if (Database::db_execute($sql_check_users)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } elseif (Database::db_execute($sql_check_admin)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } else {
-        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=2'));
+        // echo "Email or password was wrong. Please sign in again!";
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=5'));
     }
 }
 // Đóng kết nối
@@ -42,6 +42,7 @@ Database::db_disconnect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/log_in.css">
     <link rel="stylesheet" href="../CSS/header_footer.css">
+    <title>Team 2 - Log In</title>
 </head>
 
 <body>
@@ -50,7 +51,7 @@ Database::db_disconnect();
         <div class="header">
             <img src="../Image/logo.png" alt="logo_team">
             <div>
-                <h2>Library Management System</h2>
+                <h2>Open Library</h2>
                 <h3>Development Team - Team 2</h3>
             </div>
         </div>
@@ -70,15 +71,6 @@ Database::db_disconnect();
             </div>
             <!-- login -->
             <div class="full_login">
-                <!-- thông báo -->
-                <div class="thong_bao">
-                    <?php
-                    if (isset($_GET['success']) && $_GET['success'] == 1) {
-                        echo "Registration Successful!";
-                    }
-                    ?>
-                </div>
-
                 <div class="login">
                     <form action="" method="post">
                         <div class="box1">
@@ -88,11 +80,15 @@ Database::db_disconnect();
                             <input type="email" name="email" class="mail" placeholder="Email" required>
                         </div>
                         <div class="box2">
-                            <input type="text" name="username" class="mail" placeholder="UserName" required>
-                        </div>
-                        <div class="box2">
                             <div>
                                 <input id="pass" type="password" name="password" class="mail" placeholder="Password" required>
+                            </div>
+                            <div class="notification">
+                                <?php
+                                if (isset($_GET['success']) && $_GET['success'] == 5) {
+                                    echo "<h5>Email/password was wrong. Please log in again!</h5>";
+                                }
+                                ?>
                             </div>
                             <div class="showpass">
                                 <input id="check" type="checkbox"> Show password
@@ -104,8 +100,7 @@ Database::db_disconnect();
                     </form>
 
                     <div class="box4">
-                        <p> Don't have a account</p>
-                        <a href="./sign_up.php">Sign up</a>
+                        <p> Don't have a account<a href="./sign_up.php">Sign up</a></p>
                     </div>
                 </div>
             </div>

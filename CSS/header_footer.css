@@ -7,27 +7,32 @@
 
 /* Header */
 .header {
-    height: 100px;
+    height: 17vh;
     display: flex;
-    border: 1px solid black;
-    padding-left: 10%;
+    padding-left: 10vw;
     background-color: rgb(104, 153, 169);
 
 }
 
 .header img {
-    width: 100px;
+    width: 18vh;
     z-index: 5;
 
 }
 
 .header div {
-    margin: 20px;
+    margin: 3vh;
     z-index: 5;
 
 }
 
 .header div h3 {
+    text-align: center;
+    margin-top: 5px;
+
+}
+
+.header div h2 {
     text-align: center;
     margin-top: 5px;
 

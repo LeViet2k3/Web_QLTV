@@ -4,42 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../CSS/statistical.css">
     <title>Document</title>
-    <style>
-        .delete_user h2 {
-            text-align: center;
-        }
-
-        .delete_user table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 5px;
-            text-align: center;
-            margin: auto;
-
-        }
-
-        .uruku table,
-        th,
-        td {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .uruku {
-            display: flex;
-            justify-content: center;
-        }
-
-        .uruku h2 {
-            text-align: center;
-            margin: 10% 0 4% 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -79,7 +45,7 @@
         }
         ?>
     </div>
-    <div class="uruku">
+    <div class="statistical">
         <div>
             <h2>Statistics Table For The Number of Rented Books And Revenue</h2>
             <?php
