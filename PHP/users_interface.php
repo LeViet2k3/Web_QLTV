@@ -6,6 +6,16 @@ include('libs/helper.php');
 if (!$_SESSION['email']) {
     Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php'));
 }
+Database::db_connect();
+$email = $_SESSION['email'];
+$sql_select_name = "SELECT UserName FROM users 
+where Email = '$email'";
+$names = Database::db_get_list($sql_select_name);
+foreach ($names as $name) {
+    $username = $name["UserName"];
+}
+
+Database::db_disconnect();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,39 +31,42 @@ if (!$_SESSION['email']) {
 
 <body>
     <!-- header -->
-    <div class="header">
-        <img src="../Image/logo.png" alt="logo_team">
-        <div>
-            <h2>Open Library</h2>
-            <h3>Development Team - Team 2</h3>
-        </div>
-    </div>
-    <!-- Body -->
-    <div class="body">
-        <!-- sidebar -->
-        <div class="sidebar">
+    <div class="full_header">
+        <div class="header">
+            <img src="../Image/logo.png" alt="logo_team">
             <div>
-                <ul>
-                    <div class="menu">
-                        <li><a href="../HTML/home.html" class="showContentLink">Home</a></li>
-                    </div>
-                    <div class="menu">
-                        <li><a href="../PHP/users/search.php" class="showContentLink"> Book Registration</a></li>
-                    </div>
-                    <div class="menu">
-                        <li><a href="../PHP/users/read_book.php" class="showContentLink">Read Book</a></li>
-                    </div>
-                    <div class="menu">
-                        <li><a href="../PHP/users/update_info.php" class="showContentLink">Update Information</a></li>
-                    </div>
-                    <div class="menu">
-                        <li class="log_out"><a href="./log_out.php">Log Out</a></li>
-                    </div>
-                </ul>
+                <h2>Open Library</h2>
+                <h3>Development Team - Team 2</h3>
             </div>
         </div>
+        <div class="avatar">
+            <img src="../Image/avatar.jpg" alt="avatar">
+            <div>
+                <h3><?php echo $username ?></h3>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="menuok" onclick="w3_open()">&#9776;</button>
+    </div>
+    <div id="mainok">
+        <div style="display:none" id="mySidebar">
+            <button class="close" onclick="w3_close()"><i class="fa-solid fa-arrow-left"></i></button>
+            <ul>
+                <div class="menu">
+                    <li><a href="../HTML/home.html" class="showContentLink">Home</a></li>
+                </div>
+                <div class="menu">
+                    <li><a href="./users/search.php" class="showContentLink">Link 2</a></li>
+                </div>
+                <div class="menu">
+                    <li><a href="./users/read_book.php" class="showContentLink">Link 3</a></li>
+                </div>
+            </ul>
+        </div>
+
         <!-- content -->
-        <div class="content">
+        <div id="main" class="content">
             <iframe id="contentFrame" src="../HTML/home.html" width="100%" height="100%" style="border:none;"></iframe>
 
             <script>
@@ -69,6 +82,7 @@ if (!$_SESSION['email']) {
             </script>
         </div>
     </div>
+
     <!--Footer-->
     <div class="footer">
         <ul>
@@ -89,6 +103,19 @@ if (!$_SESSION['email']) {
             </div>
 
     </div>
+
 </body>
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.width = "16%";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("openNav").style.display = 'none';
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("openNav").style.display = "inline-block";
+    }
+</script>
 
 </html>

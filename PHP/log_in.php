@@ -48,11 +48,13 @@ Database::db_disconnect();
 <body>
     <div class="full">
         <!-- header -->
-        <div class="header">
-            <img src="../Image/logo.png" alt="logo_team">
-            <div>
-                <h2>Open Library</h2>
-                <h3>Development Team - Team 2</h3>
+        <div class="full_header">
+            <div class="header">
+                <img src="../Image/logo.png" alt="logo_team">
+                <div>
+                    <h2>Open Library</h2>
+                    <h3>Development Team - Team 2</h3>
+                </div>
             </div>
         </div>
         <div class="full_home_page">

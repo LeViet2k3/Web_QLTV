@@ -24,22 +24,21 @@ body {
 }
 
 .home_background img {
-    width: 60%;
+    width: 50%;
     height: auto;
     margin-right: 7%;
-    /* opacity: 0.3; */
     float: right;
 }
 
 .home_book {
-    width: 60%;
+    width: 50%;
     height: auto;
     margin-right: 5%;
     z-index: 3;
 }
 
 .home_book div img {
-    width: 30%;
+    width: 25%;
     padding: 2%;
     box-shadow: 3px 3px 3px 3px rgb(174, 185, 188);
 }

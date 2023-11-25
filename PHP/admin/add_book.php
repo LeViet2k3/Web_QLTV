@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $author_name = $_POST['author_name'];
     $new_genre_id = $_POST['genre_id'];
     $new_genre_name = $_POST['genre_name'];
-    // up;oad file tài liệu
+    // upload file tài liệu
     $target_dir = __DIR__ . "/../../Document/";
     $target_file = $target_dir . basename($_FILES["pdfFile"]["name"]);
     $uploadOk = 1;

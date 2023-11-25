@@ -46,7 +46,17 @@
             <?php
             if (isset($_GET['Book_id'])) {
                 $id = $_GET['Book_id'];
-
+                // lấy các giá trị cho vào khung update
+                $sql_select = "SELECT Book_name, Price, quantity, Genre_id FROM book
+                                    WHERE Book_id = '$id'";
+                Database::db_execute($sql_select);
+                $books = Database::db_get_list($sql_select);
+                foreach ($books as $book) {
+                    $name = $book['Book_name'];
+                    $pri = $book['Price'];
+                    $quan = $book['quantity'];
+                    $id_gen = $book['Genre_id'];
+                }
                 // Kiểm tra xem biểu mẫu đã được gửi đi chưa
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $book_name = $_POST['book_name'];
@@ -54,8 +64,6 @@
                     $quantity = $_POST['quantity'];
                     $genre_id = $_POST['genre_id'];
                     $id = $_GET['Book_id']; // Lấy ID từ URL
-                    echo $quantity;
-
                     // Kiểm tra xem giá trị $charges có phải là số hay không
                     if (is_numeric($price)) {
                         // Chuẩn bị câu lệnh SQL
@@ -63,7 +71,7 @@
                                 SET Book_name = '$book_name', quantity = $quantity, Price = $price, Genre_id = '$genre_id'
                                 WHERE Book_id = '$id'";
                         if (Database::db_execute($sql)) {
-                            echo $quantity;
+
                             Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admin/update_price.php'));
                         }
                     } else {
@@ -75,10 +83,10 @@
                 <div class="form">
                     <form action="" method="post">
                         <div class="full_input">
-                            <input class="input" type="text" placeholder="Enter book name" name="book_name">
-                            <input class="input" type="number" placeholder="Enter book price" name="price">
-                            <input class="input" type="number" placeholder="Enter book quantity" name="quantity">
-                            <input class="input" type="text" placeholder="Enter genre_id" name="genre_id">
+                            <input class="input" type="text" value="<?php echo $name ?>" name="book_name">
+                            <input class="input" type="number" value="<?php echo $pri ?>" name="price">
+                            <input class="input" type="number" value="<?php echo $quan ?>" name="quantity">
+                            <input class="input" type="text" value="<?php echo $id_gen ?>" name="genre_id">
                         </div>
                         <div class="btn">
                             <button type="submit">Update</button>
