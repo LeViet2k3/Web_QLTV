@@ -1,6 +1,7 @@
 <?php
 include('../libs/helper.php');
 Database::db_connect();
+echo "start!";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book_id = $_POST['book_id'];
     $book_name = $_POST['book_name'];
@@ -13,58 +14,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // upload file tài liệu
     $target_dir = __DIR__ . "/../../Document/";
     $target_file = $target_dir . basename($_FILES["pdfFile"]["name"]);
-    $uploadOk = 1;
 
     // Kiểm tra file tồn tại trước khi upload
+    #NOTE: rút gọn điều kiện
     if (file_exists($target_file)) {
         echo "The file already exists.";
-        $uploadOk = 0;
-    }
-    if ($uploadOk == 0) {
         echo "Unable to upload the file.";
     } else {
         if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $target_file)) {
             $File_pdf = htmlspecialchars(basename($_FILES["pdfFile"]["name"]));
+            // Kiểm tra Genre_id bảng genre
+            #NOTE: 
+            $sql_check_genre = "SELECT * FROM genre WHERE Genre_id = '$new_genre_id' AND Genre_name = '$new_genre_name'";
+            if (Database::db_execute($sql_check_genre)) {
+                // Thêm dữ liệu vào bảng book
+                $sql_insert_book = "INSERT INTO book(Book_id, Book_name, File_pdf, quantity, Price, Genre_id)
+                VALUES ('$book_id', '$book_name','$File_pdf', '$quantity', '$price', '$new_genre_id') ";
+                Database::db_execute($sql_insert_book);
+            } else {
+                // Thêm dữ liệu vào bảng genre
+                $sql_insert_genre = "INSERT INTO genre(Genre_id, Genre_name)
+                VALUES ('$new_genre_id', '$new_genre_name')";
+                if (Database::db_execute($sql_insert_genre)) {
+                    // Thêm dữ liệu vào bảng book
+                    $sql_insert_book = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
+                VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
+                    Database::db_execute($sql_insert_book);
+                }
+            }
+            // Kiểm tra Author_id bảng Author
+            $sql_check_author = "SELECT Author_id FROM author WHERE Author_id = '$author_id'";
+            if (Database::db_execute($sql_check_author)) {
+                // Thêm dữ liệu vào bảng book_has_author
+                $sql_insert = "INSERT INTO book_has_author(Book_id, Author_id)
+                VALUES ('$book_id', '$author_id') ";
+                Database::db_execute($sql_insert);
+            } else {
+                // Thêm dữ liệu vào bảng author
+                $sql_insert_author = "INSERT INTO author(Author_id, Author_name)
+                VALUES ('$author_id', '$author_name')";
+                if (Database::db_execute($sql_insert_author)) {
+                    // Thêm dữ liệu vào bảng book_has_author
+                    $sql_insert = "INSERT INTO book_has_author(Book_id, Author_id)
+                        VALUES ('$book_id', '$author_id') ";
+                    Database::db_execute($sql_insert);
+                }
+            }
         } else {
             echo "An error occurred while uploading the file.";
         }
     }
-    // Kiểm tra Genre_id bảng genre
-    $sql_check_genre = "SELECT * FROM genre WHERE Genre_id = '$new_genre_id' AND Genre_name = '$new_genre_name'";
-    if (Database::db_execute($sql_check_genre)) {
-        // Thêm dữ liệu vào bảng book
-        $sql_insert_book = "INSERT INTO book(Book_id, Book_name, File_pdf, quantity, Price, Genre_id)
-                VALUES ('$book_id', '$book_name','$File_pdf', '$quantity', '$price', '$new_genre_id') ";
-        Database::db_execute($sql_insert_book);
-    } else {
-        // Thêm dữ liệu vào bảng genre
-        $sql_insert_genre = "INSERT INTO genre(Genre_id, Genre_name)
-                VALUES ('$new_genre_id', '$new_genre_name')";
-        if (Database::db_execute($sql_insert_genre)) {
-            // Thêm dữ liệu vào bảng book
-            $sql_insert_book = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
-                VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
-            Database::db_execute($sql_insert_book);
-        }
-    }
-    // Kiểm tra Author_id bảng Author
-    $sql_check_author = "SELECT Author_id FROM author WHERE Author_id = '$author_id'";
-    if (Database::db_execute($sql_check_author)) {
-        // Thêm dữ liệu vào bảng book_has_author
-        $sql_insert = "INSERT INTO book_has_author(Book_id, Author_id)
-                VALUES ('$book_id', '$author_id') ";
-        Database::db_execute($sql_insert);
-    } else {
-        // Thêm dữ liệu vào bảng author
-        $sql_insert_author = "INSERT INTO author(Author_id, Author_name)
-                VALUES ('$author_id', '$author_name')";
-        if (Database::db_execute($sql_insert_author)) {
-            // Thêm dữ liệu vào bảng book_has_author
-            $sql_insert = "INSERT INTO book_has_author(Book_id, Author_id)
-                        VALUES ('$book_id', '$author_id') ";
-            Database::db_execute($sql_insert);
-        }
-    }
+
     Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admin/add_book.php'));
 }
 
