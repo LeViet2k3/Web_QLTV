@@ -9,8 +9,8 @@
 .full_header {
     height: 17vh;
     display: flex;
-    /* background-image: url(../Image/header.avif); */
-    background-image: url(../Image/t1.jpg);
+    background-image: url(../Image/header.avif);
+    /* background-image: url(../Image/t1.jpg); */
     position: relative;
     z-index: 10;
 }
@@ -37,8 +37,8 @@
 h3 {
     text-align: center;
     margin-top: 5px;
-    /* color: orange; */
-    color: aliceblue;
+    color: orange;
+    /* color: aliceblue; */
     font-size: 4vh;
 }
 

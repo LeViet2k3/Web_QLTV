@@ -18,15 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $sql_check_users = "SELECT * FROM users 
     where Email = '$email' and Passwords = '$password' and Users_status = 'Đang hoạt động'";
-    $sql_check_admin = "SELECT * FROM admins 
-    where Email = '$email' and Passwords = '$password'";
     // Thực thi câu lệnh SQL
     if (Database::db_execute($sql_check_users)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
-    } elseif (Database::db_execute($sql_check_admin)) {
-        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } else {
-        // echo "Email or password was wrong. Please sign in again!";
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=5'));
     }
 }

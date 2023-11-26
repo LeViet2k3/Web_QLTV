@@ -12,8 +12,8 @@
 
 #mySidebar {
     box-shadow: 3px 3px 3px 3px rgb(174, 185, 188);
-    /* background-image: url(../Image/sidebar.jpg); */
-    background-image: url(../Image/b1.jpg);
+    background-image: url(../Image/sidebar.jpg);
+    /* background-image: url(../Image/b1.jpg); */
     background-size: cover;
 }
 
@@ -45,19 +45,15 @@
     width: 14vw;
     padding: 8px;
     text-decoration: none;
-    /* color: aliceblue; */
-    color: black;
+    color: aliceblue;
+    /* color: black; */
     /* background-color: rgb(52, 54, 54); */
-    /* background-image: url(../Image/header.avif); */
-    background-image: url(../Image/ok1.png);
+    background-image: url(../Image/header.avif);
+    /* background-image: url(../Image/ok1.png); */
     display: flex;
     justify-content: center;
     margin-top: 2%;
     border-radius: 10px;
-}
-
-a:hover {
-    background-color: rgb(34, 35, 35);
 }
 
 .menu li {
@@ -68,4 +64,9 @@ a:hover {
 .content {
     width: 100%;
     height: 83vh;
+}
+
+.logout {
+    position: absolute;
+    bottom: 6vh;
 }

@@ -57,10 +57,13 @@ Database::db_disconnect();
                     <li><a href="../HTML/home.html" class="showContentLink">Home</a></li>
                 </div>
                 <div class="menu">
-                    <li><a href="./users/search.php" class="showContentLink">Link 2</a></li>
+                    <li><a href="./users/read_book.php" class="showContentLink">Book Search</a></li>
                 </div>
                 <div class="menu">
-                    <li><a href="./users/read_book.php" class="showContentLink">Link 3</a></li>
+                    <li><a href="./users/update_info.php" class="showContentLink">Update Information</a></li>
+                </div>
+                <div class="menu">
+                    <li><a href="./log_out.php" class="logout">Log Out</a></li>
                 </div>
             </ul>
         </div>

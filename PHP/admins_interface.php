@@ -9,11 +9,12 @@ if (!$_SESSION['email']) {
     Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php'));
 }
 $email = $_SESSION['email'];
-$sql_check = "SELECT Email FROM admins
-            WHERE Email = '$email'";
+$sql_check = "SELECT Email, UserName FROM users
+            WHERE Email = '$email' AND Roles = 2";
 $check = Database::db_get_list($sql_check);
 foreach ($check as $row) {
     $email_admin = $row['Email'];
+    $username = $row["UserName"];
 }
 if ($_SESSION['email'] && $_SESSION['email'] != $email_admin) {
     Helper::redirect(Helper::get_url('../Web_QLTV/PHP/users_interface.php'));
@@ -30,45 +31,52 @@ Database::db_disconnect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/header_footer.css">
-    <title>Team 2 - Admin</title>
+    <title>Team 2 - User</title>
 </head>
 
 <body>
     <!-- header -->
-    <div class="header">
-        <img src="../Image/logo.png" alt="logo_team">
-        <div>
-            <h2>Open Library</h2>
-            <h3>Development Team - Team 2</h3>
-        </div>
-    </div>
-    <!-- Body -->
-    <div class="body">
-        <!-- sidebar -->
-        <div class="sidebar">
+    <div class="full_header">
+        <div class="header">
+            <img src="../Image/logo.png" alt="logo_team">
             <div>
-                <ul>
-                    <div class="menu">
-                        <li><a href="../HTML/home.html" class="showContentLink">Home</a></li>
-                    </div>
-                    <div class="menu">
-                        <li><a href="../PHP/admin/statistical.php" class="showContentLink">Statistics</a></li>
-                    </div>
-                    <div class="menu">
-                        <li><a href="../PHP/admin/add_book.php" class="showContentLink">Add Book</a></li>
-                    </div>
-                    <div class="menu">
-                        <li><a href="../PHP/admin/update_price.php" class="showContentLink">Update Book Prices</a></li>
-                    </div>
-                    <div class="menu">
-                        <li class="log_out"><a href="./log_out.php">Log Out</a></li>
-                    </div>
-                </ul>
+                <h2>Open Library</h2>
+                <h3>Development Team - Team 2</h3>
             </div>
         </div>
+        <div class="avatar">
+            <img src="../Image/avatar.jpg" alt="avatar">
+            <div>
+                <h3><?php echo $username ?></h3>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="menuok" onclick="w3_open()">&#9776;</button>
+    </div>
+    <div id="mainok">
+        <div style="display:none" id="mySidebar">
+            <button class="close" onclick="w3_close()"><i class="fa-solid fa-arrow-left"></i></button>
+            <ul>
+                <div class="menu">
+                    <li><a href="../HTML/home.html" class="showContentLink">Home</a></li>
+                </div>
+                <div class="menu">
+                    <li><a href="./admin/statistical.php" class="showContentLink">Statistical</a></li>
+                </div>
+                <div class="menu">
+                    <li><a href="./admin/add_book.php" class="showContentLink">Add Book</a></li>
+                </div>
+                <div class="menu">
+                    <li><a href="./log_out.php" class="logout">Log Out</a></li>
+                </div>
+            </ul>
+        </div>
+
         <!-- content -->
-        <div class="content">
-            <iframe id="contentFrame" src="../HTML/home.html" width="100%" height="100%"></iframe>
+        <div id="main" class="content">
+            <iframe id="contentFrame" src="../HTML/home.html" width="100%" height="100%" style="border:none;"></iframe>
+
             <script>
                 var contentFrame = document.getElementById("contentFrame");
                 var showLinks = document.querySelectorAll(".showContentLink");
@@ -82,6 +90,7 @@ Database::db_disconnect();
             </script>
         </div>
     </div>
+
     <!--Footer-->
     <div class="footer">
         <ul>
@@ -102,6 +111,19 @@ Database::db_disconnect();
             </div>
 
     </div>
+
 </body>
+<script>
+    function w3_open() {
+        document.getElementById("mySidebar").style.width = "16%";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("openNav").style.display = 'none';
+    }
+
+    function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("openNav").style.display = "inline-block";
+    }
+</script>
 
 </html>

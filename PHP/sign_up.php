@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // Chèn dữ liệu
-        $sql_insert_users = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status)
-                        VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động' )";
+        $sql_insert_users = "INSERT INTO users (Email, UserName, Gender, Passwords, Place_of_origin, A_phone_number, Users_status, Roles)
+                        VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động', 1 )";
         if (Database::db_execute($sql_insert_users)) {
             // Chuyển hướng và truyền thông báo thành công
             Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));

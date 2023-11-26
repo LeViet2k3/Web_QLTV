@@ -61,6 +61,14 @@ class Database
         }
     }
 
+    // 
+    public static function openPdf()
+    {
+        $sql = "INSERT INTO library_records(Email, Book_id)
+        VALUES('viet@gmail.com','Sao Chúng Ta Lại Ngủ')";
+        self::db_execute($sql);
+    }
+
     public static function db_disconnect()
     {
         if (!is_null(self::$con)) {
