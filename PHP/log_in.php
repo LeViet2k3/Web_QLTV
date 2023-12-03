@@ -32,26 +32,30 @@ Database::db_disconnect();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../CSS/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/log_in.css">
-    <link rel="stylesheet" href="../CSS/header_footer.css">
-    <title>Team 2 - Log In</title>
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="assets/img/logo.png" rel="icon">
+    <title>Home Page</title>
+
 </head>
 
 <body>
     <div class="full">
-        <!-- header -->
-        <div class="full_header">
-            <div class="header">
-                <img src="../Image/logo.png" alt="logo_team">
-                <div>
-                    <h2>Open Library</h2>
-                    <h3>Development Team - Team 2</h3>
+        <!-- ======= Header ======= -->
+        <header id="header" class="d-flex align-items-center">
+            <div class="container d-flex justify-content-between">
+
+                <div id="logo">
+                    <h1><a href="../index.html">Open Liba<span>rary</span></a></h1>
                 </div>
             </div>
-        </div>
+        </header><!-- End Header -->
         <div class="full_home_page">
             <!-- sidebar -->
             <div class="home_book">
@@ -101,26 +105,6 @@ Database::db_disconnect();
                     </div>
                 </div>
             </div>
-        </div>
-        <!--Footer-->
-        <div class="footer">
-            <ul>
-                <li>
-                    <p><i class="fa-solid fa-location-dot"></i> Address: 136 Phạm Như Xương, Hòa Khánh Nam, quận
-                        Liên Chiểu, TP.Đà Nẵng</p>
-                </li>
-                <li>
-                    <p><i class="fa-solid fa-phone"></i> A Phone Number: 0867548549 - 0702032064</p>
-                </li>
-                <li>
-                    <p><i class="fa-solid fa-envelope"></i> Email: viet.gm.2k3@gmail.com</p>
-                </li>
-                <div class="license">
-                    <li>
-                        <p>&#169 Bản quyền thuộc Hệ Thống Quản Lý Thư Viện - Team 2</p>
-                    </li>
-                </div>
-            </ul>
         </div>
     </div>
 </body>

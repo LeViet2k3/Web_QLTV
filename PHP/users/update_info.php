@@ -34,14 +34,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="../../CSS/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../../CSS/update_infor.css">
     <title>Update</title>
 </head>
 
 <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div class="container d-flex justify-content-between">
+
+            <div id="logo">
+                <h1><a href="index.html">Open Liba<span>rary</span></a></h1>
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="../users_interface.php">Home</a></li>
+                    <li><a class="nav-link scrollto" href="./read_book.php">About</a></li>
+                    <li><a class="nav-link scrollto" href="./users/read_book.php">Portfolio</a></li>
+                    <li><a class="nav-link scrollto active" href="./update_info.php">Update Information</a></li>
+                    <li><a href="./log_out.php">Log Out</a></li>
+                </ul>
+            </nav><!-- .navbar -->
+
+        </div>
+    </header><!-- End Header -->
     <?php
 
     $email = $_SESSION['email'];
@@ -69,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h3><b>Personal Information</b></h3>
                 <h4><?php echo $email ?></h4>
             </div>
-            <div>
+            <div id="form">
                 <form class="form-horizontal" action="" method="post">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="email">User Name:</label>

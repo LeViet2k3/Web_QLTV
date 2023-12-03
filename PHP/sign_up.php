@@ -18,11 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             SET UserName = '$username', Gender = '$gender', Passwords = '$password', Place_of_origin = '$place_of_origin', A_phone_number = '$a_phone_number', Users_status = 'Đang hoạt động' 
             WHERE Email = '$email'";
             if (Database::db_execute($sql_update_users)) {
-                Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
+                Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php'));
             }
-        } else {
-            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/sign_up.php?success=4'));
-            echo "Lỗi khi thêm dữ liệu vào bảng: ";
         }
     } else {
         // Chèn dữ liệu
@@ -30,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         VALUES ('$email', '$username', '$gender', '$password', '$place_of_origin', '$a_phone_number', 'Đang hoạt động', 1 )";
         if (Database::db_execute($sql_insert_users)) {
             // Chuyển hướng và truyền thông báo thành công
-            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=1'));
+            Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php'));
         } else {
             echo "Lỗi khi thêm dữ liệu vào bảng: ";
         }
@@ -56,14 +53,6 @@ Database::db_disconnect();
 </head>
 
 <body>
-    <!-- thông báo -->
-    <div id="thong_bao">
-        <?php
-        if (isset($_GET['success']) && $_GET['success'] == 2) {
-            echo "Account is not registered. Please register!";
-        }
-        ?>
-    </div>
     <!-- Sign_up -->
     <div id="Sign_up">
         <div class="container" id="form">
@@ -84,9 +73,9 @@ Database::db_disconnect();
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="email">Gender:</label>
                     <div class="col-sm-10">
-                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Nam"> Nam &emsp;
-                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Nữ"> Nữ &emsp;
-                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Khác"> Khác
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Male"> Male &emsp; &emsp;
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Female"> Female &emsp; &emsp;
+                        <input type="radio" class="form-check-input" id="gender" name="gender" value="Other"> Other
                     </div>
                 </div>
                 <div class="form-group">

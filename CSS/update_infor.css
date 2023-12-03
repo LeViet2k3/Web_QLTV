@@ -7,13 +7,15 @@
 
 h3 {
     text-align: center;
-    margin-top: 1%;
+    margin-top: 1vh;
     color: black;
+    font-size: 5vh;
 }
 
 h4 {
     text-align: center;
     color: black;
+    font-size: 3vh;
 }
 
 .title {
@@ -22,11 +24,24 @@ h4 {
 
 #update {
     width: 65%;
-    margin: 3% auto;
+    margin: 3vh auto;
     z-index: 10;
+    box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    border: 1px solid rgb(181, 177, 177);
 }
 
-.update::before {
+#form {
+    width: 60%;
+    margin: 0 auto;
+
+}
+
+#form div {
+    width: 100%;
+}
+
+/* .update::before {
     content: "";
     background-image: url(../Image/background/anh2.jpg);
     background-size: cover;
@@ -36,12 +51,14 @@ h4 {
     bottom: 0;
     left: 0;
     opacity: 0.3;
-}
+} */
 
 #btn {
-    margin-left: 40%;
+    margin: 2vh 0;
 }
 
 #btn button {
+    display: flex;
+    margin: 0 auto;
     background-color: lightblue;
 }

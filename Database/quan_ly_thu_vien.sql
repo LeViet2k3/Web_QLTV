@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 16, 2023 lúc 04:41 AM
+-- Thời gian đã tạo: Th10 27, 2023 lúc 01:35 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.1.17
 
@@ -20,25 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `quan_ly_thu_vien`
 --
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `admins`
---
-
-CREATE TABLE `admins` (
-  `Email` varchar(100) NOT NULL,
-  `Admin_name` varchar(200) DEFAULT NULL,
-  `Passwords` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `admins`
---
-
-INSERT INTO `admins` (`Email`, `Admin_name`, `Passwords`) VALUES
-('3120221507@ued.udn.vn', 'Lê Việt', 'levanviet@123');
 
 -- --------------------------------------------------------
 
@@ -63,7 +44,8 @@ INSERT INTO `author` (`Author_id`, `Author_name`) VALUES
 ('TG05', 'Wes McKinney'),
 ('TG06', 'Richard Szeliski'),
 ('TG07', 'James Clear'),
-('TG08', 'levanviet');
+('TG08', 'levanviet'),
+('TG09', 'uruku');
 
 -- --------------------------------------------------------
 
@@ -75,8 +57,6 @@ CREATE TABLE `book` (
   `Book_id` varchar(50) NOT NULL,
   `Book_name` varchar(500) DEFAULT NULL,
   `File_pdf` varchar(255) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `Price` bigint(20) NOT NULL,
   `Genre_id` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -84,15 +64,14 @@ CREATE TABLE `book` (
 -- Đang đổ dữ liệu cho bảng `book`
 --
 
-INSERT INTO `book` (`Book_id`, `Book_name`, `File_pdf`, `quantity`, `Price`, `Genre_id`) VALUES
-('MB01', 'Sao Chúng Ta Lại Ngủ', 'Sao chúng ta lại ngủ.pdf', 3, 340000, 'TL01'),
-('MB02', 'Data Analysis Using Sql And Excel', 'Data Analysis Using SQL and Excel.pdf', 3, 250000, 'TL02'),
-('MB03', 'Excel Power Pirot And Power Query For Dummies', 'Excel Power Pivot Power Query For Dummies.pdf', 0, 395000, 'TL03'),
-('MB04', 'Python Programming', 'Python Programing.pdf', 6, 405000, 'TL04'),
-('MB05', 'Python For Data Analysis', 'Python For Data Analysis.pdf', 8, 230000, 'TL05'),
-('MB06', 'Computer Vision Algorithms And Applications', 'Computer Vision Algorithms And Applications.pdf', 7, 195000, 'TL06'),
-('MB07', 'Atomic Habits', 'Atomic Babits.pdf', 7, 325000, 'TL07'),
-('MB09', 'leviet', 'Bai tap Dai so quan he.pdf', 8, 123456, 'TL03');
+INSERT INTO `book` (`Book_id`, `Book_name`, `File_pdf`, `Genre_id`) VALUES
+('MB01', 'Sao Chúng Ta Lại Ngủ', 'Sao chúng ta lại ngủ.pdf', 'TL01'),
+('MB02', 'Data Analysis Using Sql And Excel', 'Data Analysis Using SQL and Excel.pdf', 'TL02'),
+('MB03', 'Excel Power Pirot And Power Query For Dummies', 'Excel Power Pivot Power Query For Dummies.pdf', 'TL03'),
+('MB04', 'Python Programming', 'Python Programing.pdf', 'TL04'),
+('MB05', 'Python For Data Analysis', 'Python For Data Analysis.pdf', 'TL05'),
+('MB06', 'Computer Vision Algorithms And Applications', 'Computer Vision Algorithms And Applications.pdf', 'TL06'),
+('MB07', 'Atomic Habits', 'Atomic Babits.pdf', 'TL07');
 
 -- --------------------------------------------------------
 
@@ -116,8 +95,7 @@ INSERT INTO `book_has_author` (`Book_id`, `Author_id`) VALUES
 ('MB04', 'TG04'),
 ('MB05', 'TG05'),
 ('MB06', 'TG06'),
-('MB07', 'TG07'),
-('MB09', 'TG01');
+('MB07', 'TG07');
 
 -- --------------------------------------------------------
 
@@ -135,13 +113,14 @@ CREATE TABLE `genre` (
 --
 
 INSERT INTO `genre` (`Genre_id`, `Genre_name`) VALUES
-('TL01', 'Truyện ngắn'),
-('TL02', 'Sách'),
-('TL03', 'Tiểu Thuyết'),
-('TL04', 'Viễn Tưởng'),
-('TL05', 'Kí Sự'),
-('TL06', 'Nhật Kí'),
-('TL07', 'Bình luận');
+('TL01', 'Short Story'),
+('TL02', 'Book'),
+('TL03', 'Novel'),
+('TL04', 'Science Fiction'),
+('TL05', 'Memoir'),
+('TL06', 'Diary'),
+('TL07', 'Comment'),
+('TL08', 'Tiểu Thuyết');
 
 -- --------------------------------------------------------
 
@@ -153,17 +132,8 @@ CREATE TABLE `library_records` (
   `Id` int(11) NOT NULL,
   `Email` varchar(50) DEFAULT NULL,
   `Book_id` varchar(50) DEFAULT NULL,
-  `Price` bigint(20) NOT NULL,
   `Book_borrowed_day` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `library_records`
---
-
-INSERT INTO `library_records` (`Id`, `Email`, `Book_id`, `Price`, `Book_borrowed_day`) VALUES
-(366, 'th10lop10.3levanviet@gmail.com', 'MB01', 340000, '2023-11-15 13:29:30'),
-(367, 'th10lop10.3levanviet@gmail.com', 'MB02', 250000, '2023-11-15 13:31:21');
 
 --
 -- Bẫy `library_records`
@@ -190,29 +160,27 @@ CREATE TABLE `users` (
   `Passwords` varchar(100) DEFAULT NULL,
   `Place_of_origin` varchar(200) DEFAULT NULL,
   `A_phone_number` varchar(50) DEFAULT NULL,
-  `Users_status` varchar(50) NOT NULL
+  `Users_status` varchar(50) NOT NULL,
+  `Roles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`Email`, `UserName`, `Gender`, `Passwords`, `Place_of_origin`, `A_phone_number`, `Users_status`) VALUES
-('nam.gm.2k5@gmail.com', 'Nguyễn Văn Nam', 'Nam', 'levanviet', 'Bình NamThăng Bình Quảng Nam', '0978635237', 'Đang hoạt động'),
-('th10lop10.3levanviet@gmail.com', 'Lê Văn Việt', 'Nam', 'levanviet', 'Bình Trung Thăng Bình Quảng Nam', '0867548542', 'Đã xóa'),
-('th11lop10.3levanviet@gmail.com', 'Lê Văn Việt', 'Nữ', 'levanviet123', 'Bình Trung Thăng Bình Quảng Nam', '123456789', 'Đang hoạt động'),
-('viet.2k3.gm@gmail.com', 'Lê Văn Việt', 'Nam', 'levanviet', 'Bình Trung Thăng Bình Quảng Nam', '09873562', 'Đang hoạt động'),
-('viet.gm.2k3@gmail.com', 'Lê Việt', 'Nam', 'levanviet', 'Binh Trung Thang Binh Quang Nam', '01928398', 'Đã xóa');
+INSERT INTO `users` (`Email`, `UserName`, `Gender`, `Passwords`, `Place_of_origin`, `A_phone_number`, `Users_status`, `Roles`) VALUES
+('bao@gmail.com', 'Nguyễn Gia Bảo', 'Nam', '123456', 'Quảng Nam', '123456789', 'Đang hoạt động', 1),
+('hoang@gmail.com', 'Nguyễn Trọng Hoàng', 'Nam', '123456', 'Đà Nẵng', '09873562', 'Đang hoạt động', 1),
+('lehang@gmail.com', 'Trần Thị Lệ Hằng', 'Nữ', '123456', 'Quảng Bình', '09873562', 'Đang hoạt động', 1),
+('nam.gm.2k5@gmail.com', 'Anh 5', 'Nam', '1234567', 'Bình Trung Thăng Bình Quảng Nam', '09873562', 'Đang hoạt động', 1),
+('quocviet@gmail.com', 'Huỳnh Quốc Việt', 'Nam', '123456', 'Quảng Nam', '0978635237', 'Đang hoạt động', 1),
+('th10lop10.3levanviet@gmail.com', 'Lê Văn Việt', 'Nam', '123456', 'Quảng Nam', '0867548542', 'Đang hoạt động', 1),
+('viet.gm.2k33@gmail.com', 'Lê Văn Việt', 'Nam', 'levanviet', 'Bình Trung Thăng Bình Quảng Nam', '1234567', 'Đang hoạt động', 1),
+('viet.gm.2k3@gmail.com', 'Lê Việt', 'Nam', 'levanviet', 'Binh Trung Thang Binh Quang Nam', '01928398', 'Đang hoạt động', 2);
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
-
---
--- Chỉ mục cho bảng `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`Email`);
 
 --
 -- Chỉ mục cho bảng `author`
@@ -262,7 +230,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `library_records`
 --
 ALTER TABLE `library_records`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=368;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=383;
 
 --
 -- Các ràng buộc cho các bảng đã đổ

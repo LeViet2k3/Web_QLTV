@@ -5,24 +5,36 @@
     font-family: 'Poppins';
 }
 
-#thong_bao {
+/* #thong_bao {
     margin: 1% 0;
     text-align: center;
     font-size: 20px;
-}
+} */
 
 #Sign_up {
-    margin: 3% auto;
+    margin: 6% auto;
     border: 1px solid rgb(183, 177, 177);
     width: 75%;
     display: flex;
-    box-shadow: 3px 3px 5px 5px rgb(174, 185, 188);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+
+#Sign_up::before {
+    content: "";
+    background-image: url(../assets/img/hero-carousel/2.jpg);
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.4;
 }
 
 #form {
-    width: 60%;
+    width: 70%;
 }
-
 
 #btn {
     margin-left: 6vh;
@@ -38,10 +50,14 @@
     width: 35%;
     background-image: url(../Image/background/anh8.jpg);
     background-size: cover;
+    position: relative;
+    z-index: 10;
 }
 
 
 
 h2 {
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
