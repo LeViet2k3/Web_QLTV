@@ -53,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="../users_interface.php">Home</a></li>
-                    <li><a class="nav-link scrollto" href="./read_book.php">Read Book</a></li>
-                    <li><a class="nav-link scrollto" href="./my_books.php">My Book</a></li>
+                    <li><a href="../admins_interface.php">Home</a></li>
+                    <li><a class="nav-link scrollto" href="./statistics.php">Statistics</a></li>
+                    <li><a class="nav-link scrollto" href="./add_book.php">Add Book</a></li>
                     <li><a class="nav-link scrollto active" href="./update_info.php">Update Information</a></li>
                     <li><a href="../log_out.php">Log Out</a></li>
                 </ul>

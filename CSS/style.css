@@ -29,7 +29,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Poppins';
     font-weight: 400;
     margin: 0 0 20px 0;
     padding: 0;
@@ -50,7 +50,7 @@ h6 {
     font-size: 42px;
     margin: 0;
     padding: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Poppins';
     font-weight: 700;
 }
 
@@ -102,12 +102,13 @@ h6 {
     align-items: center;
     justify-content: space-between;
     padding: 10px 0 10px 30px;
-    font-family: "Raleway", sans-serif;
-    font-size: 15px;
+    font-family: 'Poppins';
+    font-size: 17px;
     font-weight: 600;
     color: #444;
     white-space: nowrap;
     transition: 0.3s;
+
 }
 
 .navbar a i,
@@ -162,13 +163,13 @@ h6 {
     margin-bottom: 30px;
     font-size: 64px;
     font-weight: 700;
-    font-family: Impact Charcoal;
+    font-family: 'Poppins';
 }
 
 #hero .hero-content h2 span {
     color: #50d8af;
     text-decoration: underline;
-    font-family: Impact Charcoal;
+    font-family: 'Poppins';
 }
 
 @media (max-width: 767px) {
@@ -180,7 +181,7 @@ h6 {
 
 #hero .hero-content .btn-get-started,
 #hero .hero-content .btn-projects {
-    font-family: "Raleway", sans-serif;
+    font-family: 'Poppins';
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -313,7 +314,7 @@ section {
     color: #0c2e8a;
     font-weight: 700;
     font-size: 36px;
-    font-family: "Raleway", sans-serif;
+    font-family: 'Poppins';
 }
 
 #about .content h3 {

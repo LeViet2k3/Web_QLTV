@@ -24,8 +24,8 @@
 #header #logo h1 {
     font-size: 42px;
     margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
+    padding: 0.4vh 0 0 2.2vh;
+    font-family: 'Poppins';
     font-weight: 700;
 }
 
@@ -61,7 +61,7 @@ a {
   # Navigation Menu
   --------------------------------------------------------------*/
 .navbar {
-    padding-top: 2vh;
+    padding: 1.2vh 4.8vh 0 0;
 }
 
 .navbar ul {
@@ -79,8 +79,8 @@ a {
     align-items: center;
     justify-content: space-between;
     padding: 10px 0 10px 30px;
-    font-family: "Raleway", sans-serif;
-    font-size: 15px;
+    font-family: 'Poppins';
+    font-size: 17px;
     font-weight: 600;
     color: #444;
     white-space: nowrap;
@@ -128,6 +128,7 @@ a {
 .search {
     width: 45%;
     z-index: 4;
+    margin-left: 1vh;
 }
 
 .search h2 {
@@ -141,8 +142,11 @@ a {
     margin: 0 auto;
     color: black;
     padding: 5vh 1vh;
+}
 
-
+.search a:hover {
+    text-decoration: underline;
+    color: #50d8af;
 }
 
 .display {
@@ -150,21 +154,38 @@ a {
     z-index: 4;
 }
 
-/*  */
-/*  */
-/*  */
+#btn {
+    width: 5vw;
+    height: 6vh;
+    border-radius: 10px;
+    border: 2px solid rgb(210, 222, 225);
+}
+
+#btn:focus {
+    outline: none;
+    border: 2px solid lightblue;
+}
+
 .display img {
     width: 17vw;
     height: auto;
 
 }
 
+.display table {
+    width: 90%;
+}
+
+.display h2 {
+    text-align: center;
+    margin: 5vh 0;
+}
+
 .introduce_book {
     display: flex;
     justify-content: space-around;
-    width: 65%;
+    width: 70%;
     margin: 0 auto;
-    /* border: 2px solid red; */
 }
 
 .introduce_book p {
@@ -207,16 +228,9 @@ tr:nth-child(even) {
     background-color: #dfe6ea;
 }
 
-.display table {
-    width: 90%;
-}
 
-.display h2 {
-    text-align: center;
-    margin: 5vh 0;
-}
 
-.show_modal {
+/* .show_modal {
     font-size: 1.2rem;
     font-weight: 600;
     padding: 2.5%;
@@ -228,7 +242,7 @@ tr:nth-child(even) {
     cursor: pointer;
     border: 1px solid black;
 
-}
+} */
 
 .close-modal {
     position: absolute;

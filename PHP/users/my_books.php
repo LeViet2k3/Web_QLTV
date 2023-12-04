@@ -12,7 +12,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../CSS/read_book.css">
     <link href="../../Image/logo.png" rel="icon">
-    <title>Read Book</title>
+    <title>My Books</title>
     <link href="../../Image/logo.png" rel="icon">
 
 </head>
@@ -27,8 +27,8 @@ session_start();
         <div id="navbar" class="navbar">
             <ul>
                 <li><a class="nav-link scrollto" href="../users_interface.php">Home</a></li>
-                <li><a class="nav-link scrollto active" href="./read_book.php">Read Book</a></li>
-                <li><a class="nav-link scrollto" href="./my_books.php">My Book</a></li>
+                <li><a class="nav-link scrollto" href="./read_book.php">Read Book</a></li>
+                <li><a class="nav-link scrollto active" href="./my_books.php">My Book</a></li>
                 <li><a class="nav-link scrollto" href="./update_info.php">Update Information</a></li>
                 <li><a href="../log_out.php">Log Out</a></li>
             </ul>
@@ -39,8 +39,11 @@ session_start();
             <?php
             include('../libs/helper.php');
             Database::db_connect();
-            $sql_select_bookname = "SELECT Book_name, Book_id FROM book ";
-            echo "<h2>All Books In The Library:</h2>";
+            $email = $_SESSION['email'];
+            $sql_select_bookname = "SELECT DISTINCT book.Book_name, library_records.Book_id FROM library_records
+                                    JOIN book ON library_records.Book_id = book.Book_id 
+                                    WHERE library_records.Email = '$email' ";
+            echo "<h2>All The Books You Have Read:</h2>";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
                 echo '<table>';

@@ -1,35 +1,40 @@
 <?php
 include('../libs/helper.php');
 Database::db_connect();
-echo "start!";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book_id = $_POST['book_id'];
     $book_name = $_POST['book_name'];
-    $quantity = $_POST['quantity'];
-    $price = $_POST['price'];
+    // ////
+    $image = $_FILES['image']['tmp_name'];
+    $imageData = file_get_contents($image);
+    $base64Image = base64_encode($imageData);
+    ////////
+    $introduce = $_POST['introduce'];
     $author_id = $_POST['author_id'];
     $author_name = $_POST['author_name'];
     $new_genre_id = $_POST['genre_id'];
     $new_genre_name = $_POST['genre_name'];
-    // upload file tài liệu
+
+    // Upload file tài liệu
     $target_dir = __DIR__ . "/../../Document/";
-    $target_file = $target_dir . basename($_FILES["pdfFile"]["name"]);
+    $target_file_pdf = $target_dir . basename($_FILES["pdfFile"]["name"]);
 
     // Kiểm tra file tồn tại trước khi upload
-    #NOTE: rút gọn điều kiện
-    if (file_exists($target_file)) {
+    if (file_exists($target_file_pdf)) {
         echo "The file already exists.";
         echo "Unable to upload the file.";
     } else {
-        if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $target_file)) {
+        // Di chuyển tệp tải lên vào thư mục lưu trữ trên máy chủ
+        if (move_uploaded_file($_FILES["pdfFile"]["tmp_name"], $target_file_pdf)) {
             $File_pdf = htmlspecialchars(basename($_FILES["pdfFile"]["name"]));
+
             // Kiểm tra Genre_id bảng genre
-            #NOTE: 
             $sql_check_genre = "SELECT * FROM genre WHERE Genre_id = '$new_genre_id' AND Genre_name = '$new_genre_name'";
             if (Database::db_execute($sql_check_genre)) {
                 // Thêm dữ liệu vào bảng book
-                $sql_insert_book = "INSERT INTO book(Book_id, Book_name, File_pdf, quantity, Price, Genre_id)
-                VALUES ('$book_id', '$book_name','$File_pdf', '$quantity', '$price', '$new_genre_id') ";
+                $sql_insert_book = "INSERT INTO book(Book_id, Book_name, File_pdf, Genre_id, Images, introduce)
+                VALUES ('$book_id', '$book_name','$File_pdf', '$new_genre_id', '$base64Image', '$Introduce')";
                 Database::db_execute($sql_insert_book);
             } else {
                 // Thêm dữ liệu vào bảng genre
@@ -37,11 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ('$new_genre_id', '$new_genre_name')";
                 if (Database::db_execute($sql_insert_genre)) {
                     // Thêm dữ liệu vào bảng book
-                    $sql_insert_book = "INSERT INTO book(Book_id, Book_name, quantity, Genre_id)
-                VALUES ('$book_id', '$book_name', '$quantity', '$new_genre_id') ";
+                    $sql_insert_book = "INSERT INTO book(Book_id, Book_name, Genre_id, File_pdf, Images, introduce)
+                    VALUES ('$book_id', '$book_name', '$new_genre_id', '$File_pdf', '$base64Image', '$Introduce')";
                     Database::db_execute($sql_insert_book);
                 }
             }
+
             // Kiểm tra Author_id bảng Author
             $sql_check_author = "SELECT Author_id FROM author WHERE Author_id = '$author_id'";
             if (Database::db_execute($sql_check_author)) {
@@ -65,10 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admin/add_book.php'));
+    // Helper::redirect(Helper::get_url('../test_qltv/PHP/admin/add_book.php'));
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,11 +85,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="../../CSS/style.css"> -->
     <link rel="stylesheet" href="../../CSS/add_book.css">
-    <title>Document</title>
+    <title>Add Book</title>
+    <link href="../../Image/logo.png" rel="icon">
 </head>
 
 <body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="d-flex align-items-center">
+        <div id="logo">
+            <h1><a href="index.html">Open Liba<span>rary</span></a></h1>
+        </div>
+
+        <div id="navbar" class="navbar">
+            <ul>
+                <li><a href="../admins_interface.php">Home</a></li>
+                <li><a class="nav-link scrollto" href="./statistics.php">Statistics</a></li>
+                <li><a class="nav-link scrollto active" href="./add_book.php">Add Book</a></li>
+                <li><a class="nav-link scrollto" href="./update_info.php">Update Information</a></li>
+                <li><a href="../log_out.php">Log Out</a></li>
+            </ul>
+        </div><!-- .navbar -->
+    </header><!-- End Header -->
     <div class="add_book">
         <h2>Add Book</h2>
         <div id="form_add_book">
@@ -103,15 +129,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="file" name="pdfFile" id="pdfFile">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="number" class="form-control" name="quantity" placeholder="Quantity" required>
+                            <input type="file" name="image" id="image">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="number" class="form-control" name="price" placeholder="Price" required>
+                            <input id="input" type="text" class="form-control" name="introduce" placeholder="Enter introduce" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -149,14 +174,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h3>Book Table</h3>
             <?php
             // Hiển thị bảng book
-            $sql_select_book = "SELECT * FROM book ";
+            $sql_select_book = "SELECT Book_id, Book_name, Genre_id FROM book ";
             if (Database::db_execute($sql_select_book)) {
                 echo '<table>';
                 echo '<tr>';
                 echo '<th>Book ID</th>';
                 echo '<th>Book Name</th>';
-                echo '<th>Quantity</th>';
-                echo '<th>Price</th>';
                 echo '<th>Genre ID</th>';
                 echo '</tr>';
 
@@ -165,8 +188,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '<tr>';
                     echo '<td>' . $book["Book_id"] . '</td>';
                     echo '<td>' . $book["Book_name"] . '</td>';
-                    echo '<td>' . $book["quantity"] . '</td>';
-                    echo '<td>' . $book["Price"] . '</td>';
                     echo '<td>' . $book["Genre_id"] . '</td>';
                     echo '</tr>';
                 }

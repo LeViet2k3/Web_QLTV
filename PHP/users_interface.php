@@ -27,8 +27,6 @@ Database::db_disconnect();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="../CSS/style.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../CSS/index.css"> -->
-    <!-- <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="assets/img/logo.png" rel="icon">
     <title>Home Page</title>
@@ -47,8 +45,8 @@ Database::db_disconnect();
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="../HTML/home.html">Home</a></li>
-                    <li><a class="nav-link scrollto" href="./users/read_book.php">About</a></li>
-                    <li><a class="nav-link scrollto" href="./users/read_book.php">Portfolio</a></li>
+                    <li><a class="nav-link scrollto" href="./users/read_book.php">Read Book</a></li>
+                    <li><a class="nav-link scrollto" href="./users/my_books.php">My Book</a></li>
                     <li><a class="nav-link scrollto" href="./users/update_info.php">Update Information</a></li>
                     <li><a href="./log_out.php">Log Out</a></li>
                 </ul>
