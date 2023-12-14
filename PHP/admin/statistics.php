@@ -74,20 +74,16 @@
         </div>
         <div class="book_views">
             <h2>Book Views Statistics</h2>
-            <div id="myChart1" style="width: 90vh; height: 100vh;"></div>
+            <div id="myChart1" style="width: 80vh; height: 80vh;"></div>
         </div>
     </div>
+    <h2>The Number of Read Books</h2>
     <div class="statistical">
-        <div>
-            <h2>The Number of Rented Books</h2>
-            <canvas id="myChart" width="100%" height="30"></canvas>
-        </div>
+        <canvas id="myChart" width="100%" height="30"></canvas>
     </div>
+    <h2>The Number of Read Books Per Genre</h2>
     <div class="statistical">
-        <div>
-            <h2>The Number of Rented Books Per Genre</h2>
-            <canvas id="myChart2" width="100%" height="30"></canvas>
-        </div>
+        <canvas id="myChart2" width="100%" height="30"></canvas>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -231,8 +227,8 @@
     fetch('data_book.php')
         .then(response => response.json())
         .then(data => {
-            var labels = data.map(item => item.Book_id);
-            var values_sach2 = data.map(item => item.book_views);
+            var labels = data.map(item => item.Genre_name);
+            var values_sach2 = data.map(item => item.genre_views);
 
             var backgroundColor = [];
             var borderColor = [];
@@ -253,18 +249,17 @@
                     formatter: '{a} <br/>{b}: {c} ({d}%)',
                 },
                 legend: {
-                    display: true,
-                    orient: 'vertical',
-                    right: 10,
+                    // Đặt vị trí của chú thích
+                    orient: 'horizontal',
+                    left: 'center',
                     top: 20,
                 },
                 series: [{
-                    name: 'Nguồn truy cập website',
+                    name: 'Views',
                     type: 'pie',
                     radius: ['30%', '60%'],
                     avoidLabelOverlap: false,
                     itemStyle: {
-                        // borderRadius: 10,
                         borderColor: '#fff',
                         borderWidth: 3,
                     },

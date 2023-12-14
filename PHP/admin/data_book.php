@@ -2,9 +2,11 @@
 include('../libs/helper.php');
 Database::db_connect();
 
-$sql = "SELECT Book_id , COUNT(Book_id) AS book_views
+$sql = "SELECT genre.Genre_name , COUNT(genre.Genre_name) AS genre_views
 FROM library_records
-GROUP BY  Book_id";
+JOIN book ON book.Book_id = library_records.Book_id
+JOIN genre ON genre.Genre_id = book.Genre_id
+GROUP BY  genre.Genre_name";
 Database::db_execute($sql);
 
 // Chuyển đổi kết quả thành mảng JSON

@@ -6,11 +6,12 @@
 
 .full {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    margin-top: 14vh;
 }
 
 .delete_user {
-    width: 68%;
+    width: 60%;
     margin-left: 2vh;
 }
 
@@ -55,8 +56,9 @@ tr:nth-child(even) {
     border: 2px solid lightblue;
 }
 
-.book_views {
-    width: 30%;
+.book_views div {
+    width: 40%;
+    margin: 0 auto;
 }
 
 .book_views h2 {
@@ -68,8 +70,24 @@ tr:nth-child(even) {
     margin-bottom: 5vh;
 }
 
-.statistical h2 {
-    width: 95vw;
+h2 {
     text-align: center;
     margin: 5vh 0 3vh 0;
+}
+
+@media (max-width: 1100px) {
+    .full {
+        display: flex;
+        flex-direction: column;
+        /* Hiển thị các phần tử con theo chiều ngang */
+        justify-content: space-between;
+        /* Canh giữa các phần tử con */
+    }
+
+    .delete_user,
+    .book_views {
+        width: auto;
+        margin: 0 auto;
+        /* Hoặc giá trị phù hợp với yêu cầu của bạn */
+    }
 }
