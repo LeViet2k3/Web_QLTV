@@ -52,7 +52,7 @@ Database::db_disconnect();
             <div class="container d-flex justify-content-between">
 
                 <div id="logo">
-                    <h1><a href="../index.html">Open Liba<span>rary</span></a></h1>
+                    <h1><a href="../index.html">Open Lib<span>rary</span></a></h1>
                 </div>
             </div>
         </header><!-- End Header -->
