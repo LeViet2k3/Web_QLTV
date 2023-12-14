@@ -44,7 +44,7 @@ Database::db_disconnect();
         <div class="container d-flex justify-content-between">
 
             <div id="logo">
-                <h1><a href="index.html">Open Liba<span>rary</span></a></h1>
+                <h1><a href="./admins_interface.php">Open Liba<span>rary</span></a></h1>
             </div>
 
             <nav id="navbar" class="navbar">
@@ -124,9 +124,9 @@ Database::db_disconnect();
                     <div class="col-lg-12 d-flex justify-content-center">
                         <ul id="portfolio-flters">
                             <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-app">App</li>
-                            <li data-filter=".filter-card">Card</li>
-                            <li data-filter=".filter-web">Web</li>
+                            <li data-filter=".filter-app">New</li>
+                            <li data-filter=".filter-card">View</li>
+                            <li data-filter=".filter-web">Favorite </li>
                         </ul>
                     </div>
                 </div>
@@ -136,70 +136,57 @@ Database::db_disconnect();
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <img src="../Image/portfolio/1.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>App 1</h4>
-                            <p>App</p>
-                            <a href="../Image/portfolio/2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Python Programming</h4>
+                            <p>Hans Petter Halvorsen</p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                         <img src="../Image/portfolio/2.jpg" class="img-fluid" alt="">
+
                         <div class="portfolio-info">
-                            <h4>Web 3</h4>
-                            <p>Web</p>
-                            <a href="../Image/portfolio/3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Python For Data Analysis</h4>
+                            <p>Wes McKinney</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-card">
                         <img src="../Image/portfolio/3.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>App 2</h4>
-                            <p>App</p>
-                            <a href="../Image/portfolio/3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Computer Vision Algorithms And Applications</h4>
+                            <p>Richard Szeliski</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-card filter-web">
                         <img src="../Image/portfolio/4.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Card 2</h4>
-                            <p>Card</p>
-                            <a href="../Image/portfolio/4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Data Analysis Using Sql And Excel</h4>
+                            <p>Gordon S.Linoff</p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-web">
                         <img src="../Image/portfolio/5.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Web 2</h4>
-                            <p>Web</p>
-                            <a href="../Image/portfolio/5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Web 2"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Atomic Habits</h4>
+                            <p>James Clear</p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-app">
                         <img src="../Image/portfolio/6.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>App 3</h4>
-                            <p>App</p>
-                            <a href="../Image/portfolio/6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Excel Power Pirot And Power Query For Dummies</h4>
+                            <p>Michael Alexander</p>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6 portfolio-item filter-card">
                         <img src="../Image/portfolio/7.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>Card 1</h4>
-                            <p>Card</p>
-                            <a href="../Image/portfolio/7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-                            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                            <h4>Why We Sleep</h4>
+                            <p>Matthew Walke</p>
                         </div>
                     </div>
                 </div>
@@ -298,35 +285,6 @@ Database::db_disconnect();
 
             <div class="container mb-4">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.008947147585!2d108.15049700000002!3d16.0650255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219293660fbd5%3A0x8e72ecf102cea468!2zMTM2IMSQLiBQaOG6oW0gTmjGsCBYxrDGoW5nLCBIb8OgIEtow6FuaCBOYW0sIExpw6puIENoaeG7g3UsIMSQw6AgTuG6tW5nIDU1MDAwMA!5e0!3m2!1svi!2s!4v1701074386339!5m2!1svi!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-
-            <div class="container">
-                <div class="form">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                            </div>
-                            <div class="form-group col-md-6 mt-3 mt-md-0">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group mt-3">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-                        </div>
-
-                        <div class="my-3">
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your message has been sent. Thank you!</div>
-                        </div>
-                        <div class="text-center"><button type="submit">Send Message</button></div>
-                    </form>
-                </div>
-
             </div>
         </section><!-- End Contact Section -->
 

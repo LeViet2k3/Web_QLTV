@@ -1,6 +1,10 @@
 <?php
 // Start the session
 session_start();
+include('../libs/helper.php');
+if (!$_SESSION['email']) {
+    Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php'));
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +41,6 @@ session_start();
     <div class="full_search">
         <div class="search">
             <?php
-            include('../libs/helper.php');
             Database::db_connect();
             $sql_select_bookname = "SELECT Book_name, Book_id FROM book ";
             echo "<h2>All Books In The Library:</h2>";
