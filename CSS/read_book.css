@@ -102,34 +102,16 @@ a {
     color: #50d8af;
 }
 
-
-@media (max-width: 991px) {
-    .navbar ul {
-        /* margin-top: -1.5vh; */
-    }
-}
-
 .full_search {
     display: flex;
     width: 100%;
 }
 
-/* .full_search::before {
-    content: "";
-    background-image: url(../Image/background/anh3.jpg);
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.5;
-} */
-
 .search {
-    width: 45%;
+    width: 65%;
     z-index: 4;
     margin-left: 1vh;
+    border: 2px solid red;
 }
 
 .search h2 {
@@ -151,8 +133,9 @@ a {
 }
 
 .display {
-    width: 55%;
+    width: 35%;
     z-index: 4;
+    border: 2px solid red;
 }
 
 #btn {
@@ -194,19 +177,15 @@ a {
     margin-top: 15vh;
 }
 
-/*  */
-/*  */
-/*  */
+.img {
+    width: 25%;
+}
 
-/* .display table,
-th,
-td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 10px;
-    text-align: center;
-    margin: auto;
-} */
+.img img {
+    width: 80%;
+}
+
+
 
 table,
 th,
@@ -231,6 +210,11 @@ tr:nth-child(even) {
     background-color: #dfe6ea;
 }
 
+.okokok {
+    border: 2px solid blue;
+    margin: none;
+
+}
 
 
 /* .show_modal {
@@ -269,4 +253,40 @@ tr:nth-child(even) {
     transform: translate(-50%, -50%);
     width: 100%;
     z-index: 10;
+}
+
+.form {
+    width: 25vw;
+    margin: 7vh 0 0 4vh;
+}
+
+.form form {
+    display: flex;
+}
+
+.form input {
+    height: 5vh;
+    width: 95%;
+    border: 1px solid rgb(234, 222, 201);
+    border-radius: 10px;
+
+}
+
+.form input:focus {
+    border: 2px solid lightblue;
+    outline: none;
+}
+
+.form button {
+    height: 5vh;
+    width: 10vh;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgb(211, 224, 229);
+    cursor: pointer;
+}
+
+.form button:hover {
+    outline: none;
+    border: 1px solid rgb(71, 106, 117);
 }
