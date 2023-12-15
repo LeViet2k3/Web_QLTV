@@ -14,11 +14,47 @@ if (!$_SESSION['email']) {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="../../CSS/read_book.css">
     <link href="../../Image/logo.png" rel="icon">
     <title>Read Book</title>
     <link href="../../Image/logo.png" rel="icon">
+    <script>
+        $(document).ready(function() {
+            var bookNameInput = $("#book_name");
+            var suggestionsDiv = $("#suggestions");
+            bookNameInput.on("input", function() {
+                var input = $(this).val();
+                if (input.length >= 1) {
+                    $.ajax({
+                        type: "POST",
+                        url: "getSuggestions.php",
+                        data: {
+                            input: input
+                        },
+                        success: function(response) {
+                            suggestionsDiv.html(response);
+                            adjustSuggestionsWidth();
+                        }
+                    });
+                } else {
+                    suggestionsDiv.html("");
+                }
+            });
 
+            $(document).on("click", ".suggestion", function() {
+                var selectedBook = $(this).text();
+                bookNameInput.val(selectedBook);
+                suggestionsDiv.html("");
+            });
+
+            function adjustSuggestionsWidth() {
+                var bookNameInputWidth = bookNameInput.outerWidth();
+                suggestionsDiv.width(bookNameInputWidth);
+            }
+
+        });
+    </script>
 </head>
 
 <body>
@@ -41,7 +77,8 @@ if (!$_SESSION['email']) {
     <div class="full_search">
         <div class="form">
             <form action="" method="GET">
-                <div><input type="text" name="book_name" placeholder="  Enter Book Name"></div>
+                <div><input type="text" id = "book_name" name="book_name" placeholder=" Enter Book Name"></div>
+                <div id="suggestions"></div>
                 <div><button type="submit">Search</button></div>
             </form>
         </div>

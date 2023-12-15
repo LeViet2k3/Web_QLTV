@@ -293,3 +293,20 @@ tr:nth-child(even) {
     outline: none;
     border: 1px solid rgb(71, 106, 117);
 }
+
+
+#suggestions {
+    max-height: 100px;
+    /* overflow-x: auto; */
+    position: absolute;
+    width: calc(10% - 20px);
+    background-color: #ffffff;
+    margin-top: 50px;
+}
+
+.suggestion {
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-bottom: 1px solid #ddd;
+}

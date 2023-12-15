@@ -100,6 +100,17 @@ class Database
         return false;
     }
 
+    public static function getBookSuggestions($input)
+    {
+        if (!is_null(self::$con)) {
+            $result = self::$con->prepare("SELECT Book_name FROM book WHERE Book_name LIKE :input LIMIT 5");
+            $result->execute([':input' => "$input%"]);
+            $suggestions = $result->fetchAll(\PDO::FETCH_COLUMN);
+            return $suggestions; 
+        }
+        return false;
+    }
+
     public static function db_get_list_condition($sql = '', $params = [])
     {
         if (!is_null(self::$con)) {
