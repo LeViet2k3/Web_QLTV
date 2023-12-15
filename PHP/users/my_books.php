@@ -29,7 +29,7 @@ session_start();
                 <li><a class="nav-link scrollto" href="../users_interface.php">Home</a></li>
                 <li><a class="nav-link scrollto" href="./read_book.php">Read Book</a></li>
                 <li><a class="nav-link scrollto active" href="./my_books.php">My Book</a></li>
-                <li><a class="nav-link scrollto" href="./update_info.php">Update Information</a></li>
+                <li><a class="nav-link scrollto" href="./update_info.php">Profile</a></li>
                 <li><a href="../log_out.php">Log Out</a></li>
             </ul>
         </div><!-- .navbar -->
@@ -43,12 +43,11 @@ session_start();
             $sql_select_bookname = "SELECT DISTINCT book.Images, book.Book_name, library_records.Book_id FROM library_records
                                     JOIN book ON library_records.Book_id = book.Book_id 
                                     WHERE library_records.Email = '$email' ";
-            echo "<h2>All The Books You Have Read:</h2>";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
+                echo "<h2>All The Books You Have Read:</h2>";
                 echo '<div class = okok>';
                 foreach ($bookname as $name) {
-
                     echo '<div class = okokok>';
                     echo '<a href="?book_id=' . $name["Book_id"] . '">';
                     echo '<div class = "img">';

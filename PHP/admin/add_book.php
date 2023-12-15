@@ -102,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <li><a href="../admins_interface.php">Home</a></li>
                 <li><a class="nav-link scrollto" href="./statistics.php">Statistics</a></li>
                 <li><a class="nav-link scrollto active" href="./add_book.php">Add Book</a></li>
-                <li><a class="nav-link scrollto" href="./update_info.php">Update Information</a></li>
+                <li><a class="nav-link scrollto" href="./update_info.php">Profile</a></li>
                 <li><a href="../log_out.php">Log Out</a></li>
             </ul>
         </div><!-- .navbar -->

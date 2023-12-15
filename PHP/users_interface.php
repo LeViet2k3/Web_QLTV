@@ -48,7 +48,7 @@ Database::db_disconnect();
                     <li><a class="nav-link scrollto active" href="./users_interface.php">Home</a></li>
                     <li><a class="nav-link scrollto" href="./users/read_book.php">Read Book</a></li>
                     <li><a class="nav-link scrollto" href="./users/my_books.php">My Book</a></li>
-                    <li><a class="nav-link scrollto" href="./users/update_info.php">Update Information</a></li>
+                    <li><a class="nav-link scrollto" href="./users/update_info.php">Profile</a></li>
                     <li><a href="./log_out.php">Log Out</a></li>
                 </ul>
             </nav><!-- .navbar -->

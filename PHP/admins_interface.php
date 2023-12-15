@@ -53,7 +53,7 @@ Database::db_disconnect();
                     <li><a class="nav-link scrollto active" href="../PHP/admins_interface.php">Home</a></li>
                     <li><a class="nav-link scrollto" href="./admin/statistics.php">Statistics</a></li>
                     <li><a class="nav-link scrollto" href="./admin/add_book.php">Add Book</a></li>
-                    <li><a class="nav-link scrollto" href="./admin/update_info.php">Update Information</a></li>
+                    <li><a class="nav-link scrollto" href="./admin/update_info.php">Profile</a></li>
                     <li><a href="./log_out.php">Log Out</a></li>
                 </ul>
             </nav><!-- .navbar -->

@@ -29,7 +29,7 @@
                     <li><a href="../admins_interface.php">Home</a></li>
                     <li><a class="nav-link scrollto active" href="./statistics.php">Statistics</a></li>
                     <li><a class="nav-link scrollto" href="./add_book.php">Add Book</a></li>
-                    <li><a class="nav-link scrollto" href="./update_info.php">Update Information</a></li>
+                    <li><a class="nav-link scrollto" href="./update_info.php">Profile</a></li>
                     <li><a href="../log_out.php">Log Out</a></li>
                 </ul>
             </nav><!-- .navbar -->
@@ -84,7 +84,7 @@
     <h2>The Number of Read Books Per Genre</h2>
     <div class="statistical">
         <div><label class="switch">
-                <input type="checkbox" checked id = "toggleButton">
+                <input type="checkbox" checked id="toggleButton">
                 <span class="slider round"></span>
             </label></div>
         <canvas id="myChart2" width="100%" height="30"></canvas>
