@@ -98,19 +98,18 @@ if (!$_SESSION['email']) {
                             $bookname = Database::db_get_list($sql_select_bookname);
                             echo "<h2>All Books In The Library:</h2>";
                             // echo '<table>';
-                            echo '<div class = okokok>';
+                            echo '<div class = okok>';
                             foreach ($bookname as $name) {
                                 // echo '<tr>';
-
+                                echo '<div class = okokok>';
                                 echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                 echo '<div class = "img">';
                                 echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
                                 echo  '<p>' . nl2br($name['Book_name']) . '</p>';
                                 echo '</div>';
-                                // echo '<td><a href="?book_id=' . $name["Book_id"] . '">Detail</a><br></td>';
                                 echo '</a>';
                                 // echo '</tr>';
-
+                                echo '</div>';
                             }
                             echo '</div>';
                             // echo '</table>';
@@ -125,6 +124,15 @@ if (!$_SESSION['email']) {
         <?php
                 if (isset($_GET['book_id'])) {
                     $id = $_GET['book_id'];
+                    $sql_select_info = "SELECT Book_id, File_pdf
+                    FROM book
+                    WHERE Book_id = '$id'";
+
+                    $info_book = Database::db_get_list($sql_select_info);
+                    foreach ($info_book as $name) {
+                        $book_id = $name['Book_id'];
+                        $name_file =  $name['File_pdf'];
+                    }
                     $sql_select_info = "SELECT book.Book_name, genre.Genre_name, author.Author_name,book.Introduce,book.Book_id
                 FROM book
                 JOIN book_has_author ON book_has_author.Book_id = book.Book_id

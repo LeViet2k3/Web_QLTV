@@ -22,7 +22,7 @@
 
 #Sign_up::before {
     content: "";
-    background-image: url(../assets/img/hero-carousel/2.jpg);
+    background-image: url(../Image/hero-carousel/2.jpg);
     background-size: cover;
     position: absolute;
     top: 0;
