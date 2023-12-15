@@ -141,7 +141,6 @@ if (!$_SESSION['email']) {
                                         echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                         echo '<div class = "img">';
                                         echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
-                                        echo  '<p>' . nl2br($name['Book_name']) . '</p>';
                                         echo '</div>';
                                         echo '</a>';
                                         echo '</tr>';
