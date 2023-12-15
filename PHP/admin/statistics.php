@@ -197,11 +197,18 @@
             });
             // console.log(myChart);
             document.getElementById('toggleButton').addEventListener('click', function() {
-                var chart = myChart;
+                // var chart = myChart;
 
+                // for (var i = 0; i < chart.data.datasets.length; i++) {
+                //     var meta = chart.getDatasetMeta(i);
+                //     meta.hidden = meta.hidden === null ? !chart.data.datasets[i].hidden : null;
+                // }
+
+                // chart.update();
+                var chart = myChart;
                 for (var i = 0; i < chart.data.datasets.length; i++) {
                     var meta = chart.getDatasetMeta(i);
-                    meta.hidden = meta.hidden === null ? !chart.data.datasets[i].hidden : null;
+                    meta.hidden = this.checked === true ? null : true;
                 }
 
                 chart.update();
