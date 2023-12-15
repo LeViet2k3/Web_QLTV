@@ -10,7 +10,7 @@ session_start();
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../CSS/read_book.css">
+    <link rel="stylesheet" href="../../CSS/my_book.css">
     <link href="../../Image/logo.png" rel="icon">
     <title>My Books</title>
     <link href="../../Image/logo.png" rel="icon">
@@ -45,7 +45,7 @@ session_start();
                                     WHERE library_records.Email = '$email' ";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
-                echo "<h2>All The Books You Have Read:</h2>";
+                // echo "<h2>All The Books You Have Read:</h2>";
                 echo '<div class = okok>';
                 foreach ($bookname as $name) {
                     echo '<div class = okokok>';
@@ -84,7 +84,7 @@ session_start();
                 WHERE book.Book_id = '$id'";
                 $info_book = Database::db_get_list($sql_select_info);
                 if (!empty($info_book)) {
-                    echo "<h2> Information</h2>";
+                    // echo "<h2> Information</h2>";
                     echo '<table>';
                     foreach ($info_book as $book) {
                         $id_book = $book["Book_id"];

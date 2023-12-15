@@ -86,7 +86,7 @@ if (!$_SESSION['email']) {
             $sql_select_genre_name = "SELECT Genre_name, Genre_id FROM genre";
             if (Database::db_execute($sql_select_genre_name)) {
                 $genre_name = Database::db_get_list($sql_select_genre_name);
-                echo "<h3>All Genre</h3>";
+                echo "<h3>Genres</h3>";
                 foreach ($genre_name as $name) {
                     echo '<a href="?Genre_id=' . $name["Genre_id"] . '">';
                     echo  $name['Genre_name'] . '<br>';
