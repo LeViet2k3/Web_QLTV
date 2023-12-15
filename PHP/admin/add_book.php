@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Upload file tài liệu
     $target_dir = __DIR__ . "/../../Document/";
     $target_file_pdf = $target_dir . basename($_FILES["pdfFile"]["name"]);
-
     // Kiểm tra file tồn tại trước khi upload
     if (file_exists($target_file_pdf)) {
         echo "The file already exists.";
@@ -34,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (Database::db_execute($sql_check_genre)) {
                 // Thêm dữ liệu vào bảng book
                 $sql_insert_book = "INSERT INTO book(Book_id, Book_name, File_pdf, Genre_id, Images, introduce)
-                VALUES ('$book_id', '$book_name','$File_pdf', '$new_genre_id', '$base64Image', '$Introduce')";
+                VALUES ('$book_id', '$book_name','$File_pdf', '$new_genre_id', '$base64Image', '$introduce')";
                 Database::db_execute($sql_insert_book);
             } else {
                 // Thêm dữ liệu vào bảng genre
@@ -43,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (Database::db_execute($sql_insert_genre)) {
                     // Thêm dữ liệu vào bảng book
                     $sql_insert_book = "INSERT INTO book(Book_id, Book_name, Genre_id, File_pdf, Images, introduce)
-                    VALUES ('$book_id', '$book_name', '$new_genre_id', '$File_pdf', '$base64Image', '$Introduce')";
+                    VALUES ('$book_id', '$book_name', '$new_genre_id', '$File_pdf', '$base64Image', '$introduce')";
                     Database::db_execute($sql_insert_book);
                 }
             }
