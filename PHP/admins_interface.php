@@ -31,9 +31,10 @@ Database::db_disconnect();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <link href="../CSS/style.css" rel="stylesheet">
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assets/img/logo.png" rel="icon">
+    <link href="../Image/logo.png" rel="icon">
     <title>Home Page</title>
 
 </head>
@@ -112,7 +113,7 @@ Database::db_disconnect();
         <section id="portfolio" class="portfolio">
             <div class="container" data-aos="fade-up">
                 <div class="section-header">
-                    <h2>Our Portfolio</h2>
+                    <h2>Our Books</h2>
                     <p>Sed tamen tempor magna labore dolore dolor sint tempor duis magna elit veniam aliqua esse amet
                         veniam enim
                         export quid quid veniam aliqua eram noster malis nulla duis fugiat culpa esse aute nulla ipsum

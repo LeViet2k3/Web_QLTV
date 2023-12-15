@@ -83,6 +83,10 @@
     </div>
     <h2>The Number of Read Books Per Genre</h2>
     <div class="statistical">
+        <div><label class="switch">
+                <input type="checkbox" checked id = "toggleButton">
+                <span class="slider round"></span>
+            </label></div>
         <canvas id="myChart2" width="100%" height="30"></canvas>
     </div>
 </body>
@@ -139,7 +143,7 @@
 
                 return result;
             }, []);
-            console.log(transformedData);
+            // console.log(transformedData);
             const test_data = {
                 datasets: genre.map((genreItem, index) => ({
                     label: genreItem,
@@ -166,7 +170,6 @@
                 Object.values(item.views).forEach(value => {
                     if (value > maxViews) {
                         maxViews = value;
-                        console.log("Cập nhật giá trị maxViews: " + maxViews);
                     }
                 });
             });
@@ -178,11 +181,33 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: maxViews + 1
+                            max: maxViews + 1,
+                            // stacked: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                usePointStyle: true
+                            }
                         }
                     }
                 }
             });
+            // console.log(myChart);
+            document.getElementById('toggleButton').addEventListener('click', function() {
+                var chart = myChart;
+
+                for (var i = 0; i < chart.data.datasets.length; i++) {
+                    var meta = chart.getDatasetMeta(i);
+                    meta.hidden = meta.hidden === null ? !chart.data.datasets[i].hidden : null;
+                }
+
+                chart.update();
+            });
+
+
         });
 
     // Lấy dữ liệu từ tệp PHP
@@ -196,7 +221,7 @@
             // Vẽ biểu đồ
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
@@ -208,6 +233,7 @@
                         lineTension: 0.4, // Điều chỉnh độ cong của đường
                         datalabels: {
                             color: 'blue',
+                            anchor: 'end',
                             align: 'end',
                         }
                     }]
