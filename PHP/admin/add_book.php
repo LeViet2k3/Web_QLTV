@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div id="logo">
-            <h1><a href="index.html">Open Liba<span>rary</span></a></h1>
+            <h1><a href="index.html">Open Lib<span>rary</span></a></h1>
         </div>
 
         <div id="navbar" class="navbar">

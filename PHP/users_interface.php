@@ -44,7 +44,7 @@ Database::db_disconnect();
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="../HTML/home.html">Home</a></li>
+                    <li><a class="nav-link scrollto active" href="./users_interface.php">Home</a></li>
                     <li><a class="nav-link scrollto" href="./users/read_book.php">Read Book</a></li>
                     <li><a class="nav-link scrollto" href="./users/my_books.php">My Book</a></li>
                     <li><a class="nav-link scrollto" href="./users/update_info.php">Update Information</a></li>

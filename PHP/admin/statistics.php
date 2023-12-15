@@ -150,7 +150,7 @@
                     })),
                     backgroundColor: highContrastColors[index],
                     borderColor: highContrastBorderColors[index],
-                    borderWidth: 1,
+                    borderWidth: 2,
                     tension: 0.4,
                     datalabels: {
                         color: 'blue',
@@ -201,7 +201,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Số lượng sách 1',
+                        label: 'Total Read Books',
                         data: values_sach2,
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',

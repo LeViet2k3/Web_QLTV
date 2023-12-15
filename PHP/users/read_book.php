@@ -25,7 +25,7 @@ if (!$_SESSION['email']) {
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div id="logo">
-            <h1><a href="index.html">Open Liba<span>rary</span></a></h1>
+            <h1><a href="../users_interface.php">Open Lib<span>rary</span></a></h1>
         </div>
 
         <div id="navbar" class="navbar">
@@ -79,12 +79,12 @@ if (!$_SESSION['email']) {
                 WHERE book.Book_id = '$id'";
                 $info_book = Database::db_get_list($sql_select_info);
                 if (!empty($info_book)) {
-                    echo "<h2> Information About The Book You Are Looking For:</h2>";
+                    echo "<h2> Information:</h2>";
                     echo '<table>';
                     echo '<tr>';
-                    echo '<th>Book Name</th>';
+                    echo '<th>Book</th>';
                     echo '<th>Genre</th>';
-                    echo '<th>Author Name</th>';
+                    echo '<th>Author</th>';
                     echo '<th>Read</th>';
                     // echo '<th>BookMark</th>';
                     // echo '<th>Favourite</th>';
