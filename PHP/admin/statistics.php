@@ -21,7 +21,7 @@
         <div class="container d-flex justify-content-between">
 
             <div id="logo">
-                <h1><a href="index.html">Open Lib<span>rary</span></a></h1>
+                <h1><a href="../admins_interface.php">Open Lib<span>rary</span></a></h1>
             </div>
 
             <nav id="navbar" class="navbar">
@@ -128,7 +128,6 @@
                         views: {}
                     });
                 }
-
                 const currentIndex = existingDateIndex !== -1 ? existingDateIndex : result.length - 1;
                 result[currentIndex].views[Genre_name] = views;
 
