@@ -77,11 +77,11 @@
             <div id="myChart1" style="width: 80vh; height: 80vh;"></div>
         </div>
     </div>
-    <h2>The Number of Read Books</h2>
+    <h2>The Total Views</h2>
     <div class="statistical">
         <canvas id="myChart" width="100%" height="30"></canvas>
     </div>
-    <h2>The Number of Read Books Per Genre</h2>
+    <h2>The Total Views Per Genre</h2>
     <div class="statistical">
         <div><label class="switch">
                 <input type="checkbox" checked id="toggleButton">
@@ -232,7 +232,7 @@
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Total Read Books',
+                        label: 'Total Views',
                         data: values_sach2,
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
