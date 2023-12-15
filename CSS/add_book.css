@@ -22,9 +22,10 @@
 #header #logo h1 {
     font-size: 42px;
     margin: 0;
-    padding: 0.6vh 0 0 2.2vh;
+    padding: 0.4vh 0 0 2.2vh;
     font-family: 'Poppins';
     font-weight: 700;
+    width: 50vh;
 }
 
 #header #logo h1 a {
@@ -41,7 +42,7 @@
     }
 
     #header #logo h1 {
-        font-size: 34px;
+        font-size: 5vw;
     }
 
     #header #logo img {
@@ -59,7 +60,7 @@ a {
   # Navigation Menu
   --------------------------------------------------------------*/
 .navbar {
-    padding: 0.8vh 2vh 0 0;
+    padding: 1.8vh 2vh 0 0;
 }
 
 .navbar ul {
@@ -97,13 +98,6 @@ a {
 .navbar .active:focus {
     color: #50d8af;
     text-decoration: none;
-}
-
-
-@media (max-width: 991px) {
-    .navbar ul {
-        display: none;
-    }
 }
 
 table,
@@ -164,19 +158,6 @@ table {
     width: 30%;
     margin: auto;
 }
-
-/* .input {
-    width: 100%;
-    height: 20px;
-    margin: 1% 0;
-} */
-
-/* .submit {
-    margin: 1% 0 3%;
-    display: flex;
-    justify-content: center;
-
-} */
 
 #form_add_book {
     width: 35%;

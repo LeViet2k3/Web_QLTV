@@ -27,6 +27,7 @@
     padding: 0.4vh 0 0 2.2vh;
     font-family: 'Poppins';
     font-weight: 700;
+    width: 50vh;
 }
 
 #header #logo h1 a {
@@ -43,7 +44,7 @@
     }
 
     #header #logo h1 {
-        font-size: 34px;
+        font-size: 5vw;
     }
 
     #header #logo img {
@@ -61,7 +62,7 @@ a {
   # Navigation Menu
   --------------------------------------------------------------*/
 .navbar {
-    padding: 1.2vh 4.8vh 0 0;
+    padding: 1.8vh 4.8vh 0 0;
 }
 
 .navbar ul {
@@ -104,7 +105,7 @@ a {
 
 @media (max-width: 991px) {
     .navbar ul {
-        display: none;
+        /* margin-top: -1.5vh; */
     }
 }
 
@@ -155,6 +156,7 @@ a {
 }
 
 #btn {
+    cursor: pointer;
     width: 5vw;
     height: 6vh;
     border-radius: 10px;
