@@ -77,79 +77,96 @@ if (!$_SESSION['email']) {
     <div class="full_search">
         <div class="form">
             <form action="" method="GET">
-                <div><input type="text" id = "book_name" name="book_name" placeholder=" Enter Book Name"></div>
+                <div><input type="text" id="book_name" name="book_name" placeholder=" Enter Book Name"></div>
                 <div id="suggestions"></div>
                 <div><button type="submit">Search</button></div>
             </form>
+            <?php
+            Database::db_connect();
+            $sql_select_genre_name = "SELECT Genre_name, Genre_id FROM genre";
+            if (Database::db_execute($sql_select_genre_name)) {
+                $genre_name = Database::db_get_list($sql_select_genre_name);
+                echo "<h3>All Genre</h3>";
+                foreach ($genre_name as $name) {
+                    echo '<a href="?Genre_id=' . $name["Genre_id"] . '">';
+                    echo  $name['Genre_name'] . '<br>';
+                    echo '</a>';
+                }
+            }
+            ?>
         </div>
         <div class="search">
             <?php
-            Database::db_connect();
             if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                if (!empty($_GET['book_name'])) {
-                    $book_name = $_GET['book_name'];
+                if (!empty($_GET['Genre_id'])) {
+                    $genre_id = $_GET['Genre_id'];
+                    // echo $genre_id;
                     $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book 
-                                        WHERE Book_name = '$book_name'";
+                                            JOIN genre ON genre.Genre_id = book.Genre_id
+                                            WHERE genre.Genre_id = '$genre_id'";
                     if (Database::db_execute($sql_select_bookname)) {
                         $bookname = Database::db_get_list($sql_select_bookname);
                         echo "<h2>All Books In The Library:</h2>";
-                        // echo '<table>';
                         foreach ($bookname as $name) {
-                            // echo '<tr>';
                             echo '<a href="?book_id=' . $name["Book_id"] . '">';
                             echo '<div class = "img">' . '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">' . '</div>';
                             echo '<div>' . '<p>' . nl2br($name['Book_name']) . '</p>' . '</div>';
-                            // echo '<td><a href="?book_id=' . $name["Book_id"] . '">Detail</a><br></td>';
                             echo '</a>';
-                            // echo '</tr>';
                         }
-                        // echo '</table>';
                     }
                 } else {
-                    if (isset($_GET['book_id'])) {
-                        $id = $_GET['book_id'];
-                        $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book WHERE Book_id = '$id' ";
+                    if (!empty($_GET['book_name'])) {
+                        $book_name = $_GET['book_name'];
+                        $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book 
+                                            WHERE Book_name = '$book_name'";
                         if (Database::db_execute($sql_select_bookname)) {
                             $bookname = Database::db_get_list($sql_select_bookname);
                             echo "<h2>All Books In The Library:</h2>";
-                            echo '<table>';
                             foreach ($bookname as $name) {
-                                echo '<tr>';
                                 echo '<a href="?book_id=' . $name["Book_id"] . '">';
-                                echo '<div class = "img">';
-                                echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
-                                echo  '<p>' . nl2br($name['Book_name']) . '</p>';
-                                echo '</div>';
-                                // echo '<td><a href="?book_id=' . $name["Book_id"] . '">Detail</a><br></td>';
+                                echo '<div class = "img">' . '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">' . '</div>';
+                                echo '<div>' . '<p>' . nl2br($name['Book_name']) . '</p>' . '</div>';
                                 echo '</a>';
-                                echo '</tr>';
                             }
-                            echo '</table>';
-                        } else {
-                            echo "ok";
                         }
                     } else {
-
-                        $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book ";
-                        if (Database::db_execute($sql_select_bookname)) {
-                            $bookname = Database::db_get_list($sql_select_bookname);
-                            echo "<h2>All Books In The Library:</h2>";
-                            // echo '<table>';
-                            echo '<div class = okok>';
-                            foreach ($bookname as $name) {
-                                // echo '<tr>';
-                                echo '<div class = okokok>';
-                                echo '<a href="?book_id=' . $name["Book_id"] . '">';
-                                echo '<div class = "img">';
-                                echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
-                                echo  '<p>' . nl2br($name['Book_name']) . '</p>';
-                                echo '</div>';
-                                echo '</a>';
-                                // echo '</tr>';
+                        if (isset($_GET['book_id'])) {
+                            $id = $_GET['book_id'];
+                            $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book WHERE Book_id = '$id' ";
+                            if (Database::db_execute($sql_select_bookname)) {
+                                $bookname = Database::db_get_list($sql_select_bookname);
+                                echo "<h2>All Books In The Library:</h2>";
+                                echo '<table>';
+                                foreach ($bookname as $name) {
+                                    echo '<tr>';
+                                    echo '<a href="?book_id=' . $name["Book_id"] . '">';
+                                    echo '<div class = "img">';
+                                    echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
+                                    echo  '<p>' . nl2br($name['Book_name']) . '</p>';
+                                    echo '</div>';
+                                    echo '</a>';
+                                    echo '</tr>';
+                                }
+                                echo '</table>';
+                            }
+                        } else {
+                            $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book ";
+                            if (Database::db_execute($sql_select_bookname)) {
+                                $bookname = Database::db_get_list($sql_select_bookname);
+                                echo "<h2>All Books In The Library:</h2>";
+                                echo '<div class = okok>';
+                                foreach ($bookname as $name) {
+                                    echo '<div class = okokok>';
+                                    echo '<a href="?book_id=' . $name["Book_id"] . '">';
+                                    echo '<div class = "img">';
+                                    echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
+                                    echo  '<p>' . nl2br($name['Book_name']) . '</p>';
+                                    echo '</div>';
+                                    echo '</a>';
+                                    echo '</div>';
+                                }
                                 echo '</div>';
                             }
-                            echo '</div>';
-                            // echo '</table>';
                         }
                     }
                 }
@@ -180,15 +197,6 @@ if (!$_SESSION['email']) {
                     if (!empty($info_book)) {
                         echo "<h2> Information:</h2>";
                         echo '<table>';
-                        // echo '<tr>';
-                        // echo '<th>Book</th>';
-                        // echo '<th>Genre</th>';
-                        // echo '<th>Author</th>';
-                        // echo '<th>Introduce</th>';
-                        // echo '<th>Read</th>';
-                        // echo '<th>BookMark</th>';
-                        // echo '<th>Favourite</th>';
-                        // echo '</tr>';
                         foreach ($info_book as $book) {
                             $id_book = $book["Book_id"];
                             echo '<tr>';
@@ -210,8 +218,6 @@ if (!$_SESSION['email']) {
                             echo '<tr>';
                             echo '<th>Read</th>';
                             echo '<td><a><button class="show_modal1" id = "btn">Open PDF</button></a></td>';
-                            // echo '<td>' . '<a href="./library_records.php?book_id=' . $book["Book_id"]  . '"><i class="fa-regular fa-star"></i></a>' . '</td>';
-                            // echo '<td>' . '<a><i class="fa-regular fa-heart"></i></a>' . '</td>';
                             echo '</tr>';
                         }
 
@@ -219,21 +225,10 @@ if (!$_SESSION['email']) {
                     } else {
                         echo "No data in the website table.";
                     }
-                    // $sql_info_book = "SELECT Images, Introduce FROM book WHERE book.Book_id = '$id'";
-                    // $info_book = Database::db_get_list($sql_info_book);
-                    // if (!empty($info_book)) {
-                    //     echo '<div class = "introduce_book">';
-                    //     foreach ($info_book as $book) {
-                    //         echo '<div>' . '<img src="data:image/jpeg;base64,' . $book["Images"] . '" alt="Book Image">' . '</div>';
-                    //         echo '<div>' . '<p>' . nl2br($book['Introduce']) . '</p>' . '</div>';
-                    //     }
-                    //     echo '</div>';
-                    // }
                 }
             }
         ?>
         <div>
-            <!-- <img src="" alt=""> -->
             <!-- The Modal -->
             <div class="modal hidden">
                 <a href="./library_records.php?book_id=<?php echo $book_id; ?>"><button class="close-modal">&times;</button></a>

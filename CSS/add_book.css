@@ -117,6 +117,7 @@ table {
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(53, 51, 51, 0.6);
     overflow: hidden;
+    width: 60vh;
 
 }
 
@@ -133,17 +134,6 @@ table {
     margin-bottom: 15px;
 }
 
-.display_book {
-    width: 50%;
-}
-
-.display_genre {
-    width: 25%;
-}
-
-.display_author {
-    width: 25%;
-}
 
 .add_book {
     padding-bottom: 2%;
@@ -152,6 +142,7 @@ table {
 .add_book h2 {
     text-align: center;
     margin-bottom: 2%;
+    color: #0c2e8a;
 }
 
 .full_form {
@@ -170,8 +161,9 @@ table {
 
 #btn {
     margin-left: 38%;
+
 }
 
 #btn button {
-    background-color: lightgrey;
+    background-color: #68f1c8;
 }

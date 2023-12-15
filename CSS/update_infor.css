@@ -8,7 +8,7 @@
 h3 {
     text-align: center;
     margin-top: 1vh;
-    color: black;
+    color: #0c2e8a;
     font-size: 5vh;
 }
 
@@ -60,5 +60,5 @@ h4 {
 #btn button {
     display: flex;
     margin: 0 auto;
-    background-color: lightblue;
+    background-color: #50d8af;
 }

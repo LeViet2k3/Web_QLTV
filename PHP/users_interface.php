@@ -59,7 +59,7 @@ Database::db_disconnect();
     <!-- ======= hero Section ======= -->
     <section id="hero">
         <div class="hero-content" data-aos="fade-up">
-            <h2>Development Team - <span><a href="#team">Team 2</a></span></h2>
+            <h2>Welcome <span><?php echo $username ?></span></h2>
         </div>
         <div class="hero-slider swiper">
             <div class="swiper-wrapper">

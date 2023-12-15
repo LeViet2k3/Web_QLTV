@@ -118,6 +118,10 @@ a {
     margin: 5vh 0;
 }
 
+h2 {
+    color: #0c2e8a;
+}
+
 .search a {
     text-decoration: none;
     text-align: center;
@@ -142,6 +146,7 @@ a {
     height: 6vh;
     border-radius: 10px;
     border: 2px solid rgb(210, 222, 225);
+    color: black;
 }
 
 #btn:focus {
@@ -157,6 +162,7 @@ a {
 
 .display table {
     width: 90%;
+    /* box-shadow: none; */
 }
 
 .display h2 {
@@ -270,7 +276,7 @@ tr:nth-child(even) {
 .form input {
     height: 5vh;
     width: 95%;
-    border: 1px solid rgb(234, 222, 201);
+    border: 1px solid #0c2e8a;
     border-radius: 10px;
 
 }
@@ -285,8 +291,18 @@ tr:nth-child(even) {
     width: 10vh;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: rgb(211, 224, 229);
+    background-color: #6ee7c3;
     cursor: pointer;
+}
+
+.form h3 {
+    width: 37.5vh;
+    text-align: center;
+    color: #0c2e8a;
+    margin: 2vh 0;
+    padding: 1vh 0;
+    border-radius: 15px;
+    background-color: #50d8af;
 }
 
 .form button:hover {
@@ -294,6 +310,10 @@ tr:nth-child(even) {
     border: 1px solid rgb(71, 106, 117);
 }
 
+.form a {
+    color: #0c2e8a;
+    margin-left: 10vh;
+}
 
 #suggestions {
     max-height: 100px;
