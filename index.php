@@ -9,9 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link href="./CSS/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./CSS/index.css">
-    <!-- <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
     <link href="./assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <!-- <link href="assets/img/logo.png" rel="icon"> -->
     <link href="./Image/logo.png" rel="icon">
     <title>Home Page</title>
 
@@ -21,19 +19,15 @@
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex justify-content-between">
-
             <div id="logo">
                 <h1><a href="index.php">Open Lib<span>rary</span></a></h1>
             </div>
-
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 </ul>
-                <!-- <i class="bi bi-list mobile-nav-toggle"></i> -->
             </nav><!-- .navbar -->
 
         </div>
@@ -43,7 +37,6 @@
     <section id="hero">
 
         <div class="hero-content" data-aos="fade-up">
-            <!-- <h2>Development Team - <span>Team 2</span></h2> -->
             <div>
                 <a href="./PHP/log_in.php" class="btn-get-started scrollto">Log In</a>
                 <a href="./PHP/sign_up.php" class="btn-projects scrollto">Sign Up</a>
@@ -78,9 +71,9 @@
                     $genre_name = Database::db_get_list($sql_select_genre_name);
                     echo "<h3>Genres</h3>";
                     foreach ($genre_name as $name) {
-                        echo '<a href="?Genre_id=' . $name["Genre_id"] . '">';
-                        echo  $name['Genre_name'] . '<br>';
-                        echo '</a>';
+                        echo '<div class="search_genre_name">';
+                        echo '<a href="?Genre_id=' . $name["Genre_id"] . '">' . $name['Genre_name'] . '</a>';
+                        echo '</div>';
                     }
                 }
                 ?>
@@ -96,12 +89,16 @@
                                             WHERE genre.Genre_id = '$genre_id'";
                             if (Database::db_execute($sql_select_bookname)) {
                                 $bookname = Database::db_get_list($sql_select_bookname);
+                                echo '<div class = display_position>';
                                 foreach ($bookname as $name) {
+                                    echo '<div class = info_display_position>';
                                     echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                     echo '<div class = "img">' . '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">' . '</div>';
                                     echo '<div>' . '<p>' . nl2br($name['Book_name']) . '</p>' . '</div>';
                                     echo '</a>';
+                                    echo '</div>';
                                 }
+                                echo '</div>';
                             }
                         } else {
                             if (!empty($_GET['book_name'])) {
@@ -110,7 +107,6 @@
                                             WHERE Book_name = '$book_name'";
                                 if (Database::db_execute($sql_select_bookname)) {
                                     $bookname = Database::db_get_list($sql_select_bookname);
-                                    echo "<h2>All Books In The Library1:</h2>";
                                     foreach ($bookname as $name) {
                                         echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                         echo '<div class = "img">' . '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">' . '</div>';
@@ -130,7 +126,6 @@
                                             echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                             echo '<div class = "img">';
                                             echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
-                                            // echo  '<p>' . nl2br($name['Book_name']) . '</p>';
                                             echo '</div>';
                                             echo '</a>';
                                             echo '</tr>';
@@ -141,9 +136,9 @@
                                     $sql_select_bookname = "SELECT Images, Book_name, Book_id FROM book ";
                                     if (Database::db_execute($sql_select_bookname)) {
                                         $bookname = Database::db_get_list($sql_select_bookname);
-                                        echo '<div class = okok>';
+                                        echo '<div class = display_position>';
                                         foreach ($bookname as $name) {
-                                            echo '<div class = okokok>';
+                                            echo '<div class = info_display_position>';
                                             echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                             echo '<div class = "img">';
                                             echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
@@ -173,11 +168,11 @@
                                 $name_file =  $name['File_pdf'];
                             }
                             $sql_select_info = "SELECT book.Book_name, genre.Genre_name, author.Author_name,book.Introduce,book.Book_id
-                FROM book
-                JOIN book_has_author ON book_has_author.Book_id = book.Book_id
-                JOIN author ON book_has_author.Author_id = author.Author_id
-                JOIN genre ON book.Genre_id = genre.Genre_id
-                WHERE book.Book_id = '$id'";
+                                                FROM book
+                                                JOIN book_has_author ON book_has_author.Book_id = book.Book_id
+                                                JOIN author ON book_has_author.Author_id = author.Author_id
+                                                JOIN genre ON book.Genre_id = genre.Genre_id
+                                                WHERE book.Book_id = '$id'";
                             $info_book = Database::db_get_list($sql_select_info);
                             if (!empty($info_book)) {
                                 echo '<table>';
@@ -246,57 +241,6 @@
 
             </div>
         </section><!-- End About Section -->
-        <!-- ======= Team Section ======= -->
-        <section id="team">
-            <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                    <h2>Our Team</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="./Image/team-1.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Lê Văn Việt</h4>
-                                <span>Project Manager </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="./Image/team-2.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Huỳnh Quốc Việt</h4>
-                                <span>Backend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="./Image/team-3.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Nguyễn Gia Bảo</h4>
-                                <span>Frontend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="./Image/team-4.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Nguyễn Trọng Hoàng</h4>
-                                <span>Frontend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Team Section -->
-
         <!-- ======= Contact Section ======= -->
         <section id="contact">
             <div class="container" data-aos="fade-up">
@@ -322,7 +266,7 @@
                         <div class="contact-phone">
                             <i class="bi bi-phone"></i>
                             <h3>Phone Number</h3>
-                            <p><a href="tel:+155895548855">+84 702032064</a></p>
+                            <p>+84 702032064</p>
                         </div>
                     </div>
 
@@ -330,7 +274,7 @@
                         <div class="contact-email">
                             <i class="bi bi-envelope"></i>
                             <h3>Email</h3>
-                            <p><a href="mailto:info@example.com">viet.gm.2k3@gmail.com</a></p>
+                            <p>viet.gm.2k3@gmail.com</p>
                         </div>
                     </div>
 
@@ -354,9 +298,7 @@
     </footer><!-- End Footer -->
 
     <!-- Vendor JS Files -->
-    <!-- <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script> -->
     <script src="./assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <!-- <script src="assets/vendor/swiper/swiper-bundle.min.js"></script> -->
     <script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
 
     <!-- Template Main JS File -->

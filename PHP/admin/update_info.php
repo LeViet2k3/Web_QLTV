@@ -17,13 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $UpdateSql = "UPDATE users 
                 SET UserName = '$new_username', Gender = '$new_gender', Passwords = '$new_password', Place_of_origin = '$new_place_of_origin', A_phone_number = '$new_a_phone_number'
                 WHERE Email = '$email'";
-
     // Thực hiện câu lệnh UPDATE
-    if (Database::db_execute($UpdateSql)) {
-        echo "<h3><b>Update Successful.</b></h3>";
-    } else {
-        echo "<h3><b>Error during data update</b></h3> ";
-    }
+    Database::db_execute($UpdateSql);
 }
 
 ?>

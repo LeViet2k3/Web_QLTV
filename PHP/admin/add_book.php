@@ -113,47 +113,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="book_id" placeholder="Enter book id" required required>
+                            <input type="text" class="form-control" name="book_id" placeholder="Enter book id" required required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="book_name" placeholder="Enter book name" required>
+                            <input type="text" class="form-control" name="book_name" placeholder="Enter book name" required>
+                        </div>
+                    </div>
+                    <div class="input_file">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="file" name="pdfFile" id="pdfFile">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="file" name="image" id="image">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input type="file" name="pdfFile" id="pdfFile">
+                            <input type="text" class="form-control" name="introduce" placeholder="Enter introduce" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input type="file" name="image" id="image">
+                            <input type="text" class="form-control" name="author_id" placeholder="Enter author id" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="introduce" placeholder="Enter introduce" required>
+                            <input type="text" class="form-control" name="author_name" placeholder="Enter author name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="author_id" placeholder="Enter author id" required>
+                            <input type="text" class="form-control" name="genre_id" placeholder="Enter genre id" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="author_name" placeholder="Enter author name" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="genre_id" placeholder="Enter genre id" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input id="input" type="text" class="form-control" name="genre_name" placeholder="Enter genre name" required>
+                            <input type="text" class="form-control" name="genre_name" placeholder="Enter genre name" required>
                         </div>
                     </div>
                     <div class="form-group">

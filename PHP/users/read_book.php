@@ -88,9 +88,9 @@ if (!$_SESSION['email']) {
                 $genre_name = Database::db_get_list($sql_select_genre_name);
                 echo "<h3>Genres</h3>";
                 foreach ($genre_name as $name) {
-                    echo '<a href="?Genre_id=' . $name["Genre_id"] . '">';
-                    echo  $name['Genre_name'] . '<br>';
-                    echo '</a>';
+                    echo '<div class="search_genre_name">';
+                    echo '<a href="?Genre_id=' . $name["Genre_id"] . '">' . $name['Genre_name'] . '</a>';
+                    echo '</div>';
                 }
             }
             ?>
@@ -106,13 +106,17 @@ if (!$_SESSION['email']) {
                                             WHERE genre.Genre_id = '$genre_id'";
                         if (Database::db_execute($sql_select_bookname)) {
                             $bookname = Database::db_get_list($sql_select_bookname);
-                            echo "<h2>All Books In The Library:</h2>";
+                            // echo "<h2>All Books In The Library:</h2>";
+                            echo '<div class = display_position>';
                             foreach ($bookname as $name) {
+                                echo '<div class = info_display_position>';
                                 echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                 echo '<div class = "img">' . '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">' . '</div>';
                                 echo '<div>' . '<p>' . nl2br($name['Book_name']) . '</p>' . '</div>';
                                 echo '</a>';
+                                echo '</div>';
                             }
+                            echo '</div>';
                         }
                     } else {
                         if (!empty($_GET['book_name'])) {
@@ -121,7 +125,6 @@ if (!$_SESSION['email']) {
                                             WHERE Book_name = '$book_name'";
                             if (Database::db_execute($sql_select_bookname)) {
                                 $bookname = Database::db_get_list($sql_select_bookname);
-                                echo "<h2>All Books In The Library1:</h2>";
                                 foreach ($bookname as $name) {
                                     echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                     echo '<div class = "img">' . '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">' . '</div>';
@@ -152,9 +155,9 @@ if (!$_SESSION['email']) {
                                 if (Database::db_execute($sql_select_bookname)) {
                                     $bookname = Database::db_get_list($sql_select_bookname);
                                     echo "<h2>All Books In The Library:</h2>";
-                                    echo '<div class = okok>';
+                                    echo '<div class = display_position>';
                                     foreach ($bookname as $name) {
-                                        echo '<div class = okokok>';
+                                        echo '<div class = info_display_position>';
                                         echo '<a href="?book_id=' . $name["Book_id"] . '">';
                                         echo '<div class = "img">';
                                         echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
@@ -215,7 +218,6 @@ if (!$_SESSION['email']) {
                                 echo '<td><a><button class="show_modal1" id = "btn">Open PDF</button></a></td>';
                                 echo '</tr>';
                             }
-
                             echo '</table>';
                         } else {
                             echo "No data in the website table.";

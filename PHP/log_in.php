@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (Database::db_execute($sql_check_users)) {
         Helper::redirect(Helper::get_url('../Web_QLTV/PHP/admins_interface.php'));
     } else {
-        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?success=5'));
+        Helper::redirect(Helper::get_url('../Web_QLTV/PHP/log_in.php?error=5'));
     }
 }
 // Đóng kết nối
@@ -86,7 +86,7 @@ Database::db_disconnect();
                             </div>
                             <div class="notification">
                                 <?php
-                                if (isset($_GET['success']) && $_GET['success'] == 5) {
+                                if (isset($_GET['error']) && $_GET['error'] == 5) {
                                     echo "<h5>Email/password was wrong. Please log in again!</h5>";
                                 }
                                 ?>

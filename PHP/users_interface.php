@@ -29,7 +29,7 @@ Database::db_disconnect();
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <link href="../CSS/style.css" rel="stylesheet">
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="assets/img/logo.png" rel="icon">
+    <link href="../Image/logo.png" rel="icon">
     <title>Home Page</title>
 
 </head>
@@ -59,7 +59,7 @@ Database::db_disconnect();
     <!-- ======= hero Section ======= -->
     <section id="hero">
         <div class="hero-content" data-aos="fade-up">
-            <h2>Welcome <span><?php echo $username ?></span></h2>
+            <h2>Welcome <span><a href="./users/update_info.php"><?php echo $username ?></a></span></h2>
         </div>
         <div class="hero-slider swiper">
             <div class="swiper-wrapper">
@@ -190,57 +190,6 @@ Database::db_disconnect();
                 </div>
             </div>
         </section><!-- End Portfolio Section -->
-        <!-- ======= Team Section ======= -->
-        <section id="team">
-            <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                    <h2>Our Team</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-1.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Lê Văn Việt</h4>
-                                <span>Project Manager </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-2.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Huỳnh Quốc Việt</h4>
-                                <span>Backend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-3.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Nguyễn Gia Bảo</h4>
-                                <span>Frontend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-4.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Nguyễn Trọng Hoàng</h4>
-                                <span>Frontend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Team Section -->
-
         <!-- ======= Contact Section ======= -->
         <section id="contact">
             <div class="container" data-aos="fade-up">
@@ -266,7 +215,7 @@ Database::db_disconnect();
                         <div class="contact-phone">
                             <i class="bi bi-phone"></i>
                             <h3>Phone Number</h3>
-                            <p><a href="tel:+155895548855">+84 702032064</a></p>
+                            <p>+84 702032064</p>
                         </div>
                     </div>
 
@@ -274,7 +223,7 @@ Database::db_disconnect();
                         <div class="contact-email">
                             <i class="bi bi-envelope"></i>
                             <h3>Email</h3>
-                            <p><a href="mailto:info@example.com">viet.gm.2k3@gmail.com</a></p>
+                            <p>viet.gm.2k3@gmail.com</p>
                         </div>
                     </div>
 
