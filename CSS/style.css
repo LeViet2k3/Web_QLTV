@@ -156,7 +156,7 @@ h6 {
 
 #hero .hero-content h2 {
     color: #0c2e8a;
-    margin-bottom: 30px;
+    margin-top: 12vh;
     font-size: 64px;
     font-weight: 700;
     font-family: 'Poppins';
@@ -437,46 +437,6 @@ section {
 #portfolio .portfolio-item:hover .portfolio-info {
     opacity: 1;
     bottom: 0;
-}
-
-/* Our Team Section
-  --------------------------------*/
-#team {
-    background: #fff;
-    padding: 30px 0 0 0;
-}
-
-#team .member {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#team .member .pic {
-    overflow: hidden;
-    text-align: center;
-}
-
-#team .member .pic img {
-    max-width: 100%;
-}
-
-#team .member .details {
-    background: #50d8af;
-    color: #fff;
-    padding: 15px;
-    border-radius: 0 0 3px 3px;
-}
-
-#team .member h4 {
-    font-weight: 700;
-    margin-bottom: 2px;
-    font-size: 18px;
-}
-
-#team .member span {
-    font-style: italic;
-    display: block;
-    font-size: 13px;
 }
 
 /* Contact Section

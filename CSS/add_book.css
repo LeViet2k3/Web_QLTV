@@ -136,7 +136,7 @@ table {
 
 
 .add_book {
-    padding-bottom: 2%;
+    padding-bottom: 1.5%;
 }
 
 .add_book h2 {
@@ -151,12 +151,18 @@ table {
 }
 
 #form_add_book {
-    width: 35%;
-    margin: auto;
+    width: 30%;
+    margin: 0 auto;
 }
 
-#input {
-    width: 120%;
+.form form input {
+    width: 121%;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 #btn {
@@ -166,4 +172,8 @@ table {
 
 #btn button {
     background-color: #68f1c8;
+}
+
+.input_file {
+    display: flex;
 }

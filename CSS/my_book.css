@@ -24,7 +24,7 @@
 #header #logo h1 {
     font-size: 42px;
     margin: 0;
-    padding: 0.4vh 0 0 2.2vh;
+    padding: 0.6vh 0 0 4.7vh;
     font-family: 'Poppins';
     font-weight: 700;
     width: 50vh;
@@ -62,7 +62,8 @@ a {
   # Navigation Menu
   --------------------------------------------------------------*/
 .navbar {
-    padding: 1.8vh 4.8vh 0 0;
+    width: 78.5vh;
+    padding-top: 1.2vh;
 }
 
 .navbar ul {
