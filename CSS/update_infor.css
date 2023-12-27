@@ -45,18 +45,6 @@ h4 {
     width: 30vh;
 }
 
-/* .update::before {
-    content: "";
-    background-image: url(../Image/background/anh2.jpg);
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    opacity: 0.3;
-} */
-
 #btn {
     margin: 2vh 0;
 }

@@ -70,15 +70,18 @@ tr:nth-child(even) {
     margin-bottom: 5vh;
     position: relative;
 }
-.statistical div{
+
+.statistical div {
     width: 100%;
 }
-.statistical div label{
+
+.statistical div label {
     position: absolute;
     left: 5vh;
     z-index: 100000000;
-    
+
 }
+
 h2 {
     text-align: center;
     margin: 5vh 0 3vh 0;
@@ -88,9 +91,8 @@ h2 {
     .full {
         display: flex;
         flex-direction: column;
-        /* Hiển thị các phần tử con theo chiều ngang */
         justify-content: space-between;
-        /* Canh giữa các phần tử con */
+
     }
 
     .delete_user,
@@ -106,15 +108,15 @@ h2 {
     display: inline-block;
     width: 50px;
     height: 25px;
-  }
-  
-  .switch input { 
+}
+
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  .slider {
+}
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -124,9 +126,9 @@ h2 {
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 18px;
@@ -136,29 +138,29 @@ h2 {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: #4BC0C0;
     opacity: 0.5;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px #4BC0C0;
     opacity: 0.5;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+}
+
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}

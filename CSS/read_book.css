@@ -112,7 +112,6 @@ a {
     width: 90%;
     z-index: 4;
     margin-left: 1vh;
-    /* border: 2px solid red; */
     display: flex;
     justify-content: center;
 }
@@ -139,10 +138,6 @@ h2 {
     color: #50d8af;
 }
 
-/* .display {
-    width: 40%;
-    z-index: 4;
-} */
 
 #btn {
     cursor: pointer;
@@ -157,15 +152,6 @@ h2 {
     outline: none;
     border: 2px solid lightblue;
 }
-
-/* 
-.display img {
-    width: 17vw;
-    height: auto;
-
-
-} */
-
 
 .display h2 {
     text-align: center;
@@ -186,12 +172,10 @@ h2 {
 .img {
     width: 100%;
     margin-top: 8vh;
-    /* border: 2px solid blue; */
 }
 
 .img img {
     width: 200px;
-    /* border: 2px solid green; */
 }
 
 

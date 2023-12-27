@@ -45,10 +45,9 @@ session_start();
                                     WHERE library_records.Email = '$email' ";
             if (Database::db_execute($sql_select_bookname)) {
                 $bookname = Database::db_get_list($sql_select_bookname);
-                // echo "<h2>All The Books You Have Read:</h2>";
-                echo '<div class = okok>';
+                echo '<div class = display_position>';
                 foreach ($bookname as $name) {
-                    echo '<div class = okokok>';
+                    echo '<div class = info_display_position>';
                     echo '<a href="?book_id=' . $name["Book_id"] . '">';
                     echo '<div class = "img">';
                     echo '<img src="data:image/jpeg;base64,' . $name["Images"] . '" alt="Book Image">';
@@ -84,7 +83,6 @@ session_start();
                 WHERE book.Book_id = '$id'";
                 $info_book = Database::db_get_list($sql_select_info);
                 if (!empty($info_book)) {
-                    // echo "<h2> Information</h2>";
                     echo '<table>';
                     foreach ($info_book as $book) {
                         $id_book = $book["Book_id"];

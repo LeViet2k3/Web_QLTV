@@ -3,9 +3,9 @@ include('../libs/helper.php');
 Database::db_connect();
 
 // Truy vấn dữ liệu
-$sql = "SELECT DATE(Book_borrowed_day) AS dates, COUNT(*) AS views
+$sql = "SELECT DATE(Reading_day) AS dates, COUNT(*) AS views
 FROM library_records
-GROUP BY DATE(Book_borrowed_day)";
+GROUP BY DATE(Reading_day)";
 Database::db_execute($sql);
 
 // Chuyển đổi kết quả thành mảng JSON

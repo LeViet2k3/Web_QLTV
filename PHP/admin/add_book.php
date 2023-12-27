@@ -5,11 +5,10 @@ Database::db_connect();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $book_id = $_POST['book_id'];
     $book_name = $_POST['book_name'];
-    // ////
+
     $image = $_FILES['image']['tmp_name'];
     $imageData = file_get_contents($image);
     $base64Image = base64_encode($imageData);
-    ////////
     $introduce = $_POST['introduce'];
     $author_id = $_POST['author_id'];
     $author_name = $_POST['author_name'];
@@ -69,8 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "An error occurred while uploading the file.";
         }
     }
-
-    // Helper::redirect(Helper::get_url('../test_qltv/PHP/admin/add_book.php'));
 }
 
 ?>

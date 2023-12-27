@@ -114,11 +114,6 @@ a {
     margin: 1vh 0 0 1vh;
 }
 
-/* .search h2 {
-    text-align: center;
-    margin: 5vh 0;
-} */
-
 .search a {
     text-decoration: none;
     text-align: center;
@@ -203,12 +198,12 @@ tr:nth-child(even) {
     background-color: #dfe6ea;
 }
 
-.okokok {
+.info_display_position {
     width: 40vh;
     margin: none;
 }
 
-.okok {
+.display_position {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;

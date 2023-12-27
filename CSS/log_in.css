@@ -9,10 +9,6 @@
     position: relative;
 }
 
-#header #logo h1 {
-    margin-left: 20vh;
-}
-
 .full::before {
     content: "";
     background-image: url(../Image/hero-carousel/2.jpg);
