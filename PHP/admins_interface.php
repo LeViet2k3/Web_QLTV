@@ -193,57 +193,6 @@ Database::db_disconnect();
                 </div>
             </div>
         </section><!-- End Portfolio Section -->
-        <!-- ======= Team Section ======= -->
-        <section id="team">
-            <div class="container" data-aos="fade-up">
-                <div class="section-header">
-                    <h2>Our Team</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-1.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Lê Văn Việt</h4>
-                                <span>Project Manager </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-2.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Huỳnh Quốc Việt</h4>
-                                <span>Backend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-3.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Nguyễn Gia Bảo</h4>
-                                <span>Frontend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6">
-                        <div class="member">
-                            <div class="pic"><img src="../Image/team-4.jpg" alt=""></div>
-                            <div class="details">
-                                <h4>Nguyễn Trọng Hoàng</h4>
-                                <span>Frontend Developer</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section><!-- End Team Section -->
-
         <!-- ======= Contact Section ======= -->
         <section id="contact">
             <div class="container" data-aos="fade-up">

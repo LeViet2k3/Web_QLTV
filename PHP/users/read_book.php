@@ -19,42 +19,6 @@ if (!$_SESSION['email']) {
     <link href="../../Image/logo.png" rel="icon">
     <title>Read Book</title>
     <link href="../../Image/logo.png" rel="icon">
-    <script>
-        $(document).ready(function() {
-            var bookNameInput = $("#book_name");
-            var suggestionsDiv = $("#suggestions");
-            bookNameInput.on("input", function() {
-                var input = $(this).val();
-                if (input.length >= 1) {
-                    $.ajax({
-                        type: "POST",
-                        url: "getSuggestions.php",
-                        data: {
-                            input: input
-                        },
-                        success: function(response) {
-                            suggestionsDiv.html(response);
-                            adjustSuggestionsWidth();
-                        }
-                    });
-                } else {
-                    suggestionsDiv.html("");
-                }
-            });
-
-            $(document).on("click", ".suggestion", function() {
-                var selectedBook = $(this).text();
-                bookNameInput.val(selectedBook);
-                suggestionsDiv.html("");
-            });
-
-            function adjustSuggestionsWidth() {
-                var bookNameInputWidth = bookNameInput.outerWidth();
-                suggestionsDiv.width(bookNameInputWidth);
-            }
-
-        });
-    </script>
 </head>
 
 <body>
@@ -106,7 +70,6 @@ if (!$_SESSION['email']) {
                                             WHERE genre.Genre_id = '$genre_id'";
                         if (Database::db_execute($sql_select_bookname)) {
                             $bookname = Database::db_get_list($sql_select_bookname);
-                            // echo "<h2>All Books In The Library:</h2>";
                             echo '<div class = display_position>';
                             foreach ($bookname as $name) {
                                 echo '<div class = info_display_position>';
@@ -187,11 +150,11 @@ if (!$_SESSION['email']) {
                             $name_file =  $name['File_pdf'];
                         }
                         $sql_select_info = "SELECT book.Book_name, genre.Genre_name, author.Author_name,book.Introduce,book.Book_id
-                FROM book
-                JOIN book_has_author ON book_has_author.Book_id = book.Book_id
-                JOIN author ON book_has_author.Author_id = author.Author_id
-                JOIN genre ON book.Genre_id = genre.Genre_id
-                WHERE book.Book_id = '$id'";
+                                            FROM book
+                                            JOIN book_has_author ON book_has_author.Book_id = book.Book_id
+                                            JOIN author ON book_has_author.Author_id = author.Author_id
+                                            JOIN genre ON book.Genre_id = genre.Genre_id
+                                            WHERE book.Book_id = '$id'";
                         $info_book = Database::db_get_list($sql_select_info);
                         if (!empty($info_book)) {
                             echo '<table>';
@@ -215,7 +178,7 @@ if (!$_SESSION['email']) {
                                 echo '</tr>';
                                 echo '<tr>';
                                 echo '<th>Read</th>';
-                                echo '<td><a><button class="show_modal1" id = "btn">Open PDF</button></a></td>';
+                                echo '<td><a><button class="show_modal" id = "btn">Open PDF</button></a></td>';
                                 echo '</tr>';
                             }
                             echo '</table>';
@@ -245,7 +208,7 @@ if (!$_SESSION['email']) {
         // "use strict";
         const modal = document.querySelector(".modal");
         const btnCloseModal = document.querySelector(".close-modal");
-        const btnsShowModal = document.querySelectorAll(".show_modal1");
+        const btnsShowModal = document.querySelectorAll(".show_modal");
         let button = true; // Đặt trạng thái là chưa nhấn
 
         const closeModal = function() {
@@ -263,6 +226,42 @@ if (!$_SESSION['email']) {
             btnsShowModal[i].addEventListener("click", showModal);
         }
         btnCloseModal.addEventListener("click", closeModal);
+    </script>
+    <script>
+        $(document).ready(function() {
+            var bookNameInput = $("#book_name");
+            var suggestionsDiv = $("#suggestions");
+            bookNameInput.on("input", function() {
+                var input = $(this).val();
+                if (input.length >= 1) {
+                    $.ajax({
+                        type: "POST",
+                        url: "getSuggestions.php",
+                        data: {
+                            input: input
+                        },
+                        success: function(response) {
+                            suggestionsDiv.html(response);
+                            adjustSuggestionsWidth();
+                        }
+                    });
+                } else {
+                    suggestionsDiv.html("");
+                }
+            });
+
+            $(document).on("click", ".suggestion", function() {
+                var selectedBook = $(this).text();
+                bookNameInput.val(selectedBook);
+                suggestionsDiv.html("");
+            });
+
+            function adjustSuggestionsWidth() {
+                var bookNameInputWidth = bookNameInput.outerWidth();
+                suggestionsDiv.width(bookNameInputWidth);
+            }
+
+        });
     </script>
 </body>
 

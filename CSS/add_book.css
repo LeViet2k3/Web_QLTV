@@ -22,7 +22,7 @@
 #header #logo h1 {
     font-size: 42px;
     margin: 0;
-    padding: 0.4vh 0 0 2.2vh;
+    padding: 0.8vh 0 0 4.7vh;
     font-family: 'Poppins';
     font-weight: 700;
     width: 50vh;
@@ -60,7 +60,7 @@ a {
   # Navigation Menu
   --------------------------------------------------------------*/
 .navbar {
-    padding: 1.8vh 2vh 0 0;
+    padding: 0.7vh 2.5vh 0 0;
 }
 
 .navbar ul {
@@ -117,41 +117,42 @@ table {
     border-radius: 10px;
     box-shadow: 0px 0px 5px rgba(53, 51, 51, 0.6);
     overflow: hidden;
-    width: 60vh;
+    width: 63vh;
 
 }
 
 .full_display {
+    /* border: 2px solid blue; */
+    width: 40%;
     display: flex;
-    justify-content: space-around;
-    margin-top: 5vh;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6);
+    flex-direction: column;
+    /* justify-content: space-around; */
+    /* margin-top: 5vh; */
+    /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6); */
     padding-bottom: 3vh;
 }
 
 .full_display h3 {
     text-align: center;
     margin-bottom: 15px;
+    color: #0c2e8a;
 }
 
 
 .add_book {
     padding-bottom: 1.5%;
+    width: 60%;
+    /* border: 2px solid red; */
 }
 
-.add_book h2 {
+.add_book h3 {
     text-align: center;
     margin-bottom: 2%;
     color: #0c2e8a;
 }
 
-.full_form {
-    width: 30%;
-    margin: auto;
-}
-
 #form_add_book {
-    width: 30%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -171,9 +172,13 @@ table {
 }
 
 #btn button {
-    background-color: #68f1c8;
+    background-color: #dfe6ea;
 }
 
 .input_file {
+    display: flex;
+}
+
+.full_add_book {
     display: flex;
 }

@@ -106,143 +106,143 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </ul>
         </div><!-- .navbar -->
     </header><!-- End Header -->
-    <div class="add_book">
-        <h2>Add Book</h2>
-        <div id="form_add_book">
-            <div class="form">
-                <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="book_id" placeholder="Enter book id" required required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="book_name" placeholder="Enter book name" required>
-                        </div>
-                    </div>
-                    <div class="input_file">
+    <div class="full_add_book">
+        <div class="add_book">
+            <h3>Add New Books</h3>
+            <div id="form_add_book">
+                <div class="form">
+                    <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <input type="file" name="pdfFile" id="pdfFile">
+                                <input type="text" class="form-control" name="book_id" placeholder="Enter book id" required required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-10">
-                                <input type="file" name="image" id="image">
+                                <input type="text" class="form-control" name="book_name" placeholder="Enter book name" required>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="introduce" placeholder="Enter introduce" required>
+                        <div class="input_file">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="file" name="pdfFile" id="pdfFile">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="file" name="image" id="image">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="author_id" placeholder="Enter author id" required>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="introduce" placeholder="Enter introduce" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="author_name" placeholder="Enter author name" required>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="author_id" placeholder="Enter author id" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="genre_id" placeholder="Enter genre id" required>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="author_name" placeholder="Enter author name" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="genre_name" placeholder="Enter genre name" required>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="genre_id" placeholder="Enter genre id" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div id="btn" class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">ADD</button>
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="genre_name" placeholder="Enter genre name" required>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <div id="btn" class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">ADD</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
-    </div>
-    <div class="full_display">
-        <div class="display_book">
-            <h3>Book Table</h3>
-            <?php
-            // Hiển thị bảng book
-            $sql_select_book = "SELECT Book_id, Book_name, Genre_id FROM book ";
-            if (Database::db_execute($sql_select_book)) {
-                echo '<table>';
-                echo '<tr>';
-                echo '<th>Book ID</th>';
-                echo '<th>Book Name</th>';
-                echo '<th>Genre ID</th>';
-                echo '</tr>';
-
-                $books = Database::db_get_list($sql_select_book);
-                foreach ($books as $book) {
-                    echo '<tr>';
-                    echo '<td>' . $book["Book_id"] . '</td>';
-                    echo '<td>' . $book["Book_name"] . '</td>';
-                    echo '<td>' . $book["Genre_id"] . '</td>';
-                    echo '</tr>';
-                }
-                echo '</table>';
-            }
-            ?>
         </div>
-        <div class="display_genre">
-            <h3>Genre Table</h3>
-            <?php
-            // Hiển thị bảng genre
-            $sql_select_genre = "SELECT * FROM genre ";
-            if (Database::db_execute($sql_select_genre)) {
-                echo '<table>';
-                echo '<tr>';
-                echo '<th>Genre ID</th>';
-                echo '<th>Genre Name</th>';
-                echo '</tr>';
+        <div class="full_display">
+            <div class="display_book">
+                <h3>Book Table</h3>
+                <?php
+                // Hiển thị bảng book
+                $sql_select_book = "SELECT Book_id, Book_name, Genre_id FROM book ";
+                if (Database::db_execute($sql_select_book)) {
+                    echo '<table>';
+                    echo '<tr>';
+                    echo '<th>Book ID</th>';
+                    echo '<th>Book Name</th>';
+                    echo '<th>Genre ID</th>';
+                    echo '</tr>';
 
-                $genres = Database::db_get_list($sql_select_genre);
-                foreach ($genres as $genre) {
-                    echo '<tr>';
-                    echo '<td>' . $genre["Genre_id"] . '</td>';
-                    echo '<td>' . $genre["Genre_name"] . '</td>';
-                    echo '</tr>';
+                    $books = Database::db_get_list($sql_select_book);
+                    foreach ($books as $book) {
+                        echo '<tr>';
+                        echo '<td>' . $book["Book_id"] . '</td>';
+                        echo '<td>' . $book["Book_name"] . '</td>';
+                        echo '<td>' . $book["Genre_id"] . '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
                 }
-                echo '</table>';
-            }
-            ?>
-        </div>
-        <div class="display_author">
-            <h3>Author Table</h3>
-            <?php
-            // Hiển thị bảng author
-            $sql_select_author = "SELECT * FROM author ";
-            if (Database::db_execute($sql_select_author)) {
-                echo '<table>';
-                echo '<tr>';
-                echo '<th>Author ID</th>';
-                echo '<th>Author Name</th>';
-                echo '</tr>';
-                $authors = Database::db_get_list($sql_select_author);
-                foreach ($authors as $author) {
+                ?>
+            </div>
+            <div class="display_genre">
+                <h3>Genre Table</h3>
+                <?php
+                // Hiển thị bảng genre
+                $sql_select_genre = "SELECT * FROM genre ";
+                if (Database::db_execute($sql_select_genre)) {
+                    echo '<table>';
                     echo '<tr>';
-                    echo '<td>' . $author["Author_id"] . '</td>';
-                    echo '<td>' . $author["Author_name"] . '</td>';
+                    echo '<th>Genre ID</th>';
+                    echo '<th>Genre Name</th>';
                     echo '</tr>';
+                    $genres = Database::db_get_list($sql_select_genre);
+                    foreach ($genres as $genre) {
+                        echo '<tr>';
+                        echo '<td>' . $genre["Genre_id"] . '</td>';
+                        echo '<td>' . $genre["Genre_name"] . '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
                 }
-                echo '</table>';
-            }
-            Database::db_disconnect();
-            ?>
+                ?>
+            </div>
+            <div class="display_author">
+                <h3>Author Table</h3>
+                <?php
+                // Hiển thị bảng author
+                $sql_select_author = "SELECT * FROM author ";
+                if (Database::db_execute($sql_select_author)) {
+                    echo '<table>';
+                    echo '<tr>';
+                    echo '<th>Author ID</th>';
+                    echo '<th>Author Name</th>';
+                    echo '</tr>';
+                    $authors = Database::db_get_list($sql_select_author);
+                    foreach ($authors as $author) {
+                        echo '<tr>';
+                        echo '<td>' . $author["Author_id"] . '</td>';
+                        echo '<td>' . $author["Author_name"] . '</td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+                }
+                Database::db_disconnect();
+                ?>
+            </div>
         </div>
     </div>
 
 </body>
-<script src="../../assets/js/main.js"></script>
 
 </html>
